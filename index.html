@@ -1,26 +1,208 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Test FXTC.io</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      background: #111;
-      color: #00ff88;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-    }
-    h1 {
-      font-size: 3rem;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FXTC – Messagerie & partage sécurisés</title>
+
+  <!-- Feuille de style principale -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Meta SEO de base -->
+  <meta name="description" content="FXTC est une application de messagerie et de partage de fichiers sécurisés, pensée pour les professionnels." />
 </head>
 <body>
-  <h1>🚀 FXTC.io est en ligne via GitHub Pages !</h1>
+  <!-- Barre de navigation -->
+  <header class="site-header">
+    <div class="container header-content">
+      <div class="logo">
+        <!-- Remplace l'image par ton vrai logo si tu en as un -->
+        <!-- <img src="image/logo-fxtc.png" alt="Logo FXTC" /> -->
+        <span class="logo-text">FXTC</span>
+      </div>
+
+      <nav class="main-nav">
+        <a href="#accueil">Accueil</a>
+        <a href="#fonctionnalites">Fonctionnalités</a>
+        <a href="#application">Application</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Section Hero / Accueil -->
+  <section id="accueil" class="hero">
+    <div class="container hero-content">
+      <div class="hero-text">
+        <h1>FXTC – Envoyez, stockez et partagez en toute sécurité</h1>
+        <p>
+          FXTC est une solution de communication et de partage de fichiers
+          sécurisée, pensée pour les équipes qui manipulent des données sensibles.
+        </p>
+
+        <div class="hero-buttons">
+          <!-- Mets ici le lien vers ton app (par ex. la webapp ou un store) -->
+          <a href="#" class="btn btn-primary">Accéder à l’application</a>
+          <!-- Lien vers GitHub ou doc technique -->
+          <a href="https://github.com/FXTC23" target="_blank" class="btn btn-secondary">
+            Voir le projet sur GitHub
+          </a>
+        </div>
+
+        <p class="hero-note">
+          Chiffrement, gestion des contacts, stockage de documents, tout est réuni dans une interface simple.
+        </p>
+      </div>
+
+      <div class="hero-illustration">
+        <!-- Exemple d’image. Tu peux mettre un screenshot dans le dossier image/ -->
+        <!-- <img src="image/capture-fxtc.png" alt="Capture d’écran de l’application FXTC" /> -->
+        <div class="hero-placeholder">
+          <span>Prévu : capture d’écran<br />de l’interface FXTC</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fonctionnalités principales -->
+  <section id="fonctionnalites" class="section features">
+    <div class="container">
+      <h2>Fonctionnalités principales</h2>
+      <p class="section-intro">
+        FXTC regroupe tous les outils nécessaires pour communiquer efficacement
+        tout en protégeant vos données.
+      </p>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <h3>Envoi sécurisé de fichiers</h3>
+          <p>
+            Partagez des documents de manière chiffrée, avec un suivi clair des
+            envois et réceptions.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <h3>Gestion des contacts</h3>
+          <p>
+            Centralisez vos contacts FXTC, créez des groupes et envoyez des
+            fichiers à plusieurs personnes en un clic.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <h3>Stockage organisé</h3>
+          <p>
+            Conservez un historique de vos fichiers envoyés et reçus, avec une
+            recherche simple et rapide.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <h3>Interface épurée</h3>
+          <p>
+            Conçue pour rester simple : envoi, stockage, contacts… tout est
+            accessible en quelques secondes.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section qui présente l'application (workflow) -->
+  <section id="application" class="section app-section">
+    <div class="container">
+      <h2>Comment fonctionne l’application FXTC&nbsp;?</h2>
+
+      <div class="steps">
+        <div class="step">
+          <span class="step-number">1</span>
+          <h3>Créez votre compte</h3>
+          <p>
+            Inscrivez-vous sur FXTC et configurez votre organisation, vos
+            équipes et vos droits d’accès.
+          </p>
+        </div>
+
+        <div class="step">
+          <span class="step-number">2</span>
+          <h3>Ajoutez vos contacts</h3>
+          <p>
+            Importez ou ajoutez vos contacts manuellement pour leur envoyer des
+            fichiers et messages sécurisés.
+          </p>
+        </div>
+
+        <div class="step">
+          <span class="step-number">3</span>
+          <h3>Envoyez et suivez vos fichiers</h3>
+          <p>
+            Choisissez un fichier, un destinataire et envoyez. Vous gardez un
+            historique complet de tous les échanges.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Contact -->
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <h2>Contact</h2>
+      <p class="section-intro">
+        Une question sur FXTC, une demande de démo ou un besoin spécifique ?
+        Contactez-nous.
+      </p>
+
+      <div class="contact-grid">
+        <form class="contact-form">
+          <div class="form-group">
+            <label for="name">Nom</label>
+            <input type="text" id="name" name="name" placeholder="Votre nom" />
+          </div>
+
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="vous@exemple.com" />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="Votre message..."></textarea>
+          </div>
+
+          <!-- Formulaire statique : l'envoi réel passera plus tard par un backend ou un service tiers -->
+          <button type="submit" class="btn btn-primary">Envoyer</button>
+        </form>
+
+        <div class="contact-info">
+          <h3>Coordonnées FXTC</h3>
+          <p>
+            Vous pouvez aussi nous écrire directement par e-mail ou suivre le
+            développement du projet.
+          </p>
+          <ul>
+            <li><strong>E-mail :</strong> contact@fxtc.example</li>
+            <li><strong>GitHub :</strong> <a href="https://github.com/FXTC23" target="_blank">Organisation FXTC23</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pied de page -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>© <span id="year"></span> FXTC – Tous droits réservés.</p>
+      <p class="footer-links">
+        <a href="#accueil">Retour en haut</a>
+      </p>
+    </div>
+
+    <!-- Petit script pour l'année automatique -->
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </footer>
 </body>
 </html>
