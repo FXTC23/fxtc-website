@@ -49,17 +49,12 @@ body{
   top: 0;
   z-index: 100;
   background: var(--primary);
-  color: #fff;
   height: 84px;
-  display:flex;
-  align-items:center;
   overflow: visible; /* important pour le mega menu */
 }
 
 .topbar-wrap{
   position: relative; /* ancre le menu */
-  width: 100%;
-  display: block;
 }
 
 .topbar-inner{
@@ -172,10 +167,8 @@ body{
   position: absolute;
   left: 0;
   right: 0;
-  top: 84px;
-  width: 100%;
+  top: 100%;
   background: var(--primary);
-  color: #fff;
   border-top: 1px solid rgba(255,255,255,.12);
   padding: 20px 0 24px;
   z-index: 90;
@@ -254,7 +247,7 @@ body{
 @media (max-width: 980px){
   .products-panel{
     position: absolute;
-    top: 84px;
+    top: 100%;
     max-height: calc(100vh - 84px);  /* ne dépasse pas l’écran */
     overflow: auto;                  /* scroll si trop long */
   }
