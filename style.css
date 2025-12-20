@@ -163,10 +163,10 @@ body{
 ========================= */
 
 .products-panel{
-  position: absolute;
+  position: relative;
   left: 0;
   right: 0;
-  top: 84px; /* même hauteur que header */
+  width: 100%;
   background: var(--primary);
   color: #fff;
   border-top: 1px solid rgba(255,255,255,.12);
@@ -270,7 +270,7 @@ body{
 .hero-visual{
   position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: calc(100vh - 84px);
   overflow: hidden;
   background: #000;
 }
