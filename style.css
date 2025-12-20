@@ -430,6 +430,11 @@ input:focus, textarea:focus{
   background: #000;
 }
 
+/* neutralise le padding de .hero */
+.hero.hero-visual{
+  padding: 0;
+}
+
 /* Vidéo plein écran */
 .hero-media-wrapper{
   position: absolute;
@@ -449,19 +454,20 @@ input:focus, textarea:focus{
 
 /* Overlay texte */
 .hero-overlay-content{
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 2;
-  height: 100%;
   display: flex;
   align-items: center;      /* centrage vertical */
   justify-content: center;  /* centrage horizontal */
   padding: 0 24px;
-  textinto
+  text-align: center;
 }
 
-.hero-title{
+/* titre au-dessus de la vidéo */
+.hero-visual .hero-title{
   max-width: 1100px;
-  text-align: center;
+  margin: 0;
   color: #fff;
   font-size: clamp(42px, 6vw, 80px);
   font-weight: 800;
