@@ -39,55 +39,40 @@
   }
   </script>
 </head>
+
+<script>
+  const btn = document.querySelector('.products-trigger');
+  const menu = document.getElementById('products-menu');
+
+  function closeMenu(){
+    btn.setAttribute('aria-expanded', 'false');
+    menu.hidden = true;
+  }
+
+  btn.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    menu.hidden = open;
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!menu.hidden && !menu.contains(e.target) && !btn.contains(e.target)) closeMenu();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+</script>
+  
 <body>
 
 <nav class="nav">
   <a href="#produits">Produits</a>
   <a href="#casusage">Cas d’usage</a>
   <a href="#contact">Contact</a>
-
-  <!-- Bouton cube -->
-  <button class="products-trigger" type="button" aria-expanded="false" aria-controls="products-menu">
-    <span class="cube-icon" aria-hidden="true"></span>
-    <span class="sr-only">Ouvrir le menu Produits</span>
-  </button>
-</nav>
-
-<!-- Menu déroulant -->
-<div id="products-menu" class="products-menu" hidden>
-  <div class="products-menu-inner">
-    <a class="product-link" href="./vault.html">
-      <div class="product-title">Vault</div>
-      <div class="product-desc">Coffre-fort zero-knowledge, archivage & preuves d’intégrité.</div>
-      <div class="product-meta">Disponible 02/2026</div>
-    </a>
-
-    <a class="product-link" href="./workspace.html">
-      <div class="product-title">Workspace</div>
-      <div class="product-desc">Collaborer, analyser, dashboards et projets partagés.</div>
-      <div class="product-meta">Disponible 09/2026</div>
-    </a>
-
-    <a class="product-link" href="./atlas.html">
-      <div class="product-title">Atlas</div>
-      <div class="product-desc">Connecter & structurer les données (ERP, CRM, IoT…).</div>
-      <div class="product-meta">Disponible 06/2027</div>
-    </a>
-
-    <a class="product-link" href="./mpc.html">
-      <div class="product-title">MPC</div>
-      <div class="product-desc">Protocole décentralisé d’échanges ultra-sensibles.</div>
-      <div class="product-meta">Disponible 01/2028</div>
-    </a>
-  </div>
-</div>
   
+<body>
   <!-- HEADER -->
-<title>FXTC — Home</title>
-
-<meta name="description"
-      content="FXTC Website — Infrastructure immuable pour les échanges et décisions critiques." />
-  
   <header class="topbar">
     <div class="container topbar-inner">
       <div class="logo">
@@ -95,21 +80,58 @@
           src="./image/Logo-clair2-aegis-sentinel.png"
           alt="FXTC"
           class="logo-img"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
         />
         <div class="logo-text">
-    <span class="logo-brand">FXTC</span>
-    <span class="logo-product">Website</span>
-  </div>
-</div>
+          <span class="logo-brand">FXTC</span>
+          <span class="logo-product">Website</span>
+        </div>
+      </div>
 
       <nav class="nav">
         <a href="#produits">Produits</a>
         <a href="#casusage">Cas d’usage</a>
         <a href="#contact">Contact</a>
+
+        <!-- Bouton cube -->
+        <button class="products-trigger" type="button"
+          aria-expanded="false"
+          aria-controls="products-menu">
+          <span class="cube-icon" aria-hidden="true"></span>
+          <span class="sr-only">Ouvrir le menu Produits</span>
+        </button>
       </nav>
     </div>
+
+    <!-- Menu déroulant (dans le header pour être bien positionné) -->
+    <div id="products-menu" class="products-menu" hidden>
+      <div class="products-menu-inner">
+        <a class="product-link" href="./vault.html">
+          <div class="product-title">Vault</div>
+          <div class="product-desc">Coffre-fort zero-knowledge, archivage & preuves d’intégrité.</div>
+          <div class="product-meta">Disponible 02/2026</div>
+        </a>
+
+        <a class="product-link" href="./workspace.html">
+          <div class="product-title">Workspace</div>
+          <div class="product-desc">Collaborer, analyser, dashboards et projets partagés.</div>
+          <div class="product-meta">Disponible 09/2026</div>
+        </a>
+
+        <a class="product-link" href="./atlas.html">
+          <div class="product-title">Atlas</div>
+          <div class="product-desc">Connecter & structurer les données (ERP, CRM, IoT…).</div>
+          <div class="product-meta">Disponible 06/2027</div>
+        </a>
+
+        <a class="product-link" href="./mpc.html">
+          <div class="product-title">MPC</div>
+          <div class="product-desc">Protocole décentralisé d’échanges ultra-sensibles.</div>
+          <div class="product-meta">Disponible 01/2028</div>
+        </a>
+      </div>
+    </div>
   </header>
+
 
   <!-- IMAGE HERO -->
 <section class="hero hero-visual">
