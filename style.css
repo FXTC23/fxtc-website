@@ -176,10 +176,12 @@ body{
 }
 
 .apps-list{
-  border-top: 1px solid rgba(0,0,0,.10);
+  width: 100%;
+  margin-top: 24px;
 }
 
 .app-row{
+  width: 100%;
   display:flex;
   align-items:flex-start;
   justify-content: space-between;
@@ -196,6 +198,7 @@ body{
 }
 
 .app-title{
+  margin: 0;
   font-size: clamp(44px, 7vw, 92px);
   font-weight: 800;
   letter-spacing: -0.04em;
