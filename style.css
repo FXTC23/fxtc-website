@@ -92,6 +92,13 @@ body{
   outline-offset: 2px;
 }
 
+.brand-prefix{
+  color: var(--secondary);
+  letter-spacing: .35em;
+  font-size: 12px;
+  font-weight: 700;
+}
+
 /* ---------------- HERO ---------------- */
 .hero{
   background: linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,0));
