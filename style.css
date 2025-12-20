@@ -564,26 +564,3 @@ input:focus, textarea:focus{
   .topbar{ height: auto; padding: 14px 0; }
 }
 
-<script>
-  const btn = document.querySelector('.products-trigger');
-  const menu = document.getElementById('products-panel');
-
-  function closeMenu(){
-    btn.setAttribute('aria-expanded', 'false');
-    menu.hidden = true;
-  }
-
-  btn.addEventListener('click', () => {
-    const open = btn.getAttribute('aria-expanded') === 'true';
-    btn.setAttribute('aria-expanded', String(!open));
-    menu.hidden = open;
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!menu.hidden && !menu.contains(e.target) && !btn.contains(e.target)) closeMenu();
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeMenu();
-  });
-</script>
