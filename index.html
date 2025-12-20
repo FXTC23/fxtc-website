@@ -213,30 +213,28 @@
     </div>
   </footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+<script>
+  const btn = document.querySelector('.products-trigger');
+  const panel = document.getElementById('products-panel');
 
-    const btn = document.querySelector('.products-trigger');
-    const menu = document.getElementById('products-panel');
+  function closePanel(){
+    btn.setAttribute('aria-expanded', 'false');
+    panel.hidden = true;
+  }
 
-    function closeMenu(){
-      btn.setAttribute('aria-expanded', 'false');
-      menu.hidden = true;
-    }
+  btn.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    panel.hidden = open;
+  });
 
-    btn.addEventListener('click', () => {
-      const open = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!open));
-      menu.hidden = open;
-    });
+  document.addEventListener('click', (e) => {
+    if (!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)) closePanel();
+  });
 
-    document.addEventListener('click', (e) => {
-      if (!menu.hidden && !menu.contains(e.target) && !btn.contains(e.target)) closeMenu();
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeMenu();
-    });
-  </script>
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closePanel();
+  });
+</script>
 </body>
 </html>
