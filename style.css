@@ -588,3 +588,11 @@ input:focus, textarea:focus{
   line-height: 1.05;
   text-shadow: 0 20px 60px rgba(0,0,0,.55);
 }
+
+.topbar{ position: sticky; }          /* ok */
+.topbar{ overflow: visible; }         /* important pour que le menu dépasse */
+
+.products-menu{
+  top: 80px;
+  right: 24px;
+}
