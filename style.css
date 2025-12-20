@@ -26,7 +26,7 @@ body{
 }
 
 .container{
-  width: min(1120px, calc(100% - 48px));
+  width: calc(100% - 48px);
   margin: 0 auto;
 }
 
@@ -151,99 +151,53 @@ body{
 }
 
 /* --------- APPS CARDS (CloudChain-like) --------- */
-.cards{
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 18px;
+.apps-head h2{
+  margin: 0 0 18px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: .02em;
 }
 
-.app-card{
-  background: var(--surface);
-  border: 2px solid rgba(83,84,86,.35);
-  border-radius: 24px;
-  padding: 18px 18px 16px;
-  box-shadow: var(--shadow);
-  cursor: pointer;
-  transition: .15s ease;
+.apps-list{
+  border-top: 1px solid rgba(0,0,0,.10);
 }
 
-.app-card:hover{
-  transform: translateY(-2px);
-  border-color: rgba(83,84,86,.55);
-}
-
-.app-card-header{
+.app-row{
   display:flex;
   align-items:flex-start;
   justify-content: space-between;
-  gap: 12px;
-}
-
-.app-card h3{
-  margin: 0;
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-
-.app-subtitle{
-  margin: 4px 0 0;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.app-icon{
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: var(--primary);
-  color: var(--secondary);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight: 900;
-  font-size: 14px;
-  flex: 0 0 auto;
-}
-
-.app-desc{
-  margin: 12px 0 16px;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.35;
-}
-
-.app-footer{
-  display:flex;
-  align-items:center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.app-badge{
-  border: 1px solid rgba(83,84,86,.45);
-  padding: 7px 12px;
-  border-radius: 999px;
-  font-size: 12px;
-  color: var(--text);
-  background: transparent;
-}
-
-.app-open{
-  border: 2px solid rgba(83,84,86,.65);
-  padding: 7px 14px;
-  border-radius: 999px;
-  font-weight: 800;
-  font-size: 13px;
-  text-decoration:none;
-  color: var(--text);
-  background: #fff;
+  gap: 18px;
+  padding: 26px 6px;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid rgba(0,0,0,.10);
   transition: .15s ease;
 }
 
-.app-open:hover{
-  background: rgba(83,84,86,.06);
+.app-row:hover{
+  background: rgba(0,0,0,.02);
+}
+
+.app-title{
+  font-size: clamp(44px, 7vw, 92px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+
+.app-sub{
+  margin-top: 10px;
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 70ch;
+}
+
+.app-row-right{
+  font-size: 14px;
+  color: var(--disabled);
+  margin-top: 12px;
+  white-space: nowrap;
 }
 
 /* ---------------- BUTTONS ---------------- */
