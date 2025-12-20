@@ -58,6 +58,8 @@ body{
 
 .topbar-wrap{
   position: relative; /* ancre le menu */
+  width: 100%;
+  display: block;
 }
 
 .topbar-inner{
@@ -176,7 +178,7 @@ body{
   color: #fff;
   border-top: 1px solid rgba(255,255,255,.12);
   padding: 22px 0 26px;
-  z-index: 90;
+  z-index: 200;
 }
 
 .products-panel-inner{
