@@ -151,6 +151,22 @@ body{
 }
 
 /* --------- APPS CARDS (CloudChain-like) --------- */
+.apps-intro{
+  max-width: 80ch;
+  margin: 0 0 32px;
+}
+
+.apps-intro p{
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.25;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.apps-intro span{
+  color: var(--muted);
+}
+
 .apps-head h2{
   margin: 0 0 18px;
   font-size: 16px;
