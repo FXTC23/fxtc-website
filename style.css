@@ -59,63 +59,69 @@ body{
   transform: rotate(45deg);
 }
 
-/* menu */
-.products-menu{
-  position: absolute;
-  top: 80px;               /* hauteur header */
-  right: 24px;
-  width: min(720px, calc(100vw - 48px));
-  background: rgba(255,255,255,.96);
-  border: 1px solid rgba(0,0,0,.12);
-  border-radius: 18px;
-  box-shadow: 0 18px 60px rgba(0,0,0,.18);
-  z-index: 60;
-  backdrop-filter: blur(10px);
+/* menu panneau sous le header*/
+
+.products-panel{
+  background: var(--primary);         
+  color: #fff;
+  border-top: 1px solid rgba(255,255,255,.12);
 }
 
-.products-menu-inner{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  padding: 12px;
+.products-panel-inner{
+  padding: 18px 0 26px;
 }
 
-.product-link{
-  text-decoration: none;
-  color: inherit;
-  border-radius: 14px;
-  padding: 14px;
-  border: 1px solid rgba(0,0,0,.10);
-  background: rgba(255,255,255,.6);
-  transition: .15s ease;
-}
-.product-link:hover{ background: rgba(0,0,0,.03); }
-
-.product-title{
-  font-weight: 800;
-  font-size: 16px;
-  margin-bottom: 6px;
-}
-
-.product-desc{
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.45;
-}
-
-.product-meta{
-  margin-top: 10px;
+.products-heading{
   font-size: 12px;
-  color: var(--disabled);
+  letter-spacing: .35em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.72);
+  margin-bottom: 14px;
 }
 
-/* responsive */
-@media (max-width: 760px){
-  .products-menu{ right: 12px; }
-  .products-menu-inner{ grid-template-columns: 1fr; }
+/* liste verticale */
+.products-list{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* liens */
+.products-item{
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  color: #fff;
+  text-decoration: none;
+  font-size: clamp(34px, 4.6vw, 66px);
+  font-weight: 500;
+  line-height: 1.05;
+  width: fit-content;
+}
+
+/* flèche à gauche */
+.products-arrow{
+  font-size: 0.65em;
+  opacity: .85;
+  transform: translateY(-0.04em);
+}
+
+/* soulignement “premium” au survol */
+.products-item:hover{
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 10px;
+}
+
+/* focus clavier */
+.products-item:focus-visible{
+  outline: 2px solid rgba(255,255,255,.45);
+  outline-offset: 6px;
+  border-radius: 8px;
 }
 
 /* ---------------- HEADER ---------------- */
+
 /* Header full-width */
 .topbar{
   position: sticky;
