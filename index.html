@@ -12,10 +12,19 @@
   <header class="topbar">
     <div class="container topbar-inner">
       <div class="logo">
-        <img src="./image/Logo-clair2-aegis-sentinel.png" alt="FXTC" class="logo-img" />
+        <!-- ✅ Logo corrigé + fallback -->
+        <img
+          src="./image/Logo-clair2-aegis-sentinel.png"
+          alt="FXTC"
+          class="logo-img"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+        />
+        <span class="logo-fallback" style="display:none; color:#fff; font-weight:800;">
+          FXTC
+        </span>
       </div>
+
       <nav class="nav">
-        <a href="#vision">Vision</a>
         <a href="#produits">Produits</a>
         <a href="#casusage">Cas d’usage</a>
         <a href="#contact">Contact</a>
@@ -34,91 +43,84 @@
         FXTC fournit une plateforme unifiée pour envoyer, stocker et tracer vos fichiers sensibles.
         Pensée pour les organisations qui ne peuvent pas se permettre la moindre fuite.
       </p>
-      <div class="hero-actions">
-        <a href="#" class="btn btn-primary">Ouvrir FXTC</a>
-        <a href="#vision" class="btn btn-ghost">Découvrir la plateforme</a>
-      </div>
+
+      <!-- ✅ Boutons supprimés -->
+      <!-- <div class="hero-actions">...</div> -->
     </div>
   </section>
 
-  <!-- VISION -->
-  <section id="vision" class="section section-dark">
+  <!-- INTRO APPS -->
+  <section id="produits" class="section section-light">
     <div class="container">
-      <h2>Construire la colonne vertébrale de vos échanges</h2>
-      <p class="section-text">
-        FXTC centralise vos canaux de communication, la gestion de documents et les contacts
-        dans une seule interface. Les données restent chiffrées, traçables et contrôlées.
-      </p>
+      <div class="apps-intro">
+        <p>
+          Les applications de la suite <span>CloudChain Platform</span>
+          structurent, sécurisent et orchestrent les échanges critiques des organisations,
+          de la donnée brute jusqu’à l’archive souveraine.
+        </p>
+      </div>
+
+      <!-- CARDS APPS -->
+      <div class="cards">
+        <article class="app-card">
+          <header class="app-card-header">
+            <div>
+              <h3>Atlas</h3>
+              <p class="app-subtitle">Connecter & structurer les données</p>
+            </div>
+            <div class="app-icon">AT</div>
+          </header>
+
+          <p class="app-desc">
+            Ingestion et modélisation des données de l’entreprise (ERP, CRM, IoT…) pour produire des vues métiers prêtes à l’analyse.
+          </p>
+
+          <div class="app-footer">
+            <span class="app-badge">Data & Modélisation</span>
+            <!-- ✅ bouton Ouvrir supprimé -->
+          </div>
+        </article>
+
+        <article class="app-card">
+          <header class="app-card-header">
+            <div>
+              <h3>Workspace</h3>
+              <p class="app-subtitle">Collaborer & analyser</p>
+            </div>
+            <div class="app-icon">WS</div>
+          </header>
+
+          <p class="app-desc">
+            Workspace collaboratif : exploration, dashboards, projets, commentaires et travail d’équipe sur un document unique.
+          </p>
+
+          <div class="app-footer">
+            <span class="app-badge">Collaboration</span>
+            <!-- ✅ bouton Ouvrir supprimé -->
+          </div>
+        </article>
+
+        <article class="app-card">
+          <header class="app-card-header">
+            <div>
+              <h3>Vault</h3>
+              <p class="app-subtitle">Coffre-fort zero-knowledge</p>
+            </div>
+            <div class="app-icon">VA</div>
+          </header>
+
+          <p class="app-desc">
+            Espace sécurisé pour archiver et protéger les artefacts finalisés avec chiffrement et preuves d’intégrité.
+          </p>
+
+          <div class="app-footer">
+            <span class="app-badge">Sécurité & Archivage</span>
+            <!-- ✅ bouton Ouvrir supprimé -->
+          </div>
+        </article>
+      </div>
     </div>
   </section>
-
-  <div class="apps-intro">
-  <p>
-    Les applications de la suite <span>CloudChain Platform</span>
-    structurent, sécurisent et orchestrent les échanges critiques des organisations,
-    de la donnée brute jusqu’à l’archive souveraine.
-  </p>
-</div>
-
-  <!-- PRODUITS / MODULES -->
-<div class="cards">
-  <article class="app-card">
-    <header class="app-card-header">
-      <div>
-        <h3>Atlas</h3>
-        <p class="app-subtitle">Connecter & structurer les données</p>
-      </div>
-      <div class="app-icon">AT</div>
-    </header>
-
-    <p class="app-desc">
-      Ingestion et modélisation des données de l’entreprise (ERP, CRM, IoT…) pour produire des vues métiers prêtes à l’analyse.
-    </p>
-
-    <div class="app-footer">
-      <span class="app-badge">Data & Modélisation</span>
-      <a href="#" class="app-open">Ouvrir</a>
-    </div>
-  </article>
-
-  <article class="app-card">
-    <header class="app-card-header">
-      <div>
-        <h3>Workspace</h3>
-        <p class="app-subtitle">Collaborer & analyser</p>
-      </div>
-      <div class="app-icon">WS</div>
-    </header>
-
-    <p class="app-desc">
-      Workspace collaboratif : exploration, dashboards, projets, commentaires et travail d’équipe sur un document unique.
-    </p>
-
-    <div class="app-footer">
-      <span class="app-badge">Collaboration</span>
-      <a href="#" class="app-open">Ouvrir</a>
-    </div>
-  </article>
-
-  <article class="app-card">
-    <header class="app-card-header">
-      <div>
-        <h3>Vault</h3>
-        <p class="app-subtitle">Coffre-fort zero-knowledge</p>
-      </div>
-      <div class="app-icon">VA</div>
-    </header>
-
-    <p class="app-desc">
-      Espace sécurisé pour archiver et protéger les artefacts finalisés avec chiffrement et preuves d’intégrité.
-    </p>
-
-    <div class="app-footer">
-      <span class="app-badge">Sécurité & Archivage</span>
-      <a href="#" class="app-open">Ouvrir</a>
-    </div>
-  </article>
-</div>
 
   <!-- CAS D'USAGE -->
   <section id="casusage" class="section section-dark">
@@ -173,7 +175,7 @@
   <footer class="footer">
     <div class="container footer-inner">
       <span>© <span id="year"></span> FXTC.</span>
-      <a href="#vision">Retour en haut</a>
+      <a href="#produits">Retour en haut</a>
     </div>
   </footer>
 
