@@ -403,21 +403,17 @@ input:focus, textarea:focus{
 }
 
 /* Image plein écran sous le texte */
-.hero-image-wrapper{
+.hero-media-wrapper{
   width: 100%;
   margin-top: 24px;
   overflow: hidden;
 }
 
-.hero-image{
+.hero-video{
   width: 100%;
-  height: auto;
+  height: clamp(260px, 42vw, 560px);
   display: block;
   object-fit: cover;
   border-radius: 0;
-}
-
-/* Option : léger effet premium */
-.hero-image{
   filter: saturate(0.95) contrast(1.05);
 }
