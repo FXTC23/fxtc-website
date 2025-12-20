@@ -56,6 +56,10 @@ body{
   overflow: visible; /* important pour le mega menu */
 }
 
+.topbar-wrap{
+  position: relative; /* ancre le menu */
+}
+
 .topbar-inner{
   display:flex;
   align-items:center;
@@ -166,6 +170,7 @@ body{
   position: absolute;
   left: 0;
   right: 0;
+  top: 100%;
   width: 100%;
   background: var(--primary);
   color: #fff;
