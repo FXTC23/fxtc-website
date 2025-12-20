@@ -378,3 +378,46 @@ input:focus, textarea:focus{
   .contact-container{ grid-template-columns: 1fr; }
   .topbar{ height: auto; padding: 14px 0; }
 }
+
+/* ---------------- HERO VISUAL (Palantir-like) ---------------- */
+
+.hero-visual{
+  padding: 56px 0 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,.06),
+    rgba(0,0,0,0)
+  );
+}
+
+.hero-visual .hero-inner{
+  text-align: left;
+}
+
+.hero-visual .hero-title{
+  max-width: 900px;
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  margin-bottom: 32px;
+}
+
+/* Image plein écran sous le texte */
+.hero-image-wrapper{
+  width: 100%;
+  margin-top: 24px;
+  overflow: hidden;
+}
+
+.hero-image{
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+/* Option : léger effet premium */
+.hero-image{
+  filter: saturate(0.95) contrast(1.05);
+}
