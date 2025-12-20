@@ -150,6 +150,8 @@ body{
   border-radius: 999px;
 }
 
+
+
 /* --------- APPS CARDS (CloudChain-like) --------- */
 .apps-intro{
   max-width: 80ch;
@@ -167,6 +169,24 @@ body{
   color: var(--muted);
 }
 
+/* --------- APPS INTRO (centered & large) --------- */
+.apps-intro-centered{
+  max-width: 1000px;
+  margin: 0 auto 64px;
+  text-align: center;
+}
+
+.apps-intro-centered p{
+  font-size: clamp(24px, 3vw, 36px);
+  line-height: 1.25;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.apps-intro-centered span{
+  color: var(--muted);
+}
+
 .apps-head h2{
   margin: 0 0 18px;
   font-size: 16px;
@@ -174,7 +194,7 @@ body{
   color: var(--muted);
   letter-spacing: .02em;
 }
-
+/* ---------- APPS LIST --------- */
 .apps-list{
   width: 100%;
   margin-top: 24px;
@@ -217,6 +237,24 @@ body{
   color: var(--disabled);
   margin-top: 12px;
   white-space: nowrap;
+}
+
+/* --------- APPS FOOTER NOTE --------- */
+.apps-footer-note{
+  max-width: 900px;
+  margin: 64px auto 0;
+  text-align: center;
+}
+
+.apps-footer-note p{
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.apps-footer-note strong{
+  color: var(--text);
+  font-weight: 600;
 }
 
 /* ---------------- BUTTONS ---------------- */
