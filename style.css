@@ -254,7 +254,7 @@ body{
 @media (max-width: 980px){
   .products-panel{
     position: absolute;
-    top: calc(100%);
+    top: calc(100% + 1px);
     width: 100%;
 
     max-height: calc(100vh - 84px);  /* ✅ ne dépasse pas l’écran */
