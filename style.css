@@ -382,7 +382,7 @@ body{
 }
 
 .apps-intro-centered p{
-  font-size: clamp(24px, 3vw, 36px);
+  font-size: clamp(28px, 3.2vw, 42px);
   line-height: 1.25;
   font-weight: 500;
   color: var(--text);
@@ -446,8 +446,8 @@ body{
 }
 
 .apps-footer-note p{
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 18px;
+  line-height: 1.65;
   color: var(--muted);
 }
 
