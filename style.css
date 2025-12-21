@@ -75,13 +75,6 @@ body{
   gap: 18px;
 }
 
-.nav{
-  height: 84px;                 
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
 /* Logo */
 .logo{
   display:flex;
@@ -118,6 +111,7 @@ body{
 
 /* Nav */
 .nav{
+  height: 84px;
   display:flex;
   align-items:center;
   gap: 10px;
@@ -180,17 +174,6 @@ body{
 /* =========================
    MEGA MENU (4 colonnes)
 ========================= */
-
-.products-panel{
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 100%;
-  background: var(--primary);
-  border-top: 1px solid rgba(255,255,255,.12);
-  padding: 20px 0 24px;
-  z-index: 90;
-}
 
 .products-panel-inner{
   display:block;
