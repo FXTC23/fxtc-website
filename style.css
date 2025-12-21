@@ -55,6 +55,27 @@ body{
   overflow: visible;
 }
 
+.nav-cta{
+  background: rgba(255,255,255,.14);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: .15s ease;
+  white-space: nowrap;
+}
+
+.nav-cta:hover{
+  background: rgba(255,255,255,.22);
+}
+
+.nav-cta:focus-visible{
+  outline: 2px solid rgba(192,195,193,.65);
+  outline-offset: 2px;
+}
+
 /* mega menu FIXED sous le header */
 .products-panel{
   position: fixed;
