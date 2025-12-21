@@ -562,3 +562,11 @@ input:focus, textarea:focus{
   .contact-container{ grid-template-columns: 1fr; }
   .topbar{ height: auto; padding: 14px 0; }
 }
+
+
+.topbar-inner{ align-items:center !important; }
+.topbar .nav{
+  position: static !important;
+  align-items: center !important;
+  height: 84px !important;
+}
