@@ -75,6 +75,13 @@ body{
   gap: 18px;
 }
 
+.nav{
+  height: 84px;                 
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 /* Logo */
 .logo{
   display:flex;
