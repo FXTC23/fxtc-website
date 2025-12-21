@@ -50,11 +50,19 @@ body{
   z-index: 100;
   background: var(--primary);
   height: 84px;
-  overflow: visible; /* important pour le mega menu */
+  overflow: visible;
 }
 
-.topbar-wrap{
-  position: relative; /* ancre le menu */
+/* mega menu FIXED sous le header */
+.products-panel{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 84px;                 /* ✅ pile sous le header */
+  background: var(--primary);
+  border-top: 1px solid rgba(255,255,255,.12);
+  padding: 18px 0 22px;
+  z-index: 90;
 }
 
 .topbar-inner{
@@ -195,8 +203,8 @@ body{
 
 /* Titres */
 .mega-title{
-  font-size: 14px;
-  letter-spacing: .35em;
+  font-size: 12px;
+  letter-spacing: .32em;
   text-transform: uppercase;
   color: rgba(255,255,255,.78);
   margin-bottom: 18px;
@@ -243,22 +251,17 @@ body{
   border-radius: 10px;
 }
 
-/* Responsive mega menu */
+/* mobile */
 @media (max-width: 980px){
   .products-panel{
-    position: absolute;
-    top: 100%;
-    max-height: calc(100vh - 84px);  /* ne dépasse pas l’écran */
-    overflow: auto;                  /* scroll si trop long */
+    max-height: calc(100vh - 84px);
+    overflow-y: auto;
   }
-   
   .mega-columns{
     grid-template-columns: 1fr;
     gap: 22px;
   }
-  .mega-sep{
-    display:none;
-  }
+  .mega-sep{ display:none; }
 }
 
 /* =========================
