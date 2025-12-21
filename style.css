@@ -46,6 +46,7 @@ body{
 
 .topbar{
   position: sticky;
+  align-items: center;
   top: 0;
   z-index: 100;
   background: var(--primary);
