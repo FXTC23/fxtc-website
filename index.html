@@ -305,5 +305,52 @@
     if (e.key === 'Escape') closePanel();
   });
 </script>
+
+  <script>
+  // --- Carousel Usecases (2 visibles desktop, 1 mobile) ---
+  const track = document.querySelector('.uc-track');
+  const prev = document.querySelector('.uc-prev');
+  const next = document.querySelector('.uc-next');
+  const cards = Array.from(document.querySelectorAll('.uc-card'));
+
+  let index = 0;
+
+  function visibleCount(){
+    return window.matchMedia('(max-width: 820px)').matches ? 1 : 2;
+  }
+
+  function maxIndex(){
+    return Math.max(0, cards.length - visibleCount());
+  }
+
+  function update(){
+    const gap = 24; // doit matcher le CSS
+    const cardWidth = cards[0].getBoundingClientRect().width;
+    const step = cardWidth + gap;
+    track.style.transform = `translateX(${-index * step}px)`;
+
+    prev.disabled = index === 0;
+    next.disabled = index === maxIndex();
+    prev.style.opacity = prev.disabled ? .35 : 1;
+    next.style.opacity = next.disabled ? .35 : 1;
+  }
+
+  prev.addEventListener('click', () => {
+    index = Math.max(0, index - 1);
+    update();
+  });
+
+  next.addEventListener('click', () => {
+    index = Math.min(maxIndex(), index + 1);
+    update();
+  });
+
+  window.addEventListener('resize', () => {
+    index = Math.min(index, maxIndex());
+    update();
+  });
+
+  update();
+</script>
 </body>
 </html>
