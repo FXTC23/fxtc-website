@@ -575,34 +575,38 @@ body{
   transform: translateY(-50%);
   z-index: 5;
 
-  width: 48px;
-  height: 48px;
-  border-radius: 50%; /* rond propre */
+  height: 36px;
+  width: 44px;
 
-  border: none;
-  background: #535456;      /* couleur bouton */
-  color: #c0c3c1;           /* couleur flèche */
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.10);
 
-  font-size: 28px;
   display: flex;
   align-items: center;
-  justify-content: center;  /* centre parfaitement la flèche */
+  justify-content: center;
+
+  font-size: 20px;
+  color: rgba(255,255,255,.85);
 
   cursor: pointer;
-  transition: all .25s ease;
+  transition: .15s ease;
 }
 
-.uc-prev { left: 12px; }
-.uc-next { right: 12px; }
-
-/* hover */
 .uc-nav:hover{
-  background: #3f4041;
+  background: rgba(255,255,255,.16);
 }
 
-/* bouton désactivé */
+.uc-nav:focus-visible{
+  outline: 2px solid rgba(192,195,193,.65);
+  outline-offset: 2px;
+}
+
+.uc-prev{ left: 12px; }
+.uc-next{ right: 12px; }
+
 .uc-nav:disabled{
-  opacity: .4;
+  opacity: .35;
   cursor: not-allowed;
 }
 
