@@ -460,22 +460,40 @@ body{
    USE CASES GRID
 ========================= */
 
-.grid-usecases{
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 18px;
+.grid-usecases {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  margin-top: 40px;
 }
 
-.usecase{
-  background: var(--bg);
-  border: 1px solid rgba(0,0,0,.12);
-  border-radius: var(--radius);
-  padding: 18px;
+.usecase {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.usecase h3{ margin:0 0 6px; }
-.usecase p{ margin:0; color: var(--muted); }
+.usecase-image {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.usecase-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) blur(2px);
+  transform: scale(1);
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+/* Effet au survol */
+.usecase:hover .usecase-image img {
+  transform: scale(1.08);
+  filter: grayscale(100%) blur(0px);
+}
 
 /* =========================
    CONTACT
