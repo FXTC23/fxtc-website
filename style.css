@@ -328,6 +328,7 @@ body{
 }
 
 .hero-visual .hero-title{
+  font-family: 'Satoshi', sans-serif;
   max-width: 1100px;
   margin: 0;
   color: #fff;
@@ -417,6 +418,7 @@ body{
 }
 
 .app-title{
+  font-family: 'Satoshi', sans-serif;
   margin: 0;
   font-size: clamp(44px, 7vw, 92px);
   font-weight: 800;
