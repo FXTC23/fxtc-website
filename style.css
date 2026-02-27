@@ -499,7 +499,7 @@ body{
 /* --- Card --- */
 .uc-card{
   position: relative;
-  height: 420px;
+  height: 480px;
   border-radius: 16px;
   overflow: hidden;
   background: #111;
