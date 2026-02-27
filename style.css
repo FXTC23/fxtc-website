@@ -377,7 +377,7 @@ body{
 }
 
 .apps-intro-centered{
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto 64px;
   text-align: center;
 }
@@ -464,10 +464,6 @@ body{
 /* =========================
    USE CASES — CAROUSEL 
 ========================= */
-
-#casusage{
-  padding-bottom: 40px;
-}
 
 #casusage h2{
   padding-top: 40px;
