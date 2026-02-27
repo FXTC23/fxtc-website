@@ -395,7 +395,7 @@ body{
 }
 
 .apps-intro-centered span{
-  color: var(--muted);
+  color: var(--border);
 }
 
 /* =========================
