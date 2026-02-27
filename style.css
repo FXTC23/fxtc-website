@@ -479,6 +479,7 @@ body{
   position: relative;
   margin-top: 28px;
   padding: 0 24px; /* évite que les flèches soient "hors cadre" */
+  padding-bottom: 40px;
 }
 
 .uc-viewport{
