@@ -383,10 +383,13 @@ body{
 }
 
 .apps-intro-centered p{
-  font-size: clamp(28px, 3.2vw, 42px);
-  line-height: 1.25;
-  font-weight: 500;
-  color: var(--text);
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(38px, 4.5vw, 64px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .apps-intro-centered span{
