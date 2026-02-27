@@ -462,6 +462,15 @@ body{
    USE CASES — CAROUSEL 
 ========================= */
 
+#casusage h2{
+  text-align: center;
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 3vw, 42px);
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+}
+
 .usecases-carousel{
   position: relative;
   margin-top: 28px;
