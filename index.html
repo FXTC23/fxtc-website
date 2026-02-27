@@ -342,33 +342,37 @@
 
   let index = 0;
 
-  function visibleCount(){
+  function visibleCount() {
     return window.matchMedia('(max-width: 820px)').matches ? 1 : 2;
   }
 
-  function maxIndex(){
+  function maxIndex() {
     return Math.max(0, cards.length - visibleCount());
   }
 
-  function update(){
+  function update() {
     const gap = 24; // doit matcher le CSS
     const cardWidth = cards[0].getBoundingClientRect().width;
     const step = cardWidth + gap;
+
     track.style.transform = `translateX(${-index * step}px)`;
 
-    prev.disabled = index === 0;
-    next.disabled = index === maxIndex();
-    prev.style.opacity = prev.disabled ? .35 : 1;
-    next.style.opacity = next.disabled ? .35 : 1;
+    // ✅ Boucle infinie : on ne désactive plus les boutons
+    prev.disabled = false;
+    next.disabled = false;
+    prev.style.opacity = 1;
+    next.style.opacity = 1;
   }
 
   prev.addEventListener('click', () => {
-    index = Math.max(0, index - 1);
+    // ✅ si on est au début, on revient à la fin
+    index = (index <= 0) ? maxIndex() : index - 1;
     update();
   });
 
   next.addEventListener('click', () => {
-    index = Math.min(maxIndex(), index + 1);
+    // ✅ si on est à la fin, on revient au début
+    index = (index >= maxIndex()) ? 0 : index + 1;
     update();
   });
 
@@ -379,5 +383,6 @@
 
   update();
 </script>
+ 
 </body>
 </html>
