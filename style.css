@@ -453,6 +453,7 @@ body{
 }
 
 .apps-footer-note p{
+  font-family: 'Satoshi', sans-serif;
   font-size: 32px;
   line-height: 1.65;
   color: var(--muted);
