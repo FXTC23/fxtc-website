@@ -377,7 +377,7 @@ body{
 }
 
 .apps-intro-centered{
-  max-width: 2000px;
+  max-width: 1600px;
   margin: 0 auto 64px;
   text-align: center;
 }
@@ -388,7 +388,7 @@ body{
   font-weight: 800;
   line-height: 1.15;
   letter-spacing: -0.04em;
-  max-width: 1100px;
+  max-width: 1600px;
   margin: 0 auto;
 }
 
