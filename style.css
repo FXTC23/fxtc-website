@@ -826,81 +826,73 @@ input:focus, textarea:focus{
    VAULT FEATURES
 ========================= */
 
-.vault-features{
-  padding-top: 30px;
-  padding-bottom: 40px;
-  background: var(--surface);
+/* ===== Vault - Apollo style row ===== */
+.vault-apollo{
+  background: var(--bg); /* ou var(--surface) */
+  padding: 48px 0;       /* ajuste selon ton besoin */
 }
 
-/* Titre + icônes alignés à droite */
-.vault-features-title{
+.vault-apollo-row{
+  display: grid;
+  grid-template-columns: 320px 1fr; /* titre à gauche */
+  gap: 48px;
+  align-items: start;
+}
+
+.vault-apollo-title{
   font-family: 'Satoshi', sans-serif;
-  font-size: clamp(28px, 3vw, 40px);
+  font-size: clamp(26px, 2.4vw, 40px);
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin: 0 0 40px;
-
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 18px;
-  text-align: right;
+  margin: 0;
 }
 
-.vault-features-title .title-icons{
-  font-size: 22px;
-  line-height: 1;
-}
-
-/* Grille */
-.vault-features-grid{
+.vault-apollo-features{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-  text-align: center;
+  gap: 44px;
 }
 
-.vault-feature{
-  padding: 20px;
+.vault-apollo-item{
+  display: grid;
+  gap: 14px;
 }
 
-.vault-icon{
-  font-size: 28px;
-  margin-bottom: 16px;
-}
-
-.vault-feature h4{
-  font-family: 'Satoshi', sans-serif;
+.vault-apollo-icon{
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(0,0,0,.04);
+  display: grid;
+  place-items: center;
   font-size: 18px;
-  font-weight: 700;
-  margin: 0 0 10px;
 }
 
-.vault-feature p{
-  font-size: 15px;
-  color: var(--muted);
-  line-height: 1.5;
+.vault-apollo-item p{
   margin: 0;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--text);
+  max-width: 28ch;
 }
 
 /* Responsive */
 @media (max-width: 980px){
-  .vault-features-grid{
+  .vault-apollo-row{
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .vault-apollo-features{
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    gap: 22px;
   }
 }
 
-@media (max-width: 560px){
-  .vault-features-title{
-    justify-content: center;
-    text-align: center;
-  }
-  .vault-features-grid{
+@media (max-width: 520px){
+  .vault-apollo-features{
     grid-template-columns: 1fr;
   }
 }
-
 /* =========================
    RESPONSIVE GLOBAL
 ========================= */
