@@ -803,7 +803,7 @@ input:focus, textarea:focus{
   color: var(--muted);
   line-height: 1.7;
   margin: 0 0 24px 0;  /* ✅ espace vertical entre paragraphes */
-  max-width: 1600;     
+  max-width: 1600px;     
 }
 
 /* Visuel */
