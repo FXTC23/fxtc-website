@@ -10,8 +10,97 @@
 </head>
 
 <body>
+<!-------------- header ------------>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <div class="logo">
+      <img src="./image/Logo-clair2-aegis-sentinel.png" alt="FXTC" class="logo-img" />
+      <div class="logo-text">
+        <span class="logo-brand">FXTC</span>
+        <span class="logo-product">Website</span>
+      </div>
+    </div>
 
-<section class="platform-hero">
+    <nav class="nav">
+      <a href="./nous-contacter.html" class="nav-cta">
+    Nous contacter
+  </a>
+
+      <!-- Bouton cube -->
+      <button
+        class="products-trigger"
+        type="button"
+        aria-expanded="false"
+        aria-controls="products-panel"
+      >
+        <span class="cube-icon" aria-hidden="true"></span>
+        <span class="sr-only">Ouvrir le menu Produits</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Panneau sous le header -->
+  <section id="products-panel" class="products-panel" hidden>
+    <div class="container products-panel-inner">
+      
+    <div class="mega-columns" role="navigation" aria-label="Menu principal étendu">
+
+      <!-- PRODUITS -->
+      <div class="mega-col">
+        <div class="mega-title">Produits</div>
+        <nav class="mega-list" aria-label="Produits">
+          <a class="mega-item" href="./Cloudchain-Platform.html">CloudChain PLatform</a>
+          <a class="mega-item" href="./vault.html"><span class="mega-arrow">↳</span>Vault</a>
+          <a class="mega-item" href="./workspace.html"><span class="mega-arrow">↳</span>Workspace</a>
+          <a class="mega-item" href="./atlas.html"><span class="mega-arrow">↳</span>Atlas</a>
+          <a class="mega-item" href="./mpc.html"><span class="mega-arrow">↳</span>MPC</a>
+          <a class="mega-item" href="./admin-console.html"><span class="mega-arrow">↳</span>Admin Console</a>
+        </nav>
+      </div>
+
+      <div class="mega-sep" aria-hidden="true"></div>
+
+      <!-- CAS D'USAGE -->
+      <div class="mega-col">
+        <div class="mega-title">Cas d’usage</div>
+        <nav class="mega-list" aria-label="Cas d’usage">
+          <a class="mega-item" href="./secteur-juridique.html"></span>Juridique</a>
+          <a class="mega-item" href="./secteur-financier.html"></span>Finance & Audit</a>
+          <a class="mega-item" href="./secteur-privée.html"></span>Secteur Privé</a>
+          <a class="mega-item" href="./secteur-public.html"></span>Secteur Public</a>
+        </nav>
+      </div>
+
+      <div class="mega-sep" aria-hidden="true"></div>
+
+      <!-- NEWS -->
+      <div class="mega-col">
+        <div class="mega-title">News</div>
+        <nav class="mega-list" aria-label="News">
+          <a class="mega-item" href="./annonces.html"></span>Annonces</a>
+          <a class="mega-item" href="./roadmap.html"></span>Roadmap</a>
+          <a class="mega-item" href="./nos-réseaux.html"></span>Nos Réseaux-Sociaux</a>
+        </nav>
+      </div>
+
+      <div class="mega-sep" aria-hidden="true"></div>
+
+      <!-- COMMENCER -->
+      <div class="mega-col">
+        <div class="mega-title">Commencer</div>
+        <nav class="mega-list" aria-label="Commencer">
+          <a class="mega-item" href="./formules-tarifications.html"></span>Formules & Tarifications</a>
+          <a class="mega-item" href="./ge-&-eti.html"></span>Grandes Entreprises</a>
+          <a class="mega-item" href="./gouvernements.html"></span>Administrations Publiques</a>
+        </nav>
+      </div>
+
+    </div>
+  </div>
+</section>
+</header>
+  
+  <section class="platform-hero">
   <div class="container platform-hero-inner">
     <h1>
       Découvrez les applications de la suite <span>CloudChain Platform</span>
