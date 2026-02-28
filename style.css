@@ -766,13 +766,13 @@ input:focus, textarea:focus{
   padding: 120px 0;
 }
 
-/* Grid 50/50 clean */
 .app-grid{
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: 1.25fr 0.75fr; /* texte + large, image + petite */
   gap: 80px;
   align-items: center;
 }
+
 
 /* Alternance gauche/droite (propre) */
 .app-section.alt .app-content{ order: 2; }
@@ -814,7 +814,7 @@ input:focus, textarea:focus{
 
 .app-visual img{
   width: 85%;               /* réduit légèrement */
-  max-width: 540px;         /* limite propre */
+  max-width: 520px;         /* limite propre */
   height: auto;
   border-radius: 16px;
   box-shadow: var(--shadow);
