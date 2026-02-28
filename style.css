@@ -755,6 +755,73 @@ input:focus, textarea:focus{
 }
 
 /* =========================
+   CLOUDCHAIN APPS SECTIONS
+========================= */
+
+.platform-apps{
+  padding: 100px 0;
+}
+
+.app-section{
+  padding: 120px 0;
+}
+
+.app-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.app-section.alt .app-grid{
+  direction: rtl;
+}
+
+.app-section.alt .app-content{
+  direction: ltr;
+}
+
+.app-content h2{
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(48px, 5vw, 72px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: 16px;
+}
+
+.app-tagline{
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+
+.app-description{
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 520px;
+}
+
+.app-visual img{
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+/* Responsive */
+@media (max-width: 900px){
+  .app-grid{
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .app-section.alt .app-grid{
+    direction: ltr;
+  }
+}
+/* =========================
    RESPONSIVE GLOBAL
 ========================= */
 
