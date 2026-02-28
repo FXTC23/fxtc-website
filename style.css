@@ -766,19 +766,21 @@ input:focus, textarea:focus{
   padding: 120px 0;
 }
 
+/* Grid 50/50 clean */
 .app-grid{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 80px;
   align-items: center;
 }
 
-.app-section.alt .app-grid{
-  direction: rtl;
-}
+/* Alternance gauche/droite (propre) */
+.app-section.alt .app-content{ order: 2; }
+.app-section.alt .app-visual{ order: 1; }
 
-.app-section.alt .app-content{
-  direction: ltr;
+/* Contenu */
+.app-content{
+  max-width: 640px; /* ✅ le texte ne déborde pas et reste “moitié propre” */
 }
 
 .app-content h2{
@@ -786,50 +788,60 @@ input:focus, textarea:focus{
   font-size: clamp(48px, 5vw, 72px);
   font-weight: 800;
   letter-spacing: -0.04em;
-  margin-bottom: 16px;
+  margin: 0 0 16px;
 }
 
 .app-tagline{
   font-size: 20px;
   font-weight: 600;
   color: var(--primary);
-  margin-bottom: 20px;
+  margin: 0 0 20px;
 }
 
 .app-description{
   font-size: 18px;
   color: var(--muted);
   line-height: 1.6;
-  margin-bottom: 32px;
-  max-width: 520px;
+  margin: 0 0 32px;
+  max-width: 62ch; /* ✅ plus naturel que px, et ça “remplit” mieux */
 }
 
+/* Visuel */
 .app-visual img{
   width: 100%;
+  height: auto;
   border-radius: 16px;
   box-shadow: var(--shadow);
+  display: block;
 }
 
 /* Responsive */
 @media (max-width: 900px){
+  .platform-apps{ padding: 72px 0; }
+  .app-section{ padding: 72px 0; }
+
   .app-grid{
     grid-template-columns: 1fr;
     gap: 40px;
   }
 
-  .app-section.alt .app-grid{
-    direction: ltr;
+  .app-section.alt .app-content,
+  .app-section.alt .app-visual{
+    order: initial;
+  }
+
+  .app-content{
+    max-width: 100%;
   }
 }
 
 /* =========================
-   VAULT FEATURES
+   VAULT FEATURES (Apollo row)
 ========================= */
 
-/* ===== Vault - Apollo style row ===== */
 .vault-apollo{
-  background: var(--bg); /* ou var(--surface) */
-  padding: 48px 0;       /* ajuste selon ton besoin */
+  background: var(--surface);
+  padding: 56px 0; /* un peu plus premium */
 }
 
 .vault-apollo-row{
@@ -841,27 +853,30 @@ input:focus, textarea:focus{
 
 .vault-apollo-title{
   font-family: 'Satoshi', sans-serif;
-  font-size: clamp(26px, 2.4vw, 40px);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
   margin: 0;
+  white-space: nowrap; /* ✅ “Vault vous permet :” sur une seule ligne */
+  text-align: left;
 }
 
 .vault-apollo-features{
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 44px;
 }
 
 .vault-apollo-item{
   display: grid;
-  gap: 14px;
+  gap: 12px;
+  align-content: start;
 }
 
 .vault-apollo-icon{
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
   background: rgba(0,0,0,.04);
   display: grid;
   place-items: center;
@@ -870,10 +885,10 @@ input:focus, textarea:focus{
 
 .vault-apollo-item p{
   margin: 0;
-  font-size: 15px;
-  line-height: 1.45;
+  font-size: 18px;   /* ✅ texte sous icônes un peu plus gros */
+  line-height: 1.4;
   color: var(--text);
-  max-width: 28ch;
+  max-width: 26ch;
 }
 
 /* Responsive */
@@ -882,8 +897,13 @@ input:focus, textarea:focus{
     grid-template-columns: 1fr;
     gap: 18px;
   }
+
+  .vault-apollo-title{
+    white-space: normal; /* sur mobile on autorise le retour ligne */
+  }
+
   .vault-apollo-features{
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 22px;
   }
 }
@@ -893,6 +913,7 @@ input:focus, textarea:focus{
     grid-template-columns: 1fr;
   }
 }
+
 /* =========================
    RESPONSIVE GLOBAL
 ========================= */
