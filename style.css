@@ -803,7 +803,7 @@ input:focus, textarea:focus{
   color: var(--muted);
   line-height: 1.6;
   margin: 0 0 32px;
-  max-width: 62ch; /* ✅ plus naturel que px, et ça “remplit” mieux */
+  max-width: 720px;
 }
 
 /* Visuel */
