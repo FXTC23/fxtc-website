@@ -821,6 +821,65 @@ input:focus, textarea:focus{
     direction: ltr;
   }
 }
+
+/* =========================
+   VAULT FEATURES
+========================= */
+
+.vault-features{
+  padding: 60px 0 80px;
+  background: var(--surface);
+  text-align: center;
+}
+
+.vault-features-title{
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 700;
+  margin-bottom: 48px;
+  letter-spacing: -0.02em;
+}
+
+.vault-features-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.vault-feature{
+  padding: 20px;
+}
+
+.vault-icon{
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+.vault-feature h4{
+  font-family: 'Satoshi', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.vault-feature p{
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 900px){
+  .vault-features-grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px){
+  .vault-features-grid{
+    grid-template-columns: 1fr;
+  }
+}
 /* =========================
    RESPONSIVE GLOBAL
 ========================= */
