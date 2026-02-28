@@ -727,6 +727,34 @@ input:focus, textarea:focus{
 }
 
 /* =========================
+   CLOUDCHAIN PLATFORM HERO
+========================= */
+
+.platform-hero{
+  background: var(--surface);
+  padding: 120px 0 100px;
+  text-align: center;
+}
+
+.platform-hero-inner{
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.platform-hero h1{
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(42px, 5vw, 72px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin-bottom: 24px;
+}
+
+.platform-hero h1 span{
+  color: var(--primary);
+}
+
+/* =========================
    RESPONSIVE GLOBAL
 ========================= */
 
