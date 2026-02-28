@@ -759,17 +759,18 @@ input:focus, textarea:focus{
 ========================= */
 
 .platform-apps{
-  padding: 100px 0;
+  padding: 60px 0;
 }
 
 .app-section{
-  padding: 120px 0;
+  padding: 60px 0;
 }
 
 .app-grid{
   display: grid;
-  grid-template-columns: 1.25fr 0.75fr; /* texte + large, image + petite */
-  gap: 80px;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 40px;   /* ✅ espace horizontal texte ↔ image */
+  row-gap: 80px;      /* optionnel si tu as plusieurs blocs */
   align-items: center;
 }
 
@@ -801,9 +802,9 @@ input:focus, textarea:focus{
 .app-description{
   font-size: 18px;
   color: var(--muted);
-  line-height: 1.6;
-  margin: 0 0 32px;
-  max-width: 720px;
+  line-height: 1.7;
+  margin: 0 0 24px 0;  /* ✅ espace vertical entre paragraphes */
+  max-width: none;     /* ✅ surtout pas 520px */
 }
 
 /* Visuel */
