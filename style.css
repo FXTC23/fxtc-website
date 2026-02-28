@@ -768,9 +768,8 @@ input:focus, textarea:focus{
 
 .app-grid{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.3fr 0.7fr;
   column-gap: 40px;   /* ✅ espace horizontal texte ↔ image */
-  row-gap: 80px;      /* optionnel si tu as plusieurs blocs */
   align-items: center;
 }
 
