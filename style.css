@@ -803,7 +803,7 @@ input:focus, textarea:focus{
   color: var(--muted);
   line-height: 1.7;
   margin: 0 0 24px 0;  /* ✅ espace vertical entre paragraphes */
-  max-width: none;     /* ✅ surtout pas 520px */
+  max-width: 1600;     
 }
 
 /* Visuel */
@@ -812,9 +812,8 @@ input:focus, textarea:focus{
   justify-content: center;  /* centre l’image dans sa colonne */
 }
 
-.app-visual img{
-  width: 85%;               /* réduit légèrement */
-  max-width: 520px;         /* limite propre */
+.app-visual img{              
+  max-width: 100px;         
   height: auto;
   border-radius: 16px;
   box-shadow: var(--shadow);
