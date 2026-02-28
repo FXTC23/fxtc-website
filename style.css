@@ -807,8 +807,14 @@ input:focus, textarea:focus{
 }
 
 /* Visuel */
+.app-visual{
+  display: flex;
+  justify-content: center;  /* centre l’image dans sa colonne */
+}
+
 .app-visual img{
-  width: 100%;
+  width: 85%;               /* réduit légèrement */
+  max-width: 540px;         /* limite propre */
   height: auto;
   border-radius: 16px;
   box-shadow: var(--shadow);
