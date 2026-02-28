@@ -759,30 +759,31 @@ input:focus, textarea:focus{
 ========================= */
 
 .platform-apps{
-  padding: 60px 0;
+  padding: 30px 0;          /* ↓ moins d'espace au dessus */
 }
 
 .app-section{
-  padding: 60px 0;
+  padding: 40px 0;          /* ↓ moins de padding global */
 }
 
+/* ✅ Layout propre : texte large + image à droite */
 .app-grid{
   display: grid;
-  grid-template-columns: 1.3fr 0.7fr;
-  column-gap: 40px;   /* ✅ espace horizontal texte ↔ image */
+  grid-template-columns: 1fr 420px; /* texte prend tout, image a une largeur fixe */
+  gap: 40px;                         /* ✅ espace entre texte et image */
   align-items: center;
 }
-
 
 /* Alternance gauche/droite (propre) */
 .app-section.alt .app-content{ order: 2; }
 .app-section.alt .app-visual{ order: 1; }
 
-/* Contenu */
+/* ✅ IMPORTANT : ne bloque PAS la largeur du texte */
 .app-content{
-  max-width: 640px; /* ✅ le texte ne déborde pas et reste “moitié propre” */
+  max-width: none;
 }
 
+/* Titre */
 .app-content h2{
   font-family: 'Satoshi', sans-serif;
   font-size: clamp(48px, 5vw, 72px);
@@ -798,22 +799,24 @@ input:focus, textarea:focus{
   margin: 0 0 20px;
 }
 
+/* ✅ Texte propre + largeur naturelle */
 .app-description{
   font-size: 18px;
   color: var(--muted);
   line-height: 1.7;
-  margin: 0 0 24px 0;  /* ✅ espace vertical entre paragraphes */
-  max-width: 1600px;     
+  margin: 0 0 18px 0;
+  max-width: 75ch;   /* lisible, mais large */
 }
 
 /* Visuel */
 .app-visual{
   display: flex;
-  justify-content: center;  /* centre l’image dans sa colonne */
+  justify-content: flex-end; /* colle à droite */
 }
 
-.app-visual img{              
-  max-width: 100px;         
+.app-visual img{
+  width: 100%;
+  max-width: 420px;   /* ✅ taille stable */
   height: auto;
   border-radius: 16px;
   box-shadow: var(--shadow);
@@ -822,24 +825,23 @@ input:focus, textarea:focus{
 
 /* Responsive */
 @media (max-width: 900px){
-  .platform-apps{ padding: 72px 0; }
-  .app-section{ padding: 72px 0; }
-
   .app-grid{
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 28px;
   }
 
-  .app-section.alt .app-content,
-  .app-section.alt .app-visual{
-    order: initial;
+  .app-visual{
+    justify-content: center;
   }
 
-  .app-content{
+  .app-visual img{
+    max-width: 520px;
+  }
+
+  .app-description{
     max-width: 100%;
   }
 }
-
 /* =========================
    VAULT FEATURES (Apollo row)
 ========================= */
