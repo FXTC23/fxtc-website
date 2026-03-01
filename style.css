@@ -955,6 +955,10 @@ input:focus, textarea:focus{
   border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
+#vault {
+  scroll-margin-top: 84px;
+}
+
 /* =========================
    RESPONSIVE GLOBAL
 ========================= */
