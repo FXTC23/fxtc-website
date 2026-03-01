@@ -775,7 +775,7 @@ input:focus, textarea:focus{
 /* ✅ Layout propre : texte large + image à droite */
 .app-grid{
   display: grid;
-  grid-template-columns: 1fr 420px; /* texte prend tout, image a une largeur fixe */
+  grid-template-columns: 1.3fr 0.7fr; /* texte prend tout, image a une largeur fixe */
   gap: 40px;                         /* ✅ espace entre texte et image */
   align-items: center;
 }
@@ -818,12 +818,13 @@ input:focus, textarea:focus{
 /* Visuel */
 .app-visual{
   display: flex;
-  justify-content: flex-end; /* colle à droite */
+  justify-content: center;
+  align-items: center;
 }
 
 .app-visual img{
   width: 100%;
-  max-width: 420px;   /* ✅ taille stable */
+  max-width: 620px;   /* ✅ taille stable */
   height: auto;
   border-radius: 16px;
   box-shadow: var(--shadow);
