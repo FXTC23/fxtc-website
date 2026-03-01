@@ -837,18 +837,6 @@ input:focus, textarea:focus{
     grid-template-columns: 1fr;
     gap: 28px;
   }
-
-  .app-visual{
-    justify-content: center;
-  }
-
-  .app-visual img{
-    max-width: 520px;
-  }
-
-  .app-description{
-    max-width: 100%;
-  }
 }
 /* =========================
    VAULT FEATURES (Apollo row)
