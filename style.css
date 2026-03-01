@@ -775,7 +775,7 @@ input:focus, textarea:focus{
 /* ✅ Layout propre : texte large + image à droite */
 .app-grid{
   display: grid;
-  grid-template-columns: 1.3fr 0.7fr; 
+  grid-template-columns: 1fr 1fr; 
   gap: 20px;                         
   align-items: center;
 }
