@@ -824,7 +824,7 @@ input:focus, textarea:focus{
 
 .app-visual img{
   width: 100%;
-  max-width: 800px;   
+  max-width: 900px;   
   height: auto;
   border-radius: 16px;
   box-shadow: var(--shadow);
