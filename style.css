@@ -831,6 +831,25 @@ input:focus, textarea:focus{
   display: block;
 }
 
+.btn{
+  display: inline-block;
+  padding: 14px 24px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.btn-secondary{
+  background: transparent;
+  border: 1px solid var(--text);
+  color: var(--text);
+}
+
+.btn-secondary:hover{
+  background: var(--text);
+  color: white;
+}
 /* Responsive */
 @media (max-width: 900px){
   .app-grid{
