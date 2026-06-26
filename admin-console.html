@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Console — Gouvernance & conformité | FXTC</title>
+  <meta name="description" content="Admin Console centralise la gestion de votre organisation : utilisateurs, rôles, contacts, contrôle d'accès, logs immuables et licences." />
+
+  <link rel="stylesheet" href="./style.css" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,600,700,800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/logo-clair-fxtc.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Admin Console — Gouvernance & conformité | FXTC">
+  <meta property="og:description" content="Gérez utilisateurs, rôles, accès et auditez chaque action depuis une console centralisée.">
+  <meta property="og:image" content="https://fxtc.io/image/og-fxtc.png">
+  <meta property="og:url" content="https://fxtc.io/admin-console.html">
+
+<style>
+/* =========================
+   ADMIN CONSOLE PAGE
+========================= */
+
+/* --- Hero --- */
+.ac-hero {
+  background: var(--primary);
+  padding: 140px 0 100px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.ac-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 60% at 75% 15%, rgba(255,255,255,.04) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 25% 85%, rgba(255,255,255,.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.ac-hero-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.ac-hero-kicker {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+  margin-bottom: 24px;
+}
+
+.ac-hero h1 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(48px, 6.5vw, 88px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: #fff;
+  margin: 0 0 20px;
+}
+
+.ac-hero-tagline {
+  font-size: clamp(18px, 2.2vw, 26px);
+  font-weight: 500;
+  color: rgba(255,255,255,.6);
+  margin: 0 0 40px;
+  line-height: 1.45;
+  max-width: 580px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ac-hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.18);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: .2s ease;
+}
+
+.ac-hero-cta:hover {
+  background: rgba(255,255,255,.2);
+}
+
+/* --- Sections communes --- */
+.ac-section {
+  padding: 100px 0;
+}
+
+.ac-section--alt {
+  background: var(--surface);
+  border-top: 1px solid rgba(0,0,0,.05);
+  border-bottom: 1px solid rgba(0,0,0,.05);
+}
+
+.ac-section--dark {
+  background: var(--primary);
+  color: #fff;
+}
+
+.ac-section-kicker {
+  font-size: 12px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--disabled);
+  margin-bottom: 14px;
+}
+
+.ac-section--dark .ac-section-kicker {
+  color: rgba(255,255,255,.4);
+}
+
+/* --- Présentation --- */
+.ac-overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.ac-overview-text h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0 0 24px;
+}
+
+.ac-overview-text p {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.75;
+  margin: 0 0 18px;
+  max-width: 55ch;
+}
+
+.ac-overview-visual img {
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  display: block;
+}
+
+/* --- Trois piliers --- */
+.ac-pillars-title {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-align: center;
+  margin: 0 0 56px;
+}
+
+.ac-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.ac-pillar {
+  padding: 36px 32px;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,.06);
+}
+
+.ac-pillar-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--primary);
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  margin-bottom: 24px;
+}
+
+.ac-pillar h3 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 14px;
+  letter-spacing: -0.02em;
+}
+
+.ac-pillar p {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* --- Feature sections (alternance texte/visuel) --- */
+.ac-feature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.ac-feature-grid--reverse .ac-feature-text { order: 2; }
+.ac-feature-grid--reverse .ac-feature-visual { order: 1; }
+
+.ac-feature-text h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0 0 20px;
+}
+
+.ac-feature-text p {
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.75;
+  margin: 0 0 16px;
+  max-width: 52ch;
+}
+
+.ac-section--dark .ac-feature-text p {
+  color: rgba(255,255,255,.6);
+}
+
+.ac-feature-visual img {
+  width: 100%;
+  max-width: 620px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  display: block;
+}
+
+.ac-feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.ac-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.ac-feature-item-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(0,0,0,.04);
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+}
+
+.ac-section--dark .ac-feature-item-icon {
+  background: rgba(255,255,255,.08);
+}
+
+.ac-feature-item p {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.5;
+  margin: 6px 0 0;
+}
+
+.ac-section--dark .ac-feature-item p {
+  color: rgba(255,255,255,.75);
+}
+
+/* --- Logs / Audit (grille de cartes) --- */
+.ac-logs-header {
+  max-width: 680px;
+  margin: 0 0 56px;
+}
+
+.ac-logs-header h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 16px;
+}
+
+.ac-logs-header p {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.ac-logs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.ac-log-card {
+  padding: 32px 28px;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 16px;
+  transition: .2s ease;
+}
+
+.ac-log-card:hover {
+  border-color: rgba(0,0,0,.16);
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+}
+
+.ac-log-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(0,0,0,.04);
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.ac-log-card h3 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
+}
+
+.ac-log-card p {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0 0 14px;
+}
+
+.ac-log-card-actions {
+  font-size: 13px;
+  color: var(--disabled);
+  line-height: 1.7;
+}
+
+/* --- Licences --- */
+.ac-licenses-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.ac-licenses-text h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 20px;
+}
+
+.ac-licenses-text p {
+  font-size: 17px;
+  color: rgba(255,255,255,.6);
+  line-height: 1.75;
+  margin: 0 0 16px;
+  max-width: 50ch;
+}
+
+.ac-licenses-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ac-license-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px;
+}
+
+.ac-license-name {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.ac-license-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,.5);
+}
+
+/* --- CTA --- */
+.ac-cta {
+  padding: 100px 0;
+  text-align: center;
+}
+
+.ac-cta h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 16px;
+}
+
+.ac-cta p {
+  font-size: 18px;
+  color: var(--muted);
+  margin: 0 0 36px;
+  max-width: 50ch;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.ac-cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.ac-cta .btn-primary {
+  padding: 16px 32px;
+  font-size: 16px;
+}
+
+.ac-cta .btn-secondary {
+  padding: 16px 32px;
+  font-size: 16px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+  .ac-overview-grid,
+  .ac-feature-grid,
+  .ac-licenses-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .ac-feature-grid--reverse .ac-feature-text { order: 1; }
+  .ac-feature-grid--reverse .ac-feature-visual { order: 2; }
+
+  .ac-pillars-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .ac-logs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="/index.html" class="logo">
+      <img src="./image/Logo-clair2-aegis-sentinel.png" alt="FXTC" class="logo-img" />
+      <div class="logo-text">
+        <span class="logo-brand">FXTC</span>
+        <span class="logo-product">Website</span>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="./nous-contacter.html" class="nav-cta">Nous contacter</a>
+      <button class="products-trigger" type="button" aria-expanded="false" aria-controls="products-panel">
+        <span class="cube-icon" aria-hidden="true"></span>
+        <span class="sr-only">Ouvrir le menu Produits</span>
+      </button>
+    </nav>
+  </div>
+
+  <section id="products-panel" class="products-panel" hidden>
+    <div class="container products-panel-inner">
+      <div class="mega-columns" role="navigation" aria-label="Menu principal étendu">
+        <div class="mega-col">
+          <div class="mega-title">Produits</div>
+          <nav class="mega-list" aria-label="Produits">
+            <a class="mega-item" href="./CloudChain-Platform.html">CloudChain Platform</a>
+            <a class="mega-item" href="./vault.html"><span class="mega-arrow">↳</span>Vault</a>
+            <a class="mega-item" href="./workspace.html"><span class="mega-arrow">↳</span>Workspace</a>
+            <a class="mega-item" href="./atlas.html"><span class="mega-arrow">↳</span>Atlas</a>
+            <a class="mega-item" href="./admin-console.html"><span class="mega-arrow">↳</span>Admin Console</a>
+          </nav>
+        </div>
+        <div class="mega-sep" aria-hidden="true"></div>
+        <div class="mega-col">
+          <div class="mega-title">Cas d'usage</div>
+          <nav class="mega-list" aria-label="Cas d'usage">
+            <a class="mega-item" href="./secteur-juridique.html">Juridique</a>
+            <a class="mega-item" href="./secteur-financier.html">Finance & Audit</a>
+            <a class="mega-item" href="./secteur-privée.html">Secteur Privé</a>
+            <a class="mega-item" href="./secteur-public.html">Secteur Public</a>
+          </nav>
+        </div>
+        <div class="mega-sep" aria-hidden="true"></div>
+        <div class="mega-col">
+          <div class="mega-title">News</div>
+          <nav class="mega-list" aria-label="News">
+            <a class="mega-item" href="./annonces.html">Annonces</a>
+            <a class="mega-item" href="./roadmap.html">Roadmap</a>
+            <a class="mega-item" href="./nos-réseaux.html">Nos Réseaux-Sociaux</a>
+          </nav>
+        </div>
+        <div class="mega-sep" aria-hidden="true"></div>
+        <div class="mega-col">
+          <div class="mega-title">Commencer</div>
+          <nav class="mega-list" aria-label="Commencer">
+            <a class="mega-item" href="./formules-tarifications.html">Formules & Tarifications</a>
+            <a class="mega-item" href="./ge-&-eti.html">Grandes Entreprises</a>
+            <a class="mega-item" href="./gouvernements.html">Administrations Publiques</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+</header>
+
+
+<!-- ============================================
+     HERO
+============================================= -->
+<section class="ac-hero">
+  <div class="container ac-hero-inner">
+    <span class="ac-hero-kicker">CloudChain Platform</span>
+    <h1>Admin Console</h1>
+    <p class="ac-hero-tagline">
+      La gouvernance de votre organisation, dans une console unique.
+    </p>
+    <a href="./CloudChain-Platform.html#download" class="ac-hero-cta">
+      Disponible via CloudChain Platform →
+    </a>
+  </div>
+</section>
+
+
+<!-- ============================================
+     PRÉSENTATION
+============================================= -->
+<section class="ac-section">
+  <div class="container ac-overview-grid">
+
+    <div class="ac-overview-text">
+      <h2>Pilotez votre organisation en toute transparence</h2>
+      <p>
+        Admin Console centralise la gestion de votre entreprise au sein de la suite FXTC.
+        Créez des utilisateurs, définissez leurs rôles et permissions,
+        contrôlez les accès aux documents et auditez chaque action
+        depuis une interface unique.
+      </p>
+      <p>
+        Incluse avec chaque offre CloudChain, elle s'installe et se met à jour
+        automatiquement depuis le launcher.
+      </p>
+    </div>
+
+    <div class="ac-overview-visual">
+      <img src="./image/admin-console-preview.png" alt="Admin Console — tableau de bord" />
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================
+     TROIS PILIERS
+============================================= -->
+<section class="ac-section ac-section--alt">
+  <div class="container">
+    <h2 class="ac-pillars-title">Trois axes de gouvernance</h2>
+
+    <div class="ac-pillars-grid">
+
+      <article class="ac-pillar">
+        <div class="ac-pillar-icon">👥</div>
+        <h3>Contrôle</h3>
+        <p>
+          Définissez qui accède à quoi. Gérez les utilisateurs, les rôles
+          et les permissions avec une granularité fine,
+          adaptée à la structure de votre organisation.
+        </p>
+      </article>
+
+      <article class="ac-pillar">
+        <div class="ac-pillar-icon">📋</div>
+        <h3>Traçabilité</h3>
+        <p>
+          Chaque action est journalisée : connexion, partage, téléchargement, impression.
+          Les logs sont archivés automatiquement et les actions critiques
+          sont inscrites dans la blockchain.
+        </p>
+      </article>
+
+      <article class="ac-pillar">
+        <div class="ac-pillar-icon">✅</div>
+        <h3>Conformité</h3>
+        <p>
+          Les journaux immuables Hyperledger Fabric fournissent
+          une preuve d'audit vérifiable indépendamment.
+          Si un log classique disparaît, la blockchain le révèle.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     GESTION DES UTILISATEURS & RÔLES
+============================================= -->
+<section class="ac-section">
+  <div class="container ac-feature-grid">
+
+    <div class="ac-feature-text">
+      <div class="ac-section-kicker">Utilisateurs</div>
+      <h2>Gérez les comptes et les rôles</h2>
+      <p>
+        Créez des comptes utilisateurs pour votre organisation,
+        attribuez-leur un rôle et une licence adaptés à leurs besoins.
+        Validez ou refusez les demandes de modification
+        envoyées par les membres de votre équipe.
+      </p>
+
+      <div class="ac-feature-list">
+        <div class="ac-feature-item">
+          <div class="ac-feature-item-icon">➕</div>
+          <p>Création et suppression de comptes utilisateurs</p>
+        </div>
+        <div class="ac-feature-item">
+          <div class="ac-feature-item-icon">🏷️</div>
+          <p>Rôles personnalisés : créez, assignez et supprimez vos propres rôles</p>
+        </div>
+        <div class="ac-feature-item">
+          <div class="ac-feature-item-icon">📝</div>
+          <p>Validation des demandes de modification des utilisateurs</p>
+        </div>
+        <div class="ac-feature-item">
+          <div class="ac-feature-item-icon">🔄</div>
+          <p>Modification de l'email, du nom, du rôle et de la licence à tout moment</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ac-feature-visual">
+      <img src="./image/admin-users-preview.png" alt="Admin Console — gestion des utilisateurs" />
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================
+     GESTION DES CONTACTS
+============================================= -->
+<section class="ac-section ac-section--alt">
+  <div class="container ac-feature-grid ac-feature-grid--reverse">
+
+    <div class="ac-feature-text">
+      <div class="ac-section-kicker">Contacts</div>
+      <h2>Organisez le répertoire de votre équipe</h2>
+      <p>
+        Consultez les contacts de chaque utilisateur,
+        ajoutez ou supprimez des entrées individuelles ou en masse.
+        Gérez les contacts inter-organisations pour structurer
+        les échanges entre vos partenaires, clients et prestataires.
+      </p>
+
+      <div class="ac-feature-list">
+        <div class="ac-feature-item">
+          <div class="ac-feature-item-icon">👤</div>
+          <p>Vue détaillée des contacts par utilisateur</p>
+        </div>
+        <div class="ac-feature-item">
+          <div class="ac-feature-item-icon">👥</div>
+          <p>Ajout individuel ou en groupe pour toute l'organisation</p>
+        </div>
+        <div class="ac-feature-item">
+          <div class="ac-feature-item-icon">🏢</div>
+          <p>Contacts inter-organisations pour les échanges externes</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ac-feature-visual">
+      <img src="./image/admin-contacts-preview.png" alt="Admin Console — gestion des contacts" />
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================
+     CONTRÔLE D'ACCÈS
+============================================= -->
+<section class="ac-section">
+  <div class="container ac-feature-grid">
+
+    <div class="ac-feature-text">
+      <div class="ac-section-kicker">Accès</div>
+      <h2>Contrôlez chaque sortie de document</h2>
+      <p>
+        Visualisez les fichiers auxquels chaque utilisateur a accès
+        et appliquez des restrictions ciblées.
+        Bloquez le téléchargement, l'impression, le partage ou l'aperçu
+        de n'importe quel document, par utilisateur.
+      </p>
+
+      <div class="ac-feature-list">
+        <div class="ac-feature-item">
+          <div class="ac-feature-item-icon">📁</div>
+          <p>Liste des fichiers accessibles par utilisateur</p>
+        </div>
+        <div class="ac-feature-item">
+          <div class="ac-feature-item-icon">🚫</div>
+          <p>Blocage sélectif : téléchargement, impression, partage, aperçu</p>
+        </div>
+        <div class="ac-feature-item">
+          <div class="ac-feature-item-icon">🔒</div>
+          <p>Restrictions appliquées instantanément, sans intervention de l'utilisateur</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ac-feature-visual">
+      <img src="./image/admin-access-preview.png" alt="Admin Console — contrôle d'accès" />
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================
+     LOGS & AUDIT
+============================================= -->
+<section class="ac-section ac-section--alt">
+  <div class="container">
+
+    <div class="ac-logs-header">
+      <div class="ac-section-kicker">Audit</div>
+      <h2>Trois niveaux de traçabilité</h2>
+      <p>
+        Admin Console distingue les actions des utilisateurs
+        et celles des administrateurs, avec un troisième niveau
+        d'audit inscrit dans la blockchain Hyperledger Fabric.
+      </p>
+    </div>
+
+    <div class="ac-logs-grid">
+
+      <article class="ac-log-card">
+        <div class="ac-log-card-icon">📄</div>
+        <h3>Logs utilisateurs</h3>
+        <p>
+          Toutes les actions effectuées par les utilisateurs dans le Vault,
+          consultables et filtrables en temps réel.
+        </p>
+        <div class="ac-log-card-actions">
+          Upload · Téléchargement · Partage · Aperçu · Impression · Suppression · Connexion · Contacts
+        </div>
+      </article>
+
+      <article class="ac-log-card">
+        <div class="ac-log-card-icon">⚙️</div>
+        <h3>Logs administrateurs</h3>
+        <p>
+          Les actions d'administration de votre organisation,
+          tracées séparément pour une responsabilité claire.
+        </p>
+        <div class="ac-log-card-actions">
+          Création d'utilisateurs · Modification de rôles · Gestion des licences · Contacts ajoutés · Accès modifiés
+        </div>
+      </article>
+
+      <article class="ac-log-card">
+        <div class="ac-log-card-icon">⛓️</div>
+        <h3>Logs blockchain</h3>
+        <p>
+          Les actions critiques sont inscrites dans Hyperledger Fabric.
+          Si un log classique est absent, la blockchain le révèle.
+        </p>
+        <div class="ac-log-card-actions">
+          Téléchargement · Impression · Envoi de fichier · Preuve immuable · Horodatage vérifiable
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     LICENCES
+============================================= -->
+<section class="ac-section ac-section--dark">
+  <div class="container ac-licenses-grid">
+
+    <div class="ac-licenses-text">
+      <div class="ac-section-kicker">Licences</div>
+      <h2>Attribuez la bonne licence à chaque utilisateur</h2>
+      <p>
+        Chaque membre de votre organisation dispose d'une licence
+        qui détermine les applications et fonctionnalités accessibles.
+        Ajustez les licences à tout moment depuis la console.
+      </p>
+    </div>
+
+    <div class="ac-licenses-list">
+      <div class="ac-license-row">
+        <span class="ac-license-name">CloudChain Lite</span>
+        <span class="ac-license-desc">Vault ou Workspace</span>
+      </div>
+      <div class="ac-license-row">
+        <span class="ac-license-name">CloudChain Plus</span>
+        <span class="ac-license-desc">Vault + Workspace</span>
+      </div>
+      <div class="ac-license-row">
+        <span class="ac-license-name">CloudChain GO</span>
+        <span class="ac-license-desc">Vault + Workspace + Atlas</span>
+      </div>
+      <div class="ac-license-row">
+        <span class="ac-license-name">CloudChain Pro</span>
+        <span class="ac-license-desc">Suite complète + fonctions avancées</span>
+      </div>
+      <div class="ac-license-row">
+        <span class="ac-license-name">CloudChain Guest</span>
+        <span class="ac-license-desc">Accès Vault en lecture seule</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================
+     CTA
+============================================= -->
+<section class="ac-cta">
+  <div class="container">
+    <h2>Administrer votre organisation</h2>
+    <p>
+      Admin Console est incluse avec chaque offre FXTC CloudChain.
+      Téléchargez le launcher et accédez à la console
+      depuis votre espace administrateur.
+    </p>
+    <div class="ac-cta-buttons">
+      <a href="./CloudChain-Platform.html#download" class="btn btn-primary">
+        Télécharger CloudChain Platform
+      </a>
+      <a href="./nous-contacter.html" class="btn btn-secondary">
+        Demander une démonstration
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>© FXTC 2026</span>
+    <a href="#top">Retour en haut</a>
+  </div>
+</footer>
+
+
+<!-- ============ SCRIPTS ============ -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.querySelector('.products-trigger');
+  const panel = document.getElementById('products-panel');
+  if (!btn || !panel) return;
+
+  function closePanel() {
+    btn.setAttribute('aria-expanded', 'false');
+    panel.hidden = true;
+  }
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    panel.hidden = open;
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)) closePanel();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closePanel();
+  });
+});
+</script>
+
+</body>
+</html>
