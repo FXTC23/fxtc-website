@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vault — Coffre-fort Zero-Knowledge | FXTC</title>
+  <meta name="description" content="Vault protège, structure et trace chaque document échangé dans votre organisation. Chiffrement de bout en bout, immuabilité blockchain, zéro accès tiers." />
+
+  <link rel="stylesheet" href="./style.css" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,600,700,800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/logo-clair-fxtc.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Vault — Coffre-fort Zero-Knowledge | FXTC">
+  <meta property="og:description" content="Stockage souverain, chiffrement de bout en bout, traçabilité immuable.">
+  <meta property="og:image" content="https://fxtc.io/image/og-fxtc.png">
+  <meta property="og:url" content="https://fxtc.io/vault.html">
+
+<style>
+/* =========================
+   VAULT PAGE — styles dédiés
+========================= */
+
+/* Hero Vault */
+.vault-hero {
+  background: var(--primary);
+  padding: 140px 0 100px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.vault-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(255,255,255,.04) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 80% 20%, rgba(255,255,255,.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.vault-hero-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.vault-hero-kicker {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 24px;
+}
+
+.vault-hero h1 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(56px, 7vw, 96px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: #fff;
+  margin: 0 0 20px;
+}
+
+.vault-hero-tagline {
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 500;
+  color: rgba(255,255,255,.65);
+  margin: 0 0 40px;
+  line-height: 1.4;
+}
+
+.vault-hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.18);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: .2s ease;
+}
+
+.vault-hero-cta:hover {
+  background: rgba(255,255,255,.2);
+}
+
+/* Section présentation */
+.vault-overview {
+  padding: 100px 0 80px;
+}
+
+.vault-overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.vault-overview-text h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0 0 28px;
+}
+
+.vault-overview-text p {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.75;
+  margin: 0 0 18px;
+  max-width: 60ch;
+}
+
+.vault-overview-visual img {
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  display: block;
+}
+
+/* Trois piliers */
+.vault-pillars {
+  background: var(--surface);
+  padding: 80px 0;
+  border-top: 1px solid rgba(0,0,0,.05);
+  border-bottom: 1px solid rgba(0,0,0,.05);
+}
+
+.vault-pillars-title {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-align: center;
+  margin: 0 0 56px;
+}
+
+.vault-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.vault-pillar {
+  padding: 36px 32px;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,.06);
+}
+
+.vault-pillar-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--primary);
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  margin-bottom: 24px;
+}
+
+.vault-pillar h3 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 14px;
+  letter-spacing: -0.02em;
+}
+
+.vault-pillar p {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Fonctionnalités détaillées */
+.vault-features {
+  padding: 100px 0 80px;
+}
+
+.vault-features-header {
+  max-width: 700px;
+  margin: 0 0 64px;
+}
+
+.vault-features-header h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 16px;
+}
+
+.vault-features-header p {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.vault-features-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.vault-feature-card {
+  padding: 32px;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 16px;
+  transition: .2s ease;
+}
+
+.vault-feature-card:hover {
+  border-color: rgba(0,0,0,.16);
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+}
+
+.vault-feature-num {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--disabled);
+  letter-spacing: .06em;
+  margin-bottom: 16px;
+}
+
+.vault-feature-card h3 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 12px;
+  letter-spacing: -0.01em;
+}
+
+.vault-feature-card p {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Section blockchain */
+.vault-blockchain {
+  background: var(--primary);
+  padding: 80px 0;
+  color: #fff;
+}
+
+.vault-blockchain-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.vault-blockchain-text h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 24px;
+}
+
+.vault-blockchain-text p {
+  font-size: 18px;
+  color: rgba(255,255,255,.7);
+  line-height: 1.75;
+  margin: 0 0 18px;
+  max-width: 55ch;
+}
+
+.vault-blockchain-points {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.vault-blockchain-point {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 24px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px;
+}
+
+.vault-blockchain-point-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.1);
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+}
+
+.vault-blockchain-point h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+
+.vault-blockchain-point p {
+  font-size: 15px;
+  color: rgba(255,255,255,.6);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* CTA bas de page */
+.vault-cta {
+  padding: 100px 0;
+  text-align: center;
+}
+
+.vault-cta h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 16px;
+}
+
+.vault-cta p {
+  font-size: 18px;
+  color: var(--muted);
+  margin: 0 0 36px;
+  max-width: 50ch;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.vault-cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.vault-cta .btn-primary {
+  padding: 16px 32px;
+  font-size: 16px;
+}
+
+.vault-cta .btn-secondary {
+  padding: 16px 32px;
+  font-size: 16px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .vault-overview-grid,
+  .vault-blockchain-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .vault-pillars-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .vault-features-list {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="/index.html" class="logo">
+      <img src="./image/Logo-clair2-aegis-sentinel.png" alt="FXTC" class="logo-img" />
+      <div class="logo-text">
+        <span class="logo-brand">FXTC</span>
+        <span class="logo-product">Website</span>
+      </div>
+    </a>
+
+    <nav class="nav">
+      <a href="./nous-contacter.html" class="nav-cta">Nous contacter</a>
+      <button class="products-trigger" type="button" aria-expanded="false" aria-controls="products-panel">
+        <span class="cube-icon" aria-hidden="true"></span>
+        <span class="sr-only">Ouvrir le menu Produits</span>
+      </button>
+    </nav>
+  </div>
+
+  <section id="products-panel" class="products-panel" hidden>
+    <div class="container products-panel-inner">
+      <div class="mega-columns" role="navigation" aria-label="Menu principal étendu">
+        <div class="mega-col">
+          <div class="mega-title">Produits</div>
+          <nav class="mega-list" aria-label="Produits">
+            <a class="mega-item" href="./CloudChain-Platform.html">CloudChain Platform</a>
+            <a class="mega-item" href="./vault.html"><span class="mega-arrow">↳</span>Vault</a>
+            <a class="mega-item" href="./workspace.html"><span class="mega-arrow">↳</span>Workspace</a>
+            <a class="mega-item" href="./atlas.html"><span class="mega-arrow">↳</span>Atlas</a>
+            <a class="mega-item" href="./admin-console.html"><span class="mega-arrow">↳</span>Admin Console</a>
+          </nav>
+        </div>
+        <div class="mega-sep" aria-hidden="true"></div>
+        <div class="mega-col">
+          <div class="mega-title">Cas d'usage</div>
+          <nav class="mega-list" aria-label="Cas d'usage">
+            <a class="mega-item" href="./secteur-juridique.html">Juridique</a>
+            <a class="mega-item" href="./secteur-financier.html">Finance & Audit</a>
+            <a class="mega-item" href="./secteur-privée.html">Secteur Privé</a>
+            <a class="mega-item" href="./secteur-public.html">Secteur Public</a>
+          </nav>
+        </div>
+        <div class="mega-sep" aria-hidden="true"></div>
+        <div class="mega-col">
+          <div class="mega-title">News</div>
+          <nav class="mega-list" aria-label="News">
+            <a class="mega-item" href="./annonces.html">Annonces</a>
+            <a class="mega-item" href="./roadmap.html">Roadmap</a>
+            <a class="mega-item" href="./nos-réseaux.html">Nos Réseaux-Sociaux</a>
+          </nav>
+        </div>
+        <div class="mega-sep" aria-hidden="true"></div>
+        <div class="mega-col">
+          <div class="mega-title">Commencer</div>
+          <nav class="mega-list" aria-label="Commencer">
+            <a class="mega-item" href="./formules-tarifications.html">Formules & Tarifications</a>
+            <a class="mega-item" href="./ge-&-eti.html">Grandes Entreprises</a>
+            <a class="mega-item" href="./gouvernements.html">Administrations Publiques</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="vault-hero">
+  <div class="container vault-hero-inner">
+    <span class="vault-hero-kicker">CloudChain Platform</span>
+    <h1>Vault</h1>
+    <p class="vault-hero-tagline">
+      Le coffre-fort zero-knowledge de votre organisation.
+    </p>
+    <a href="./CloudChain-Platform.html#download" class="vault-hero-cta">
+      Télécharger via CloudChain Platform →
+    </a>
+  </div>
+</section>
+
+<!-- ============ PRÉSENTATION ============ -->
+<section class="vault-overview">
+  <div class="container vault-overview-grid">
+    <div class="vault-overview-text">
+      <h2>Vos documents, sous votre contrôle absolu</h2>
+      <p>
+        Vault constitue l'espace souverain de stockage et de partage de vos documents.
+        Maîtrisez précisément les accès, les permissions et les règles de diffusion,
+        que vos destinataires soient internes ou externes à votre organisation.
+      </p>
+      <p>
+        Chaque échange est chiffré de bout en bout, garantissant qu'aucun tiers
+        — pas même FXTC — ne peut accéder à vos données.
+      </p>
+    </div>
+    <div class="vault-overview-visual">
+      <img src="./image/Accueil-Vault.png" alt="Interface Vault — écran principal" />
+    </div>
+  </div>
+</section>
+
+<!-- ============ TROIS PILIERS ============ -->
+<section class="vault-pillars">
+  <div class="container">
+    <h2 class="vault-pillars-title">Conçu autour de trois principes</h2>
+
+    <div class="vault-pillars-grid">
+
+      <article class="vault-pillar">
+        <div class="vault-pillar-icon">🔒</div>
+        <h3>Souveraineté</h3>
+        <p>
+          Vos données restent sous votre contrôle exclusif. Aucun administrateur,
+          aucun prestataire, aucun intermédiaire ne peut y accéder sans votre autorisation explicite.
+        </p>
+      </article>
+
+      <article class="vault-pillar">
+        <div class="vault-pillar-icon">🔑</div>
+        <h3>Chiffrement de bout en bout</h3>
+        <p>
+          Chaque document est chiffré individuellement avant de quitter votre appareil.
+          Les clés de déchiffrement n'existent que sur les postes autorisés.
+        </p>
+      </article>
+
+      <article class="vault-pillar">
+        <div class="vault-pillar-icon">⛓️</div>
+        <h3>Immuabilité</h3>
+        <p>
+          Chaque action est inscrite dans une blockchain Hyperledger Fabric.
+          Les journaux d'activité sont consultables par les administrateurs,
+          mais ne peuvent jamais être modifiés ni supprimés.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ FONCTIONNALITÉS ============ -->
+<section class="vault-features">
+  <div class="container">
+    <div class="vault-features-header">
+      <h2>Ce que Vault vous permet</h2>
+      <p>
+        Chaque fonctionnalité a été pensée pour répondre aux exigences
+        des environnements réglementés et des échanges sensibles.
+      </p>
+    </div>
+
+    <div class="vault-features-list">
+
+      <article class="vault-feature-card">
+        <div class="vault-feature-num">01</div>
+        <h3>Protection contre les fuites internes</h3>
+        <p>
+          Les permissions granulaires et le chiffrement par document empêchent
+          toute extraction non autorisée, même par un collaborateur disposant d'un accès partiel.
+        </p>
+      </article>
+
+      <article class="vault-feature-card">
+        <div class="vault-feature-num">02</div>
+        <h3>Chiffrement individuel des documents</h3>
+        <p>
+          Chaque fichier possède sa propre clé de chiffrement.
+          La compromission d'un document n'expose jamais le reste du coffre.
+        </p>
+      </article>
+
+      <article class="vault-feature-card">
+        <div class="vault-feature-num">03</div>
+        <h3>Signature intégrée</h3>
+        <p>
+          Signez vos documents directement depuis l'application, sans outil externe.
+          Le processus est rapide, tracé et juridiquement exploitable.
+        </p>
+      </article>
+
+      <article class="vault-feature-card">
+        <div class="vault-feature-num">04</div>
+        <h3>Partage régi par vos politiques</h3>
+        <p>
+          Définissez qui peut consulter, télécharger ou transférer chaque document.
+          Les règles de diffusion s'appliquent automatiquement,
+          que le destinataire soit interne ou externe à votre organisation.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOCKCHAIN ============ -->
+<section class="vault-blockchain">
+  <div class="container vault-blockchain-inner">
+
+    <div class="vault-blockchain-text">
+      <h2>Traçabilité garantie par la blockchain</h2>
+      <p>
+        Vault s'appuie sur Hyperledger Fabric pour inscrire chaque événement
+        dans un registre distribué et inaltérable. Cette architecture protège
+        votre organisation contre les contestations et renforce la gouvernance
+        de vos échanges.
+      </p>
+    </div>
+
+    <div class="vault-blockchain-points">
+      <article class="vault-blockchain-point">
+        <div class="vault-blockchain-point-icon">📋</div>
+        <div>
+          <h4>Journaux d'activité immuables</h4>
+          <p>Chaque consultation, partage ou modification est enregistré de façon irréversible.</p>
+        </div>
+      </article>
+
+      <article class="vault-blockchain-point">
+        <div class="vault-blockchain-point-icon">👁️</div>
+        <div>
+          <h4>Audit sans altération</h4>
+          <p>Les administrateurs consultent les événements mais ne peuvent ni les modifier ni les supprimer.</p>
+        </div>
+      </article>
+
+      <article class="vault-blockchain-point">
+        <div class="vault-blockchain-point-icon">🛡️</div>
+        <div>
+          <h4>Preuve opposable</h4>
+          <p>L'horodatage blockchain fournit une preuve vérifiable de chaque action, exploitable en cas de litige.</p>
+        </div>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="vault-cta">
+  <div class="container">
+    <h2>Commencer avec Vault</h2>
+    <p>
+      Vault est disponible depuis le launcher CloudChain Platform.
+      Téléchargez la plateforme et accédez à l'ensemble de la suite.
+    </p>
+    <div class="vault-cta-buttons">
+      <a href="./CloudChain-Platform.html#download" class="btn btn-primary">
+        Télécharger CloudChain Platform
+      </a>
+      <a href="./nous-contacter.html" class="btn btn-secondary">
+        Demander une démonstration
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>© FXTC 2026</span>
+    <a href="#top">Retour en haut</a>
+  </div>
+</footer>
+
+<!-- ============ SCRIPTS ============ -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.querySelector('.products-trigger');
+  const panel = document.getElementById('products-panel');
+  if (!btn || !panel) return;
+
+  function closePanel() {
+    btn.setAttribute('aria-expanded', 'false');
+    panel.hidden = true;
+  }
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    panel.hidden = open;
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)) closePanel();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closePanel();
+  });
+});
+</script>
+
+</body>
+</html>
