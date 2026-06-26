@@ -470,6 +470,12 @@ body{
   font-weight: 600;
 }
 
+a.app-row {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
 /* =========================
    USE CASES — CAROUSEL 
 ========================= */
