@@ -3,271 +3,972 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CloudChain Platform</title>
+  <title>CloudChain Platform — Le launcher de votre suite | FXTC</title>
+  <meta name="description" content="CloudChain Platform est le point d'entrée unique de votre suite FXTC. Gérez vos applications, vos clés cryptographiques et vos appareils depuis un seul espace sécurisé." />
 
   <link rel="stylesheet" href="./style.css" />
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,600,700,800&display=swap" rel="stylesheet">
-</head>
+  <link rel="icon" type="image/png" href="/logo-clair-fxtc.png">
 
-<!-- Favicons -->
-<link rel="icon" type="image/png" href="/logo-clair-fxtc.png">
-  
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CloudChain Platform — Le launcher | FXTC">
+  <meta property="og:description" content="Un seul point d'entrée, toutes vos applications sécurisées.">
+  <meta property="og:image" content="https://fxtc.io/image/og-fxtc.png">
+  <meta property="og:url" content="https://fxtc.io/CloudChain-Platform.html">
+
+<style>
+/* =========================
+   CLOUDCHAIN PLATFORM PAGE
+========================= */
+
+/* --- Hero --- */
+.ccp-hero {
+  background: var(--primary);
+  padding: 140px 0 110px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.ccp-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 120%, rgba(255,255,255,.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.ccp-hero-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.ccp-hero-kicker {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+  margin-bottom: 24px;
+}
+
+.ccp-hero h1 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(42px, 6vw, 80px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: #fff;
+  margin: 0 0 24px;
+}
+
+.ccp-hero-sub {
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: 500;
+  color: rgba(255,255,255,.6);
+  margin: 0 0 44px;
+  line-height: 1.5;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ccp-hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.ccp-hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 15px 28px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: .2s ease;
+}
+
+.ccp-hero-btn--primary {
+  background: #fff;
+  color: var(--primary);
+}
+
+.ccp-hero-btn--primary:hover {
+  background: rgba(255,255,255,.9);
+}
+
+.ccp-hero-btn--secondary {
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.18);
+  color: #fff;
+}
+
+.ccp-hero-btn--secondary:hover {
+  background: rgba(255,255,255,.18);
+}
+
+.ccp-hero-version {
+  font-size: 13px;
+  color: rgba(255,255,255,.35);
+  margin-top: 20px;
+}
+
+/* --- Section commune --- */
+.ccp-section {
+  padding: 100px 0;
+}
+
+.ccp-section--alt {
+  background: var(--surface);
+  border-top: 1px solid rgba(0,0,0,.05);
+  border-bottom: 1px solid rgba(0,0,0,.05);
+}
+
+.ccp-section--dark {
+  background: var(--primary);
+  color: #fff;
+}
+
+.ccp-section-header {
+  max-width: 640px;
+  margin-bottom: 56px;
+}
+
+.ccp-section-header--center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ccp-section-kicker {
+  font-size: 12px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--disabled);
+  margin-bottom: 14px;
+}
+
+.ccp-section--dark .ccp-section-kicker {
+  color: rgba(255,255,255,.45);
+}
+
+.ccp-section-header h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0 0 16px;
+}
+
+.ccp-section-header p {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.ccp-section--dark .ccp-section-header p {
+  color: rgba(255,255,255,.6);
+}
+
+/* ===========================
+   SECTION 1 — POINT D'ENTRÉE
+=========================== */
+
+.ccp-entry-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.ccp-entry-text h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0 0 24px;
+}
+
+.ccp-entry-text p {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.75;
+  margin: 0 0 18px;
+  max-width: 55ch;
+}
+
+.ccp-entry-visual img {
+  width: 100%;
+  max-width: 620px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  display: block;
+}
+
+.ccp-entry-steps {
+  display: flex;
+  gap: 32px;
+  margin-top: 36px;
+}
+
+.ccp-entry-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.ccp-entry-step-num {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+.ccp-entry-step p {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.45;
+  margin: 4px 0 0;
+}
+
+/* ===========================
+   SECTION 2 — APPS GÉRÉES
+=========================== */
+
+.ccp-apps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.ccp-app-card {
+  display: block;
+  padding: 36px 32px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.07);
+  border-radius: 16px;
+  text-decoration: none;
+  color: inherit;
+  transition: .2s ease;
+  position: relative;
+}
+
+.ccp-app-card:hover {
+  border-color: rgba(0,0,0,.16);
+  box-shadow: 0 10px 30px rgba(0,0,0,.07);
+  transform: translateY(-2px);
+}
+
+.ccp-app-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.ccp-app-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--surface);
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+}
+
+.ccp-app-card-badge {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+
+.ccp-app-card-badge--available {
+  background: rgba(34,139,34,.08);
+  color: #228b22;
+}
+
+.ccp-app-card-badge--coming {
+  background: rgba(0,0,0,.05);
+  color: var(--disabled);
+}
+
+.ccp-app-card h3 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px;
+}
+
+.ccp-app-card-tagline {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--primary);
+  margin: 0 0 12px;
+}
+
+.ccp-app-card p:last-child {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.ccp-app-card-arrow {
+  position: absolute;
+  bottom: 32px;
+  right: 32px;
+  font-size: 20px;
+  color: var(--disabled);
+  transition: .2s ease;
+}
+
+.ccp-app-card:hover .ccp-app-card-arrow {
+  color: var(--text);
+  transform: translateX(4px);
+}
+
+/* ===========================
+   SECTION 3 — MESSAGERIE CHIFFRÉE
+=========================== */
+
+.ccp-crypto-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.ccp-crypto-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ccp-crypto-card {
+  padding: 24px 28px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px;
+}
+
+.ccp-crypto-card h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.ccp-crypto-card p {
+  font-size: 15px;
+  color: rgba(255,255,255,.55);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.ccp-crypto-card-label {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.35);
+  margin-bottom: 10px;
+}
+
+.ccp-crypto-text h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 24px;
+}
+
+.ccp-crypto-text p {
+  font-size: 18px;
+  color: rgba(255,255,255,.65);
+  line-height: 1.75;
+  margin: 0 0 18px;
+  max-width: 50ch;
+}
+
+/* ===========================
+   SECTION 4 — MULTI-DEVICE
+=========================== */
+
+.ccp-device-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.ccp-device-text h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0 0 24px;
+}
+
+.ccp-device-text p {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.75;
+  margin: 0 0 18px;
+  max-width: 55ch;
+}
+
+.ccp-device-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.ccp-device-step {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.ccp-device-step-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ccp-device-step-dot {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+.ccp-device-step-line {
+  width: 2px;
+  height: 32px;
+  background: var(--border);
+  opacity: .4;
+}
+
+.ccp-device-step:last-child .ccp-device-step-line {
+  display: none;
+}
+
+.ccp-device-step-content h4 {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 8px 0 6px;
+}
+
+.ccp-device-step-content p {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0 0 24px;
+}
+
+/* ===========================
+   CTA TÉLÉCHARGEMENT
+=========================== */
+
+.ccp-download {
+  padding: 100px 0;
+  text-align: center;
+  background: var(--surface);
+  border-top: 1px solid rgba(0,0,0,.05);
+}
+
+.ccp-download h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 12px;
+}
+
+.ccp-download-sub {
+  font-size: 18px;
+  color: var(--muted);
+  margin: 0 0 40px;
+  line-height: 1.6;
+}
+
+.ccp-download-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.ccp-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: .2s ease;
+  background: var(--primary);
+  color: #fff;
+}
+
+.ccp-download-btn:hover {
+  filter: brightness(1.1);
+}
+
+.ccp-download-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.ccp-download-note {
+  font-size: 14px;
+  color: var(--disabled);
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media (max-width: 900px) {
+  .ccp-entry-grid,
+  .ccp-crypto-grid,
+  .ccp-device-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .ccp-apps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ccp-entry-steps {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .ccp-crypto-text { order: 1; }
+  .ccp-crypto-visual { order: 2; }
+}
+</style>
+</head>
 <body>
 
-<!-------------- header ------------>
+<!-- ============ HEADER ============ -->
 <header class="topbar">
   <div class="container topbar-inner">
-  <a href="/index.html" class="logo">
-  <img src="./image/Logo-clair2-aegis-sentinel.png" alt="FXTC" class="logo-img" />
-  <div class="logo-text">
-    <span class="logo-brand">FXTC</span>
-    <span class="logo-product">Website</span>
-  </div>
-</a>
+    <a href="/index.html" class="logo">
+      <img src="./image/Logo-clair2-aegis-sentinel.png" alt="FXTC" class="logo-img" />
+      <div class="logo-text">
+        <span class="logo-brand">FXTC</span>
+        <span class="logo-product">Website</span>
+      </div>
+    </a>
+
     <nav class="nav">
-      <a href="./nous-contacter.html" class="nav-cta">
-    Nous contacter
-  </a>
-    
-      <!-- Bouton cube -->
-      <button
-        class="products-trigger"
-        type="button"
-        aria-expanded="false"
-        aria-controls="products-panel"
-      >
+      <a href="./nous-contacter.html" class="nav-cta">Nous contacter</a>
+      <button class="products-trigger" type="button" aria-expanded="false" aria-controls="products-panel">
         <span class="cube-icon" aria-hidden="true"></span>
         <span class="sr-only">Ouvrir le menu Produits</span>
       </button>
     </nav>
   </div>
 
-  <!-- Panneau sous le header -->
   <section id="products-panel" class="products-panel" hidden>
     <div class="container products-panel-inner">
-      
-    <div class="mega-columns" role="navigation" aria-label="Menu principal étendu">
-
-      
-      <!-- PRODUITS -->
-      <div class="mega-col">
-        <div class="mega-title">Produits</div>
-        <nav class="mega-list" aria-label="Produits">
-          <a class="mega-item" href="./CloudChain-Platform.html">CloudChain Platform</a>
-          <a class="mega-item" href="./vault.html"><span class="mega-arrow">↳</span>Vault</a>
-          <a class="mega-item" href="./workspace.html"><span class="mega-arrow">↳</span>Workspace</a>
-          <a class="mega-item" href="./atlas.html"><span class="mega-arrow">↳</span>Atlas</a>
-          <a class="mega-item" href="./admin-console.html"><span class="mega-arrow">↳</span>Admin Console</a>
-        </nav>
+      <div class="mega-columns" role="navigation" aria-label="Menu principal étendu">
+        <div class="mega-col">
+          <div class="mega-title">Produits</div>
+          <nav class="mega-list" aria-label="Produits">
+            <a class="mega-item" href="./CloudChain-Platform.html">CloudChain Platform</a>
+            <a class="mega-item" href="./vault.html"><span class="mega-arrow">↳</span>Vault</a>
+            <a class="mega-item" href="./workspace.html"><span class="mega-arrow">↳</span>Workspace</a>
+            <a class="mega-item" href="./atlas.html"><span class="mega-arrow">↳</span>Atlas</a>
+            <a class="mega-item" href="./admin-console.html"><span class="mega-arrow">↳</span>Admin Console</a>
+          </nav>
+        </div>
+        <div class="mega-sep" aria-hidden="true"></div>
+        <div class="mega-col">
+          <div class="mega-title">Cas d'usage</div>
+          <nav class="mega-list" aria-label="Cas d'usage">
+            <a class="mega-item" href="./secteur-juridique.html">Juridique</a>
+            <a class="mega-item" href="./secteur-financier.html">Finance & Audit</a>
+            <a class="mega-item" href="./secteur-privée.html">Secteur Privé</a>
+            <a class="mega-item" href="./secteur-public.html">Secteur Public</a>
+          </nav>
+        </div>
+        <div class="mega-sep" aria-hidden="true"></div>
+        <div class="mega-col">
+          <div class="mega-title">News</div>
+          <nav class="mega-list" aria-label="News">
+            <a class="mega-item" href="./annonces.html">Annonces</a>
+            <a class="mega-item" href="./roadmap.html">Roadmap</a>
+            <a class="mega-item" href="./nos-réseaux.html">Nos Réseaux-Sociaux</a>
+          </nav>
+        </div>
+        <div class="mega-sep" aria-hidden="true"></div>
+        <div class="mega-col">
+          <div class="mega-title">Commencer</div>
+          <nav class="mega-list" aria-label="Commencer">
+            <a class="mega-item" href="./formules-tarifications.html">Formules & Tarifications</a>
+            <a class="mega-item" href="./ge-&-eti.html">Grandes Entreprises</a>
+            <a class="mega-item" href="./gouvernements.html">Administrations Publiques</a>
+          </nav>
+        </div>
       </div>
-
-      <div class="mega-sep" aria-hidden="true"></div>
-
-      <!-- CAS D'USAGE -->
-      <div class="mega-col">
-        <div class="mega-title">Cas d’usage</div>
-        <nav class="mega-list" aria-label="Cas d’usage">
-          <a class="mega-item" href="./secteur-juridique.html"></span>Juridique</a>
-          <a class="mega-item" href="./secteur-financier.html"></span>Finance & Audit</a>
-          <a class="mega-item" href="./secteur-privée.html"></span>Secteur Privé</a>
-          <a class="mega-item" href="./secteur-public.html"></span>Secteur Public</a>
-        </nav>
-      </div>
-
-      <div class="mega-sep" aria-hidden="true"></div>
-
-      <!-- NEWS -->
-      <div class="mega-col">
-        <div class="mega-title">News</div>
-        <nav class="mega-list" aria-label="News">
-          <a class="mega-item" href="./annonces.html"></span>Annonces</a>
-          <a class="mega-item" href="./roadmap.html"></span>Roadmap</a>
-          <a class="mega-item" href="./nos-réseaux.html"></span>Nos Réseaux-Sociaux</a>
-        </nav>
-      </div>
-
-      <div class="mega-sep" aria-hidden="true"></div>
-
-      <!-- COMMENCER -->
-      <div class="mega-col">
-        <div class="mega-title">Commencer</div>
-        <nav class="mega-list" aria-label="Commencer">
-          <a class="mega-item" href="./formules-tarifications.html"></span>Formules & Tarifications</a>
-          <a class="mega-item" href="./ge-&-eti.html"></span>Grandes Entreprises</a>
-          <a class="mega-item" href="./gouvernements.html"></span>Administrations Publiques</a>
-        </nav>
-      </div>
-
     </div>
-  </div>
-</section>
+  </section>
 </header>
-  
-  <section class="platform-hero">
-  <div class="container platform-hero-inner">
-    <h1>
-      Découvrez les applications de la suite <span>CloudChain Platform</span>
-    </h1>
+
+
+<!-- ============================================
+     HERO
+============================================= -->
+<section class="ccp-hero">
+  <div class="container ccp-hero-inner">
+    <span class="ccp-hero-kicker">FXTC Suite</span>
+    <h1>CloudChain Platform</h1>
+    <p class="ccp-hero-sub">
+      Le point d'entrée unique de votre suite.
+      Un seul login, toutes vos applications sécurisées.
+    </p>
+    <div class="ccp-hero-buttons">
+      <a href="#download" class="ccp-hero-btn ccp-hero-btn--primary">
+        Télécharger
+      </a>
+      <a href="./nous-contacter.html" class="ccp-hero-btn ccp-hero-btn--secondary">
+        Demander une démo
+      </a>
+    </div>
+    <p class="ccp-hero-version">v1.2.0 · macOS 12+ · Windows 10+</p>
   </div>
 </section>
 
 
-<!-- TÉLÉCHARGEMENT -->
-  <section class="app-section" id="download">
-    <div class="container" style="text-align:center; max-width:720px; margin:0 auto; padding:60px 20px;">
-      <h2 style="margin-bottom:8px;">Télécharger CloudChain Platform</h2>
-      <p class="app-tagline" style="margin-bottom:32px;">
-        Installez le launcher pour accéder à l'ensemble de la suite.
+<!-- ============================================
+     SECTION 1 — POINT D'ENTRÉE UNIQUE
+============================================= -->
+<section class="ccp-section">
+  <div class="container ccp-entry-grid">
+
+    <div class="ccp-entry-text">
+      <h2>Un seul espace pour tout piloter</h2>
+      <p>
+        CloudChain Platform centralise l'accès à l'ensemble de la suite FXTC.
+        Connectez-vous une seule fois et retrouvez toutes vos applications,
+        vos clés cryptographiques et vos paramètres dans un même environnement.
+      </p>
+      <p>
+        Le launcher gère l'installation, les mises à jour et le lancement
+        de chaque application. Plus besoin de gérer plusieurs comptes
+        ou de télécharger manuellement les nouvelles versions.
       </p>
 
-      <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
-        <a href="https://github.com/FXTC23/fxtc-website/releases/download/v1.2.0/CloudChain.Platform-1.2.0-arm64.dmg"
-           class="btn btn-primary"
-           style="display:inline-block; font-size:1rem; padding:14px 32px;">
-          macOS (Apple Silicon)
-        </a>
-        <a href="https://github.com/FXTC23/fxtc-website/releases/download/v1.2.0/CloudChain.Platform.Setup.1.2.0.exe"
-           class="btn btn-primary"
-           style="display:inline-block; font-size:1rem; padding:14px 32px;">
-          Windows
-        </a>
+      <div class="ccp-entry-steps">
+        <div class="ccp-entry-step">
+          <div class="ccp-entry-step-num">1</div>
+          <p>Connectez-vous avec votre compte FXTC</p>
+        </div>
+        <div class="ccp-entry-step">
+          <div class="ccp-entry-step-num">2</div>
+          <p>Déverrouillez vos clés cryptographiques</p>
+        </div>
+        <div class="ccp-entry-step">
+          <div class="ccp-entry-step-num">3</div>
+          <p>Lancez n'importe quelle application</p>
+        </div>
       </div>
-
-      <p style="font-size:0.85rem; opacity:0.6; margin-top:16px;">
-        v1.2.0 · macOS 12+ / Windows 10+ · Vault et Admin Console se téléchargent ensuite depuis l'application.
-      </p>
     </div>
-  </section>
-  
-  <!---- Description app ---->
 
-<main class="platform-apps">
-
-  <!-- VAULT -->
-  <section class="app-section" id="vault">
-    <div class="container app-grid">
-
-      <div class="app-content">
-        <h2>Vault</h2>
-        <p class="app-tagline">Coffre-fort Zero-Knowledge</p>
-        <p class="app-description">
-          Vault constitue l’espace souverain de stockage et de partage de vos documents.
-        </p>
-        
-          <p class="app-description">
-          Maîtrisez précisément les accès, les permissions et les règles de diffusion, que vos destinataires soient internes ou externes à votre organisation,
-          ou bien seulement signé le documents.
-          </p>
-        
-          <p class="app-description">
-            Chaque échange est chiffré de bout en bout, garantissant qu’aucun tiers — pas même FXTC — ne peut accéder à vos données.
-          </p>
-
-        <p class="app-description">
-          Grâce à l’immuabilité assurée par Hyperledger Fabric,
-          les administrateurs peuvent consulter les événements et journaux d’activité sans jamais pouvoir les modifier.
-          Cette traçabilité protège votre organisation contre les fuites internes et renforce la gouvernance de vos échanges.
-        </p>
-
-<a href="/Cas d'usage.html" class="btn btn-secondary">
-  Découvrir les cas d’usages
-</a>
-        
-      </div>
-
-      <div class="app-visual">
-        <img src="./image/Accueil-Vault.png" alt="Interface Vault">
-      </div>
-
-    </div>
-  </section>
-
-<section class="vault-apollo">
-  <div class="container vault-apollo-row">
-
-    <h3 class="vault-apollo-title">Vault vous permet :</h3>
-
-    <div class="vault-apollo-features">
-      <article class="vault-apollo-item">
-        <div class="vault-apollo-icon">🔐</div>
-        <p>Protéger des fuites internes</p>
-      </article>
-
-      <article class="vault-apollo-item">
-        <div class="vault-apollo-icon">🧩</div>
-        <p>Chiffrement individuel des documents</p>
-      </article>
-
-      <article class="vault-apollo-item">
-        <div class="vault-apollo-icon">✍️</div>
-        <p>Signature rapide, sans sortir de l’application</p>
-      </article>
-
-      <article class="vault-apollo-item">
-        <div class="vault-apollo-icon">⚙️</div>
-        <p>Partage soumis à vos politiques internes</p>
-      </article>
+    <div class="ccp-entry-visual">
+      <img src="./image/launcher-preview.png" alt="CloudChain Platform — écran principal du launcher" />
     </div>
 
   </div>
 </section>
 
-  <div class="coming-soon">
-  Prochainement…
-</div>
-  
-  
-  <!-- WORKSPACE -->
-  <section class="app-section alt">
-    <div class="container app-grid">
 
-      <div class="app-visual">
-        <img src="./image/workspace-preview.png" alt="Interface Workspace">
-      </div>
+<!-- ============================================
+     SECTION 2 — APPLICATIONS GÉRÉES
+============================================= -->
+<section class="ccp-section ccp-section--alt">
+  <div class="container">
 
-      <div class="app-content">
-        <h2>Workspace</h2>
-        <p class="app-tagline">Collaborer & analyser</p>
-        <p class="app-description">
-          Workspace structure les échanges internes et centralise les flux
-          décisionnels dans un environnement sécurisé.
-        </p>
-        <a href="/workspace.html" class="btn btn-primary">Découvrir Workspace</a>
-      </div>
-
+    <div class="ccp-section-header ccp-section-header--center">
+      <div class="ccp-section-kicker">Écosystème</div>
+      <h2>Les applications de la suite</h2>
+      <p>
+        Chaque application est installée, mise à jour et lancée
+        directement depuis CloudChain Platform.
+      </p>
     </div>
-  </section>
 
-  <!-- ATLAS -->
-  <section class="app-section">
-    <div class="container app-grid">
+    <div class="ccp-apps-grid">
 
-      <div class="app-content">
-        <h2>Atlas</h2>
-        <p class="app-tagline">Structuration intelligente des données</p>
-        <p class="app-description">
-          Atlas connecte, organise et transforme les données critiques
+      <a href="./vault.html" class="ccp-app-card">
+        <div class="ccp-app-card-top">
+          <div class="ccp-app-card-icon">🔐</div>
+          <span class="ccp-app-card-badge ccp-app-card-badge--available">Disponible</span>
+        </div>
+        <h3>Vault</h3>
+        <p class="ccp-app-card-tagline">Coffre-fort zero-knowledge</p>
+        <p>
+          Stockez, partagez et signez vos documents dans un espace souverain,
+          chiffré de bout en bout. Aucun tiers ne peut accéder à vos données.
+        </p>
+        <span class="ccp-app-card-arrow">→</span>
+      </a>
+
+      <a href="./admin-console.html" class="ccp-app-card">
+        <div class="ccp-app-card-top">
+          <div class="ccp-app-card-icon">⚙️</div>
+          <span class="ccp-app-card-badge ccp-app-card-badge--available">Disponible</span>
+        </div>
+        <h3>Admin Console</h3>
+        <p class="ccp-app-card-tagline">Gouvernance & conformité</p>
+        <p>
+          Gérez les utilisateurs, les rôles, les licences et les journaux
+          d'activité de votre organisation depuis une console centralisée.
+        </p>
+        <span class="ccp-app-card-arrow">→</span>
+      </a>
+
+      <a href="./workspace.html" class="ccp-app-card">
+        <div class="ccp-app-card-top">
+          <div class="ccp-app-card-icon">📊</div>
+          <span class="ccp-app-card-badge ccp-app-card-badge--coming">Décembre 2026</span>
+        </div>
+        <h3>Workspace</h3>
+        <p class="ccp-app-card-tagline">Collaborer & analyser</p>
+        <p>
+          Structurez les échanges internes et centralisez les flux décisionnels
+          dans un environnement sécurisé et tracé.
+        </p>
+        <span class="ccp-app-card-arrow">→</span>
+      </a>
+
+      <a href="./atlas.html" class="ccp-app-card">
+        <div class="ccp-app-card-top">
+          <div class="ccp-app-card-icon">🌐</div>
+          <span class="ccp-app-card-badge ccp-app-card-badge--coming">Juin 2027</span>
+        </div>
+        <h3>Atlas</h3>
+        <p class="ccp-app-card-tagline">Connecter & structurer les données</p>
+        <p>
+          Connectez, organisez et transformez les données critiques
           pour une exploitation stratégique maîtrisée.
         </p>
-        <a href="/atlas.html" class="btn btn-primary">Découvrir Atlas</a>
+        <span class="ccp-app-card-arrow">→</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     SECTION 3 — MESSAGERIE & CHIFFREMENT
+============================================= -->
+<section class="ccp-section ccp-section--dark">
+  <div class="container ccp-crypto-grid">
+
+    <div class="ccp-crypto-text">
+      <h2>Chiffrement intégré à chaque échange</h2>
+      <p>
+        CloudChain Platform gère vos clés cryptographiques localement.
+        Chaque message, chaque document partagé est chiffré avant de quitter
+        votre appareil. Le serveur ne voit jamais vos données en clair.
+      </p>
+      <p>
+        Ce modèle zero-knowledge garantit que même en cas de compromission
+        de l'infrastructure, vos échanges restent protégés.
+      </p>
+    </div>
+
+    <div class="ccp-crypto-visual">
+
+      <div class="ccp-crypto-card">
+        <span class="ccp-crypto-card-label">Chiffrement</span>
+        <h4>X-Wing — Post-quantique</h4>
+        <p>
+          Les clés de chiffrement entre utilisateurs sont protégées par l'algorithme
+          X-Wing, résistant aux futures attaques d'ordinateurs quantiques.
+        </p>
       </div>
 
-      <div class="app-visual">
-        <img src="./image/atlas-preview.png" alt="Interface Atlas">
+      <div class="ccp-crypto-card">
+        <span class="ccp-crypto-card-label">Signature</span>
+        <h4>ML-DSA-65</h4>
+        <p>
+          Chaque fichier est signé numériquement pour garantir
+          son authenticité et son intégrité au fil du temps.
+        </p>
+      </div>
+
+      <div class="ccp-crypto-card">
+        <span class="ccp-crypto-card-label">Transmission</span>
+        <h4>End-to-End Encryption</h4>
+        <p>
+          Le chiffrement s'applique sur votre appareil, avant tout envoi.
+          Le serveur transporte des données qu'il ne peut pas lire.
+        </p>
       </div>
 
     </div>
-  </section>
 
-  
-</main>
+  </div>
+</section>
+
+
+<!-- ============================================
+     SECTION 4 — PROFIL MULTI-DEVICE
+============================================= -->
+<section class="ccp-section">
+  <div class="container ccp-device-grid">
+
+    <div class="ccp-device-flow">
+
+      <div class="ccp-device-step">
+        <div class="ccp-device-step-marker">
+          <div class="ccp-device-step-dot">1</div>
+          <div class="ccp-device-step-line"></div>
+        </div>
+        <div class="ccp-device-step-content">
+          <h4>Créez votre profil cryptographique</h4>
+          <p>
+            À la première connexion, CloudChain Platform génère vos clés
+            de chiffrement et de signature sur votre appareil.
+            Vous choisissez un mot de passe pour les protéger.
+          </p>
+        </div>
+      </div>
+
+      <div class="ccp-device-step">
+        <div class="ccp-device-step-marker">
+          <div class="ccp-device-step-dot">2</div>
+          <div class="ccp-device-step-line"></div>
+        </div>
+        <div class="ccp-device-step-content">
+          <h4>Sauvegardez votre phrase de récupération</h4>
+          <p>
+            Une phrase de récupération vous est communiquée.
+            Elle est le seul moyen de restaurer vos clés
+            sur un nouvel appareil. Conservez-la en lieu sûr.
+          </p>
+        </div>
+      </div>
+
+      <div class="ccp-device-step">
+        <div class="ccp-device-step-marker">
+          <div class="ccp-device-step-dot">3</div>
+          <div class="ccp-device-step-line"></div>
+        </div>
+        <div class="ccp-device-step-content">
+          <h4>Connectez autant d'appareils que nécessaire</h4>
+          <p>
+            Installez CloudChain Platform sur un second poste,
+            importez votre phrase de récupération, et retrouvez
+            l'ensemble de vos clés et documents sans rien perdre.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="ccp-device-text">
+      <h2>Votre profil vous suit, partout</h2>
+      <p>
+        Votre identité cryptographique n'est pas liée à un seul appareil.
+        Grâce à la phrase de récupération, vous pouvez travailler
+        depuis plusieurs postes tout en conservant le même niveau de sécurité.
+      </p>
+      <p>
+        Chaque appareil est identifié et enregistré.
+        Les administrateurs peuvent consulter les connexions
+        et révoquer un appareil compromis à tout moment
+        depuis l'Admin Console.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================
+     TÉLÉCHARGEMENT
+============================================= -->
+<section class="ccp-download" id="download">
+  <div class="container">
+    <h2>Télécharger CloudChain Platform</h2>
+    <p class="ccp-download-sub">
+      Installez le launcher pour accéder à l'ensemble de la suite.
+    </p>
+
+    <div class="ccp-download-buttons">
+      <a href="https://github.com/FXTC23/fxtc-website/releases/download/v1.2.0/CloudChain.Platform-1.2.0-arm64.dmg"
+         class="ccp-download-btn">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        macOS (Apple Silicon)
+      </a>
+      <a href="https://github.com/FXTC23/fxtc-website/releases/download/v1.2.0/CloudChain.Platform.Setup.1.2.0.exe"
+         class="ccp-download-btn">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>
+        Windows
+      </a>
+    </div>
+
+    <p class="ccp-download-note">
+      v1.2.0 · macOS 12+ / Windows 10+ · Vault et Admin Console se téléchargent ensuite depuis l'application.
+    </p>
+  </div>
+</section>
+
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>© FXTC 2026</span>
+    <a href="#top">Retour en haut</a>
+  </div>
+</footer>
+
+
+<!-- ============ SCRIPTS ============ -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const btn = document.querySelector('.products-trigger');
   const panel = document.getElementById('products-panel');
   if (!btn || !panel) return;
 
-  function closePanel(){
+  function closePanel() {
     btn.setAttribute('aria-expanded', 'false');
     panel.hidden = true;
   }
@@ -287,6 +988,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') closePanel();
   });
 });
-</script>  
+</script>
+
 </body>
 </html>
