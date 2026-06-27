@@ -1,1 +1,932 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formules & Tarifications | FXTC</title>
+  <meta name="description" content="Découvrez les formules CloudChain : Lite Vault, Guest et Admin. Tarification simple, par utilisateur, sans engagement caché." />
 
+  <link rel="stylesheet" href="./style.css" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,600,700,800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/logo-clair-fxtc.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Formules & Tarifications | FXTC">
+  <meta property="og:description" content="Tarification claire et transparente pour la suite CloudChain.">
+  <meta property="og:image" content="https://fxtc.io/image/og-fxtc.png">
+  <meta property="og:url" content="https://fxtc.io/formules-tarifications.html">
+
+<style>
+/* =========================
+   PRICING PAGE
+========================= */
+
+/* --- Hero --- */
+.pricing-hero {
+  background: var(--primary);
+  padding: 120px 0 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 120%, rgba(255,255,255,.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.pricing-hero-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.pricing-hero h1 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(42px, 5.5vw, 72px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: #fff;
+  margin: 0 0 18px;
+}
+
+.pricing-hero-sub {
+  font-size: clamp(17px, 2vw, 22px);
+  font-weight: 500;
+  color: rgba(255,255,255,.55);
+  margin: 0;
+  line-height: 1.5;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Section --- */
+.pricing-section {
+  padding: 80px 0;
+}
+
+.pricing-section--alt {
+  background: var(--surface);
+  border-top: 1px solid rgba(0,0,0,.05);
+  border-bottom: 1px solid rgba(0,0,0,.05);
+}
+
+/* --- Cartes tarifs --- */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.pricing-card {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 20px;
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: .2s ease;
+}
+
+.pricing-card:hover {
+  border-color: rgba(0,0,0,.16);
+  box-shadow: 0 10px 30px rgba(0,0,0,.07);
+}
+
+.pricing-card--highlight {
+  border-color: var(--primary);
+  border-width: 2px;
+}
+
+.pricing-card-badge {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--primary);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  padding: 5px 16px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.pricing-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--surface);
+  display: grid;
+  place-items: center;
+  margin-bottom: 24px;
+}
+
+.pricing-card h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 6px;
+}
+
+.pricing-card-tagline {
+  font-size: 15px;
+  color: var(--muted);
+  margin: 0 0 28px;
+  line-height: 1.45;
+}
+
+.pricing-card-price {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.pricing-card-amount {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.pricing-card-currency {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.pricing-card-period {
+  font-size: 14px;
+  color: var(--disabled);
+  margin-bottom: 32px;
+}
+
+.pricing-card-divider {
+  border: none;
+  border-top: 1px solid rgba(0,0,0,.07);
+  margin: 0 0 24px;
+}
+
+.pricing-card-features {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.pricing-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.45;
+}
+
+.pricing-feature-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--primary);
+}
+
+.pricing-card-cta {
+  margin-top: 32px;
+}
+
+.pricing-btn {
+  display: block;
+  text-align: center;
+  padding: 14px 24px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: .15s ease;
+  font-family: inherit;
+}
+
+.pricing-btn--primary {
+  background: var(--primary);
+  color: #fff;
+}
+
+.pricing-btn--primary:hover {
+  filter: brightness(1.08);
+}
+
+.pricing-btn--secondary {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.pricing-btn--secondary:hover {
+  background: var(--surface);
+}
+
+/* --- Note admin --- */
+.pricing-admin-note {
+  max-width: 800px;
+  margin: 56px auto 0;
+  text-align: center;
+  padding: 28px 32px;
+  background: var(--surface);
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,.06);
+}
+
+.pricing-admin-note p {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.pricing-admin-note strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* --- Inclus dans toutes les formules --- */
+.pricing-included-title {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-align: center;
+  margin: 0 0 48px;
+}
+
+.pricing-included-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.pricing-included-item {
+  text-align: center;
+  padding: 32px 20px;
+}
+
+.pricing-included-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--surface);
+  display: grid;
+  place-items: center;
+  margin: 0 auto 18px;
+}
+
+.pricing-included-item h3 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.pricing-included-item p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* --- Prochaines formules --- */
+.pricing-upcoming {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.pricing-upcoming h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 16px;
+}
+
+.pricing-upcoming > p {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0 0 40px;
+}
+
+.pricing-upcoming-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.pricing-upcoming-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.07);
+  border-radius: 14px;
+}
+
+.pricing-upcoming-name {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.pricing-upcoming-desc {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.pricing-upcoming-date {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--disabled);
+  white-space: nowrap;
+}
+
+/* --- FAQ --- */
+.pricing-faq {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.pricing-faq-title {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-align: center;
+  margin: 0 0 48px;
+}
+
+.pricing-faq-item {
+  border-bottom: 1px solid rgba(0,0,0,.08);
+  padding: 24px 0;
+}
+
+.pricing-faq-item:first-child {
+  border-top: 1px solid rgba(0,0,0,.08);
+}
+
+.pricing-faq-q {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  cursor: default;
+}
+
+.pricing-faq-a {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* --- CTA --- */
+.pricing-cta {
+  padding: 80px 0;
+  text-align: center;
+  background: var(--primary);
+  color: #fff;
+}
+
+.pricing-cta h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 14px;
+}
+
+.pricing-cta p {
+  font-size: 18px;
+  color: rgba(255,255,255,.6);
+  margin: 0 0 32px;
+  max-width: 50ch;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.pricing-cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.pricing-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 15px 28px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: .2s ease;
+}
+
+.pricing-cta-btn--white {
+  background: #fff;
+  color: var(--primary);
+}
+
+.pricing-cta-btn--white:hover {
+  background: rgba(255,255,255,.9);
+}
+
+.pricing-cta-btn--ghost {
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.18);
+  color: #fff;
+}
+
+.pricing-cta-btn--ghost:hover {
+  background: rgba(255,255,255,.18);
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+
+  .pricing-included-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .pricing-included-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="/index.html" class="logo">
+      <img src="./image/Logo-clair2-aegis-sentinel.png" alt="FXTC" class="logo-img" />
+      <div class="logo-text">
+        <span class="logo-brand">FXTC</span>
+        <span class="logo-product">Website</span>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="./nous-contacter.html" class="nav-cta">Nous contacter</a>
+      <button class="products-trigger" type="button" aria-expanded="false" aria-controls="products-panel">
+        <span class="cube-icon" aria-hidden="true"></span>
+        <span class="sr-only">Ouvrir le menu Produits</span>
+      </button>
+    </nav>
+  </div>
+
+  <section id="products-panel" class="products-panel" hidden>
+    <div class="container products-panel-inner">
+      <div class="mega-columns" role="navigation" aria-label="Menu principal étendu">
+        <div class="mega-col">
+          <div class="mega-title">Produits</div>
+          <nav class="mega-list" aria-label="Produits">
+            <a class="mega-item" href="./CloudChain-Platform.html">CloudChain Platform</a>
+            <a class="mega-item" href="./vault.html"><span class="mega-arrow">↳</span>Vault</a>
+            <a class="mega-item" href="./workspace.html"><span class="mega-arrow">↳</span>Workspace</a>
+            <a class="mega-item" href="./atlas.html"><span class="mega-arrow">↳</span>Atlas</a>
+            <a class="mega-item" href="./admin-console.html"><span class="mega-arrow">↳</span>Admin Console</a>
+          </nav>
+        </div>
+        <div class="mega-sep" aria-hidden="true"></div>
+        <div class="mega-col">
+          <div class="mega-title">Cas d'usage</div>
+          <nav class="mega-list" aria-label="Cas d'usage">
+            <a class="mega-item" href="./secteur-juridique.html">Juridique</a>
+            <a class="mega-item" href="./secteur-financier.html">Finance & Audit</a>
+            <a class="mega-item" href="./secteur-privée.html">Secteur Privé</a>
+            <a class="mega-item" href="./secteur-public.html">Secteur Public</a>
+          </nav>
+        </div>
+        <div class="mega-sep" aria-hidden="true"></div>
+        <div class="mega-col">
+          <div class="mega-title">News</div>
+          <nav class="mega-list" aria-label="News">
+            <a class="mega-item" href="./annonces.html">Annonces</a>
+            <a class="mega-item" href="./roadmap.html">Roadmap</a>
+            <a class="mega-item" href="./nos-réseaux.html">Nos Réseaux-Sociaux</a>
+          </nav>
+        </div>
+        <div class="mega-sep" aria-hidden="true"></div>
+        <div class="mega-col">
+          <div class="mega-title">Commencer</div>
+          <nav class="mega-list" aria-label="Commencer">
+            <a class="mega-item" href="./formules-tarifications.html">Formules & Tarifications</a>
+            <a class="mega-item" href="./ge-&-eti.html">Grandes Entreprises</a>
+            <a class="mega-item" href="./gouvernements.html">Administrations Publiques</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+</header>
+
+
+<!-- ============================================
+     HERO
+============================================= -->
+<section class="pricing-hero">
+  <div class="container pricing-hero-inner">
+    <h1>Formules & Tarifications</h1>
+    <p class="pricing-hero-sub">
+      Une tarification claire, par utilisateur, sans engagement caché.
+    </p>
+  </div>
+</section>
+
+
+<!-- ============================================
+     CARTES TARIFS
+============================================= -->
+<section class="pricing-section">
+  <div class="container">
+
+    <div class="pricing-grid">
+
+      <!-- GUEST -->
+      <div class="pricing-card">
+        <div class="pricing-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h2>Guest</h2>
+        <p class="pricing-card-tagline">Accès Vault en consultation pour vos collaborateurs externes.</p>
+
+        <div class="pricing-card-price">
+          <span class="pricing-card-amount">4,99</span>
+          <span class="pricing-card-currency">€ HT</span>
+        </div>
+        <p class="pricing-card-period">par utilisateur / mois</p>
+
+        <hr class="pricing-card-divider" />
+
+        <div class="pricing-card-features">
+          <div class="pricing-feature">
+            <svg class="pricing-feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Consultation de documents partagés
+          </div>
+          <div class="pricing-feature">
+            <svg class="pricing-feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Chiffrement de bout en bout
+          </div>
+          <div class="pricing-feature">
+            <svg class="pricing-feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Signature de documents
+          </div>
+          <div class="pricing-feature">
+            <svg class="pricing-feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Traçabilité blockchain
+          </div>
+        </div>
+
+        <div class="pricing-card-cta">
+          <a href="./nous-contacter.html" class="pricing-btn pricing-btn--secondary">Nous contacter</a>
+        </div>
+      </div>
+
+      <!-- LITE VAULT -->
+      <div class="pricing-card pricing-card--highlight">
+        <div class="pricing-card-badge">Recommandé</div>
+        <div class="pricing-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg>
+        </div>
+        <h2>Lite Vault</h2>
+        <p class="pricing-card-tagline">L'essentiel du coffre-fort zero-knowledge pour votre équipe.</p>
+
+        <div class="pricing-card-price">
+          <span class="pricing-card-amount">9,99</span>
+          <span class="pricing-card-currency">€ HT</span>
+        </div>
+        <p class="pricing-card-period">par utilisateur / mois</p>
+
+        <hr class="pricing-card-divider" />
+
+        <div class="pricing-card-features">
+          <div class="pricing-feature">
+            <svg class="pricing-feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Stockage et partage de documents
+          </div>
+          <div class="pricing-feature">
+            <svg class="pricing-feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Chiffrement E2E par document
+          </div>
+          <div class="pricing-feature">
+            <svg class="pricing-feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Signature intégrée
+          </div>
+          <div class="pricing-feature">
+            <svg class="pricing-feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Permissions granulaires
+          </div>
+          <div class="pricing-feature">
+            <svg class="pricing-feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Traçabilité blockchain
+          </div>
+          <div class="pricing-feature">
+            <svg class="pricing-feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Multi-device avec recovery phrase
+          </div>
+        </div>
+
+        <div class="pricing-card-cta">
+          <a href="./nous-contacter.html" class="pricing-btn pricing-btn--primary">Nous contacter</a>
+        </div>
+      </div>
+
+      <!-- ADMIN -->
+      <div class="pricing-card">
+        <div class="pricing-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1.08-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1.08 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.604.852.997 1.51 1H21a2 2 0 0 1 0 4h-.09c-.658.003-1.25.396-1.51 1z"/></svg>
+        </div>
+        <h2>Administrateur</h2>
+        <p class="pricing-card-tagline">Accès Admin Console pour piloter votre organisation.</p>
+
+        <div class="pricing-card-price">
+          <span class="pricing-card-amount">2,99</span>
+          <span class="pricing-card-currency">€ HT</span>
+        </div>
+        <p class="pricing-card-period">par administrateur / mois</p>
+
+        <hr class="pricing-card-divider" />
+
+        <div class="pricing-card-features">
+          <div class="pricing-feature">
+            <svg class="pricing-feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Gestion des utilisateurs et rôles
+          </div>
+          <div class="pricing-feature">
+            <svg class="pricing-feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Contrôle d'accès aux documents
+          </div>
+          <div class="pricing-feature">
+            <svg class="pricing-feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Logs utilisateurs et administrateurs
+          </div>
+          <div class="pricing-feature">
+            <svg class="pricing-feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Audit blockchain immuable
+          </div>
+          <div class="pricing-feature">
+            <svg class="pricing-feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Gestion des licences et contacts
+          </div>
+        </div>
+
+        <div class="pricing-card-cta">
+          <a href="./nous-contacter.html" class="pricing-btn pricing-btn--secondary">Nous contacter</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Note admin -->
+    <div class="pricing-admin-note">
+      <p>
+        La licence <strong>Administrateur</strong> est indépendante des licences utilisateurs.
+        Elle donne accès à l'Admin Console pour gérer votre organisation,
+        sans consommer de licence Vault ou Guest.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================
+     INCLUS DANS TOUTES LES FORMULES
+============================================= -->
+<section class="pricing-section pricing-section--alt">
+  <div class="container">
+    <h2 class="pricing-included-title">Inclus dans toutes les formules</h2>
+
+    <div class="pricing-included-grid">
+
+      <div class="pricing-included-item">
+        <div class="pricing-included-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h3>Chiffrement E2E</h3>
+        <p>Vos données sont chiffrées avant de quitter votre appareil.</p>
+      </div>
+
+      <div class="pricing-included-item">
+        <div class="pricing-included-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </div>
+        <h3>Blockchain</h3>
+        <p>Traçabilité immuable sur Hyperledger Fabric.</p>
+      </div>
+
+      <div class="pricing-included-item">
+        <div class="pricing-included-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>Post-quantique</h3>
+        <p>Protection X-Wing et ML-DSA-65 contre les menaces futures.</p>
+      </div>
+
+      <div class="pricing-included-item">
+        <div class="pricing-included-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        </div>
+        <h3>Mises à jour</h3>
+        <p>Mises à jour automatiques via CloudChain Platform.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     PROCHAINES FORMULES
+============================================= -->
+<section class="pricing-section">
+  <div class="container pricing-upcoming">
+    <h2>Prochaines formules</h2>
+    <p>
+      De nouvelles offres accompagneront la sortie de Workspace et Atlas.
+    </p>
+
+    <div class="pricing-upcoming-list">
+      <div class="pricing-upcoming-row">
+        <div>
+          <span class="pricing-upcoming-name">Lite Workspace</span>
+          <span class="pricing-upcoming-desc"> — Collaborer & analyser</span>
+        </div>
+        <span class="pricing-upcoming-date">Décembre 2026</span>
+      </div>
+      <div class="pricing-upcoming-row">
+        <div>
+          <span class="pricing-upcoming-name">CloudChain Plus</span>
+          <span class="pricing-upcoming-desc"> — Vault + Workspace</span>
+        </div>
+        <span class="pricing-upcoming-date">Décembre 2026</span>
+      </div>
+      <div class="pricing-upcoming-row">
+        <div>
+          <span class="pricing-upcoming-name">CloudChain GO</span>
+          <span class="pricing-upcoming-desc"> — Vault + Workspace + Atlas</span>
+        </div>
+        <span class="pricing-upcoming-date">Juin 2027</span>
+      </div>
+      <div class="pricing-upcoming-row">
+        <div>
+          <span class="pricing-upcoming-name">CloudChain Pro</span>
+          <span class="pricing-upcoming-desc"> — Suite complète + fonctions avancées</span>
+        </div>
+        <span class="pricing-upcoming-date">Juin 2027</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     FAQ
+============================================= -->
+<section class="pricing-section pricing-section--alt">
+  <div class="container pricing-faq">
+    <h2 class="pricing-faq-title">Questions fréquentes</h2>
+
+    <div class="pricing-faq-item">
+      <h3 class="pricing-faq-q">Un administrateur a-t-il besoin d'une licence Vault ?</h3>
+      <p class="pricing-faq-a">
+        Non. La licence Administrateur est indépendante et donne accès
+        uniquement à l'Admin Console. Si un administrateur doit aussi
+        utiliser le Vault, il lui faut une licence Lite Vault en complément.
+      </p>
+    </div>
+
+    <div class="pricing-faq-item">
+      <h3 class="pricing-faq-q">Quelle est la différence entre Guest et Lite Vault ?</h3>
+      <p class="pricing-faq-a">
+        Guest permet la consultation et la signature de documents partagés.
+        Lite Vault ajoute le stockage, le partage, les permissions granulaires
+        et la gestion multi-device complète.
+      </p>
+    </div>
+
+    <div class="pricing-faq-item">
+      <h3 class="pricing-faq-q">Puis-je changer de formule en cours de route ?</h3>
+      <p class="pricing-faq-a">
+        Oui, les licences sont ajustables à tout moment depuis l'Admin Console.
+        Vous pouvez passer un utilisateur de Guest à Lite Vault
+        ou ajouter des administrateurs selon vos besoins.
+      </p>
+    </div>
+
+    <div class="pricing-faq-item">
+      <h3 class="pricing-faq-q">Y a-t-il un engagement minimum ?</h3>
+      <p class="pricing-faq-a">
+        Contactez-nous pour connaître les conditions d'engagement
+        adaptées à la taille de votre organisation.
+      </p>
+    </div>
+
+    <div class="pricing-faq-item">
+      <h3 class="pricing-faq-q">Proposez-vous des tarifs pour les grandes organisations ?</h3>
+      <p class="pricing-faq-a">
+        Oui, nous proposons des conditions spécifiques pour les grandes entreprises
+        et les administrations publiques.
+        <a href="./nous-contacter.html" style="color:var(--text); text-underline-offset:3px;">Contactez-nous</a>
+        pour un devis personnalisé.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================
+     CTA
+============================================= -->
+<section class="pricing-cta">
+  <div class="container">
+    <h2>Prêt à sécuriser vos échanges ?</h2>
+    <p>
+      Contactez-nous pour planifier une démonstration
+      ou démarrer le déploiement dans votre organisation.
+    </p>
+    <div class="pricing-cta-buttons">
+      <a href="./nous-contacter.html" class="pricing-cta-btn pricing-cta-btn--white">
+        Nous contacter
+      </a>
+      <a href="./CloudChain-Platform.html#download" class="pricing-cta-btn pricing-cta-btn--ghost">
+        Télécharger CloudChain Platform
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>© FXTC 2026</span>
+    <a href="#top">Retour en haut</a>
+  </div>
+</footer>
+
+
+<!-- ============ SCRIPTS ============ -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.querySelector('.products-trigger');
+  const panel = document.getElementById('products-panel');
+  if (!btn || !panel) return;
+
+  function closePanel() {
+    btn.setAttribute('aria-expanded', 'false');
+    panel.hidden = true;
+  }
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    panel.hidden = open;
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)) closePanel();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closePanel();
+  });
+});
+</script>
+
+</body>
+</html>
