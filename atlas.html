@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Atlas — Connecter & structurer les données | FXTC</title>
+<meta name="description" content="Atlas cartographie votre chaîne d'approvisionnement — produits, matières premières, fournisseurs — et pilote l'avancement de vos projets internes grâce à des objectifs définis par vos équipes dirigeantes." />
+
+<link rel="stylesheet" href="./style.css" />
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,600,700,800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="/logo-clair-fxtc.png">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Atlas — Connecter & structurer les données | FXTC">
+<meta property="og:description" content="Cartographiez votre chaîne d'approvisionnement et pilotez vos projets internes, dans un seul espace tracé.">
+<meta property="og:image" content="https://fxtc.io/image/og-fxtc.png">
+<meta property="og:url" content="https://fxtc.io/atlas.html">
+
+<style>
+/* =========================
+   ATLAS PAGE — styles dédiés
+   ========================= */
+
+/* Hero */
+.atl-hero {
+  background: var(--primary);
+  padding: 140px 0 100px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.atl-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 30% 100%, rgba(255,255,255,.05) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 85% 10%, rgba(255,255,255,.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+.atl-hero-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.atl-hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 24px;
+}
+.atl-hero-badge {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: .04em;
+  text-transform: none;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.1);
+  color: rgba(255,255,255,.8);
+}
+.atl-hero h1 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(56px, 7vw, 96px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: #fff;
+  margin: 0 0 20px;
+}
+.atl-hero-tagline {
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 500;
+  color: rgba(255,255,255,.65);
+  margin: 0 0 40px;
+  line-height: 1.4;
+}
+.atl-hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.atl-hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: .2s ease;
+}
+.atl-hero-cta--primary {
+  background: #fff;
+  color: var(--primary);
+}
+.atl-hero-cta--primary:hover {
+  background: rgba(255,255,255,.9);
+}
+.atl-hero-cta--secondary {
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.18);
+  color: #fff;
+}
+.atl-hero-cta--secondary:hover {
+  background: rgba(255,255,255,.2);
+}
+
+/* Présentation double-usage */
+.atl-overview {
+  padding: 100px 0 40px;
+}
+.atl-overview-header {
+  max-width: 760px;
+  margin: 0 auto 64px;
+  text-align: center;
+}
+.atl-overview-header h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0 0 20px;
+}
+.atl-overview-header p {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Deux volets */
+.atl-pillars-two {
+  padding: 20px 0 100px;
+}
+.atl-pillars-two-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+.atl-pillar-two {
+  padding: 44px 40px;
+  border-radius: 20px;
+  border: 1px solid rgba(0,0,0,.08);
+}
+.atl-pillar-two--supply {
+  background: var(--surface);
+}
+.atl-pillar-two--project {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.08);
+}
+.atl-pillar-two-kicker {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--disabled);
+  margin-bottom: 18px;
+}
+.atl-pillar-two h3 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 18px;
+}
+.atl-pillar-two p {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 0 0 24px;
+}
+.atl-pillar-two-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.atl-pillar-two-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.5;
+}
+.atl-pillar-two-list li svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--primary);
+}
+
+/* Carte / visuel supply chain */
+.atl-map {
+  background: var(--primary);
+  padding: 100px 0;
+  color: #fff;
+}
+.atl-map-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.atl-map-text h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 24px;
+}
+.atl-map-text p {
+  font-size: 18px;
+  color: rgba(255,255,255,.7);
+  line-height: 1.75;
+  margin: 0 0 18px;
+  max-width: 55ch;
+}
+.atl-map-stats {
+  display: flex;
+  gap: 32px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+.atl-map-stat-num {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: #fff;
+}
+.atl-map-stat-label {
+  font-size: 13px;
+  color: rgba(255,255,255,.5);
+  margin-top: 4px;
+}
+.atl-map-visual img {
+  width: 100%;
+  max-width: 620px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  display: block;
+}
+.atl-map-visual-fallback {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: 16px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,.35);
+  font-size: 14px;
+}
+
+/* Fonctionnalités détaillées */
+.atl-features {
+  padding: 100px 0 80px;
+}
+.atl-features-header {
+  max-width: 700px;
+  margin: 0 0 64px;
+}
+.atl-features-header h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 16px;
+}
+.atl-features-header p {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+.atl-features-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.atl-feature-card {
+  padding: 32px;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 16px;
+  transition: .2s ease;
+}
+.atl-feature-card:hover {
+  border-color: rgba(0,0,0,.16);
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+}
+.atl-feature-num {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--disabled);
+  letter-spacing: .06em;
+  margin-bottom: 16px;
+}
+.atl-feature-card h3 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 12px;
+  letter-spacing: -0.01em;
+}
+.atl-feature-card p {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Objectifs & suivi d'équipe */
+.atl-goals {
+  background: var(--surface);
+  padding: 100px 0;
+  border-top: 1px solid rgba(0,0,0,.05);
+  border-bottom: 1px solid rgba(0,0,0,.05);
+}
+.atl-goals-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.atl-goals-text h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 24px;
+}
+.atl-goals-text p {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.75;
+  margin: 0 0 18px;
+  max-width: 55ch;
+}
+.atl-goals-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.atl-goals-step {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+.atl-goals-step-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.atl-goals-step-dot {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+.atl-goals-step-line {
+  width: 2px;
+  height: 32px;
+  background: var(--border);
+  opacity: .4;
+}
+.atl-goals-step:last-child .atl-goals-step-line {
+  display: none;
+}
+.atl-goals-step-content h4 {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 8px 0 6px;
+}
+.atl-goals-step-content p {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0 0 24px;
+}
+
+/* CTA bas de page */
+.atl-cta {
+  padding: 100px 0;
+  text-align: center;
+}
+.atl-cta h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 16px;
+}
+.atl-cta p {
+  font-size: 18px;
+  color: var(--muted);
+  margin: 0 0 36px;
+  max-width: 50ch;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+.atl-cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.atl-cta .btn-primary,
+.atl-cta .btn-secondary {
+  padding: 16px 32px;
+  font-size: 16px;
+}
+.atl-cta-note {
+  font-size: 14px;
+  color: var(--disabled);
+  margin-top: 24px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .atl-pillars-two-grid,
+  .atl-map-grid,
+  .atl-goals-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .atl-features-list {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="/index.html" class="logo">
+      <img src="./image/Logo-clair2-aegis-sentinel.png" alt="FXTC" class="logo-img" />
+      <div class="logo-text">
+        <span class="logo-brand">FXTC</span>
+        <span class="logo-product">Website</span>
+      </div>
+    </a>
+
+    <nav class="nav">
+      <a href="./nous-contacter.html" class="nav-cta">Nous contacter</a>
+      <button class="products-trigger" type="button" aria-expanded="false" aria-controls="products-panel">
+        <span class="cube-icon" aria-hidden="true"></span>
+        <span class="sr-only">Ouvrir le menu Produits</span>
+      </button>
+    </nav>
+  </div>
+
+  <section id="products-panel" class="products-panel" hidden>
+    <div class="container products-panel-inner">
+      <div class="mega-columns" role="navigation" aria-label="Menu principal étendu">
+
+        <div class="mega-col">
+          <div class="mega-title">Produits</div>
+          <nav class="mega-list" aria-label="Produits">
+            <a class="mega-item" href="./CloudChain-Platform.html">CloudChain Platform</a>
+            <a class="mega-item" href="./vault.html"><span class="mega-arrow">↳</span>Vault</a>
+            <a class="mega-item" href="./workspace.html"><span class="mega-arrow">↳</span>Workspace</a>
+            <a class="mega-item" href="./atlas.html"><span class="mega-arrow">↳</span>Atlas</a>
+            <a class="mega-item" href="./admin-console.html"><span class="mega-arrow">↳</span>Admin Console</a>
+          </nav>
+        </div>
+
+        <div class="mega-sep" aria-hidden="true"></div>
+
+        <div class="mega-col">
+          <div class="mega-title">Cas d'usage</div>
+          <nav class="mega-list" aria-label="Cas d'usage">
+            <a class="mega-item" href="./secteur-juridique.html">Juridique</a>
+            <a class="mega-item" href="./secteur-financier.html">Finance & Audit</a>
+            <a class="mega-item" href="./secteur-privée.html">Secteur Privé</a>
+            <a class="mega-item" href="./secteur-public.html">Secteur Public</a>
+          </nav>
+        </div>
+
+        <div class="mega-sep" aria-hidden="true"></div>
+
+        <div class="mega-col">
+          <div class="mega-title">News</div>
+          <nav class="mega-list" aria-label="News">
+            <a class="mega-item" href="./annonces.html">Annonces</a>
+            <a class="mega-item" href="./roadmap.html">Roadmap</a>
+            <a class="mega-item" href="./nos-réseaux.html">Nos Réseaux-Sociaux</a>
+          </nav>
+        </div>
+
+        <div class="mega-sep" aria-hidden="true"></div>
+
+        <div class="mega-col">
+          <div class="mega-title">Commencer</div>
+          <nav class="mega-list" aria-label="Commencer">
+            <a class="mega-item" href="./formules-tarifications.html">Formules & Tarifications</a>
+            <a class="mega-item" href="./ge-&-eti.html">Grandes Entreprises</a>
+            <a class="mega-item" href="./gouvernements.html">Administrations Publiques</a>
+          </nav>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="atl-hero">
+  <div class="container atl-hero-inner">
+    <span class="atl-hero-kicker">
+      CloudChain Platform
+      <span class="atl-hero-badge">Disponible juin 2027</span>
+    </span>
+    <h1>Atlas</h1>
+    <p class="atl-hero-tagline">
+      La supply chain, augmentée. Suivez vos produits, vos matières<br class="hide-mobile" />
+      premières, et l'activité de vos équipes, humaines comme IA.
+    </p>
+    <div class="atl-hero-buttons">
+      <a href="./nous-contacter.html" class="atl-hero-cta atl-hero-cta--primary">
+        Rejoindre la liste d'attente
+      </a>
+      <a href="./CloudChain-Platform.html" class="atl-hero-cta atl-hero-cta--secondary">
+        Découvrir CloudChain Platform →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRÉSENTATION ============ -->
+<section class="atl-overview">
+  <div class="container atl-overview-header">
+    <h2>Une supply chain, boostée</h2>
+    <p>
+      Atlas reste avant tout un outil de traçabilité de chaîne
+      d'approvisionnement — produits, matières premières, fournisseurs.
+      Il applique cette même rigueur à vos équipes, humaines ou agents IA :
+      pas de géolocalisation intrusive, mais une traçabilité claire de
+      l'activité et de l'avancement, où que vos collaborateurs travaillent
+      dans le monde. Un collègue en déplacement dans une autre filiale reste
+      aussi lisible qu'un lot de production en transit.
+    </p>
+  </div>
+</section>
+
+<section class="atl-pillars-two">
+  <div class="container atl-pillars-two-grid">
+
+    <article class="atl-pillar-two atl-pillar-two--supply">
+      <div class="atl-pillar-two-kicker">Cœur du produit</div>
+      <h3>Traçabilité supply chain</h3>
+      <p>
+        Suivez vos produits et vos matières premières à chaque étape :
+        approvisionnement, transformation, transport, livraison. Une
+        cartographie claire de vos flux, pour les entreprises commerciales
+        comme pour les filières industrielles.
+      </p>
+      <ul class="atl-pillar-two-list">
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Cartographie des fournisseurs et sous-traitants</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Suivi des matières premières et des lots</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Traçabilité produit de bout en bout</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Preuves opposables en cas d'audit ou de litige</li>
+      </ul>
+    </article>
+
+    <article class="atl-pillar-two atl-pillar-two--project">
+      <div class="atl-pillar-two-kicker">Extension équipes</div>
+      <h3>Traçabilité de l'activité des équipes</h3>
+      <p>
+        La même mécanique de traçabilité s'applique à vos équipes, humaines
+        ou agents IA. Pas de suivi de position : Atlas trace l'activité,
+        les missions et l'avancement, pour que chacun sache où en est
+        un projet ou un collègue, quelle que soit sa filiale ou son fuseau
+        horaire.
+      </p>
+      <ul class="atl-pillar-two-list">
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Objectifs définis par les administrateurs</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Suivi d'activité par équipe, par projet, par mission</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Visibilité entre filiales, sans appel ni e-mail de vérification</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Historique complet, non modifiable</li>
+      </ul>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ CARTE SUPPLY CHAIN ============ -->
+<section class="atl-map">
+  <div class="container atl-map-grid">
+    <div class="atl-map-text">
+      <h2>Votre chaîne d'approvisionnement, visible d'un seul coup d'œil</h2>
+      <p>
+        Atlas assemble les données de vos fournisseurs, sites de production
+        et transporteurs sur une carte interactive unique. Chaque étape —
+        de la matière première au produit fini — est horodatée et inscrite
+        sur la blockchain Hyperledger Fabric.
+      </p>
+      <p>
+        Vos équipes achats, qualité et conformité disposent ainsi d'une
+        vue partagée et fiable, sans dépendre de fichiers dispersés
+        entre plusieurs outils.
+      </p>
+      <div class="atl-map-stats">
+        <div>
+          <div class="atl-map-stat-num">100%</div>
+          <div class="atl-map-stat-label">des mouvements horodatés</div>
+        </div>
+        <div>
+          <div class="atl-map-stat-num">0</div>
+          <div class="atl-map-stat-label">donnée modifiable a posteriori</div>
+        </div>
+      </div>
+    </div>
+    <div class="atl-map-visual">
+      <img src="./image/Accueil-Atlas.png" alt="Carte de suivi supply chain Atlas"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'atl-map-visual-fallback',textContent:'Aperçu de la carte Atlas — à venir'}))" />
+    </div>
+  </div>
+</section>
+
+<!-- ============ FONCTIONNALITÉS ============ -->
+<section class="atl-features">
+  <div class="container">
+    <div class="atl-features-header">
+      <h2>Ce qu'Atlas vous permet</h2>
+      <p>
+        Chaque fonctionnalité répond aux exigences de traçabilité des
+        filières commerciales et industrielles, tout en donnant aux
+        dirigeants une vue claire sur l'avancement de leurs équipes.
+      </p>
+    </div>
+
+    <div class="atl-features-list">
+      <article class="atl-feature-card">
+        <div class="atl-feature-num">01</div>
+        <h3>Cartographie des flux</h3>
+        <p>
+          Visualisez sur une carte l'ensemble de vos fournisseurs, sites de
+          production et points de livraison, avec le statut de chaque envoi.
+        </p>
+      </article>
+
+      <article class="atl-feature-card">
+        <div class="atl-feature-num">02</div>
+        <h3>Suivi produit & matière première</h3>
+        <p>
+          Remontez l'historique complet d'un lot ou d'un produit, de son
+          origine jusqu'à sa livraison finale, en quelques clics.
+        </p>
+      </article>
+
+      <article class="atl-feature-card">
+        <div class="atl-feature-num">03</div>
+        <h3>Traçabilité de l'activité des équipes</h3>
+        <p>
+          Atlas trace les missions et l'avancement de vos équipes, humaines
+          ou agents IA, comme il tracerait un lot de production — jamais
+          leur position physique.
+        </p>
+      </article>
+
+      <article class="atl-feature-card">
+        <div class="atl-feature-num">04</div>
+        <h3>Suivi d'avancement en temps réel</h3>
+        <p>
+          Chaque équipe met à jour l'état de ses projets ; les administrateurs
+          disposent d'une vue consolidée, actualisée en continu.
+        </p>
+      </article>
+
+      <article class="atl-feature-card">
+        <div class="atl-feature-num">05</div>
+        <h3>Alertes et anomalies</h3>
+        <p>
+          Retard fournisseur, rupture de traçabilité, projet hors délai :
+          Atlas signale les écarts avant qu'ils ne deviennent des problèmes.
+        </p>
+      </article>
+
+      <article class="atl-feature-card">
+        <div class="atl-feature-num">06</div>
+        <h3>Registre immuable</h3>
+        <p>
+          Comme le reste de la suite FXTC, chaque donnée inscrite dans Atlas
+          est horodatée sur la blockchain Hyperledger Fabric et ne peut être
+          altérée après coup.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OBJECTIFS & SUIVI D'ÉQUIPE ============ -->
+<section class="atl-goals">
+  <div class="container atl-goals-grid">
+    <div class="atl-goals-flow">
+      <div class="atl-goals-step">
+        <div class="atl-goals-step-marker">
+          <div class="atl-goals-step-dot">1</div>
+          <div class="atl-goals-step-line"></div>
+        </div>
+        <div class="atl-goals-step-content">
+          <h4>L'administrateur définit les objectifs</h4>
+          <p>
+            Par projet ou par équipe, avec des échéances et des critères
+            de réussite mesurables.
+          </p>
+        </div>
+      </div>
+
+      <div class="atl-goals-step">
+        <div class="atl-goals-step-marker">
+          <div class="atl-goals-step-dot">2</div>
+          <div class="atl-goals-step-line"></div>
+        </div>
+        <div class="atl-goals-step-content">
+          <h4>Les équipes font vivre l'avancement</h4>
+          <p>
+            Chaque mise à jour est horodatée et rattachée à l'objectif
+            concerné, sans ressaisie ni tableur parallèle.
+          </p>
+        </div>
+      </div>
+
+      <div class="atl-goals-step">
+        <div class="atl-goals-step-marker">
+          <div class="atl-goals-step-dot">3</div>
+        </div>
+        <div class="atl-goals-step-content">
+          <h4>La direction pilote depuis une vue consolidée</h4>
+          <p>
+            Une lecture transverse de l'avancement de tous les projets,
+            pour arbitrer et prioriser en connaissance de cause.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="atl-goals-text">
+      <h2>Le pilotage d'objectifs, sans tableur ni reporting manuel</h2>
+      <p>
+        Fini les fichiers Excel envoyés par mail et les points d'étape
+        approximatifs. Atlas donne aux administrateurs un espace unique
+        pour fixer des objectifs et suivre, en continu, l'avancement réel
+        des équipes sur chaque projet.
+      </p>
+      <p>
+        Cette même logique de suivi structuré s'applique aussi bien à un
+        projet interne qu'à un flux de production — Atlas traite les deux
+        avec la même rigueur de traçabilité.
+      </p>
+      <p>
+        Atlas ne suit jamais la position physique de vos collaborateurs.
+        Il trace leur activité, leurs missions et leur avancement — comme
+        un produit en transit — pour donner de la visibilité entre filiales
+        sans jamais devenir un outil de surveillance.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="atl-cta">
+  <div class="container">
+    <h2>Soyez parmi les premiers</h2>
+    <p>
+      Atlas est en cours de conception, avec une disponibilité prévue
+      en juin 2027. Inscrivez-vous pour suivre son développement et
+      accéder au programme early access.
+    </p>
+    <div class="atl-cta-buttons">
+      <a href="./nous-contacter.html" class="btn btn-primary">
+        Rejoindre la liste d'attente
+      </a>
+      <a href="./roadmap.html" class="btn btn-secondary">
+        Voir la roadmap
+      </a>
+    </div>
+    <p class="atl-cta-note">Disponible depuis CloudChain Platform · Juin 2027</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>© FXTC 2026</span>
+    <a href="#top">Retour en haut</a>
+  </div>
+</footer>
+
+<!-- ============ SCRIPTS ============ -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.querySelector('.products-trigger');
+  const panel = document.getElementById('products-panel');
+  if (!btn || !panel) return;
+
+  function closePanel() {
+    btn.setAttribute('aria-expanded', 'false');
+    panel.hidden = true;
+  }
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    panel.hidden = open;
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)) closePanel();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closePanel();
+  });
+});
+</script>
+
+</body>
+</html>
