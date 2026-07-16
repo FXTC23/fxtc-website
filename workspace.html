@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Workspace — Collaborer & analyser | FXTC</title>
+<meta name="description" content="Workspace réunit documents collaboratifs, messagerie, appels et visioconférence dans un environnement chiffré et tracé. L'alternative souveraine à Google Workspace et Microsoft 365." />
+
+<link rel="stylesheet" href="./style.css" />
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,600,700,800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="/logo-clair-fxtc.png">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Workspace — Collaborer & analyser | FXTC">
+<meta property="og:description" content="Documents, mail, appels et visio : la collaboration sécurisée de votre organisation.">
+<meta property="og:image" content="https://fxtc.io/image/og-fxtc.png">
+<meta property="og:url" content="https://fxtc.io/workspace.html">
+
+<style>
+/* =========================
+   WORKSPACE PAGE — styles dédiés
+   ========================= */
+
+/* Hero */
+.wks-hero {
+  background: var(--primary);
+  padding: 140px 0 100px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.wks-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(255,255,255,.04) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 80% 20%, rgba(255,255,255,.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+.wks-hero-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.wks-hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 24px;
+}
+.wks-hero-badge {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: .04em;
+  text-transform: none;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.1);
+  color: rgba(255,255,255,.8);
+}
+.wks-hero h1 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(56px, 7vw, 96px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: #fff;
+  margin: 0 0 20px;
+}
+.wks-hero-tagline {
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 500;
+  color: rgba(255,255,255,.65);
+  margin: 0 0 40px;
+  line-height: 1.4;
+}
+.wks-hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.wks-hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: .2s ease;
+}
+.wks-hero-cta--primary {
+  background: #fff;
+  color: var(--primary);
+}
+.wks-hero-cta--primary:hover {
+  background: rgba(255,255,255,.9);
+}
+.wks-hero-cta--secondary {
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.18);
+  color: #fff;
+}
+.wks-hero-cta--secondary:hover {
+  background: rgba(255,255,255,.2);
+}
+
+/* Section présentation */
+.wks-overview {
+  padding: 100px 0 80px;
+}
+.wks-overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.wks-overview-text h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0 0 28px;
+}
+.wks-overview-text p {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.75;
+  margin: 0 0 18px;
+  max-width: 60ch;
+}
+.wks-overview-visual img {
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  display: block;
+}
+
+/* Quatre modules */
+.wks-modules {
+  background: var(--surface);
+  padding: 80px 0;
+  border-top: 1px solid rgba(0,0,0,.05);
+  border-bottom: 1px solid rgba(0,0,0,.05);
+}
+.wks-modules-title {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-align: center;
+  margin: 0 0 56px;
+}
+.wks-modules-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.wks-module {
+  padding: 32px 28px;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,.06);
+}
+.wks-module-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--primary);
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  margin-bottom: 22px;
+}
+.wks-module h3 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  margin: 0 0 12px;
+  letter-spacing: -0.02em;
+}
+.wks-module p {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Fonctionnalités détaillées */
+.wks-features {
+  padding: 100px 0 80px;
+}
+.wks-features-header {
+  max-width: 700px;
+  margin: 0 0 64px;
+}
+.wks-features-header h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 16px;
+}
+.wks-features-header p {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+.wks-features-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.wks-feature-card {
+  padding: 32px;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 16px;
+  transition: .2s ease;
+}
+.wks-feature-card:hover {
+  border-color: rgba(0,0,0,.16);
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+}
+.wks-feature-num {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--disabled);
+  letter-spacing: .06em;
+  margin-bottom: 16px;
+}
+.wks-feature-card h3 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 12px;
+  letter-spacing: -0.01em;
+}
+.wks-feature-card p {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Section sécurité / chiffrement */
+.wks-security {
+  background: var(--primary);
+  padding: 80px 0;
+  color: #fff;
+}
+.wks-security-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.wks-security-text h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 24px;
+}
+.wks-security-text p {
+  font-size: 18px;
+  color: rgba(255,255,255,.7);
+  line-height: 1.75;
+  margin: 0 0 18px;
+  max-width: 55ch;
+}
+.wks-security-points {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.wks-security-point {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 24px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px;
+}
+.wks-security-point-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.1);
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+}
+.wks-security-point h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+.wks-security-point p {
+  font-size: 15px;
+  color: rgba(255,255,255,.6);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Intégration Vault */
+.wks-integration {
+  padding: 100px 0;
+  background: var(--surface);
+  border-top: 1px solid rgba(0,0,0,.05);
+  border-bottom: 1px solid rgba(0,0,0,.05);
+}
+.wks-integration-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.wks-integration-text h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 24px;
+}
+.wks-integration-text p {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.75;
+  margin: 0 0 18px;
+  max-width: 55ch;
+}
+.wks-integration-text a {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+}
+.wks-integration-text a:hover {
+  text-decoration: underline;
+}
+.wks-integration-visual img {
+  width: 100%;
+  max-width: 620px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  display: block;
+}
+
+/* CTA bas de page */
+.wks-cta {
+  padding: 100px 0;
+  text-align: center;
+}
+.wks-cta h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 16px;
+}
+.wks-cta p {
+  font-size: 18px;
+  color: var(--muted);
+  margin: 0 0 36px;
+  max-width: 50ch;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+.wks-cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.wks-cta .btn-primary,
+.wks-cta .btn-secondary {
+  padding: 16px 32px;
+  font-size: 16px;
+}
+.wks-cta-note {
+  font-size: 14px;
+  color: var(--disabled);
+  margin-top: 24px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .wks-overview-grid,
+  .wks-security-inner,
+  .wks-integration-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .wks-modules-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .wks-features-list {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .wks-modules-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="/index.html" class="logo">
+      <img src="./image/Logo-clair2-aegis-sentinel.png" alt="FXTC" class="logo-img" />
+      <div class="logo-text">
+        <span class="logo-brand">FXTC</span>
+        <span class="logo-product">Website</span>
+      </div>
+    </a>
+
+    <nav class="nav">
+      <a href="./nous-contacter.html" class="nav-cta">Nous contacter</a>
+      <button class="products-trigger" type="button" aria-expanded="false" aria-controls="products-panel">
+        <span class="cube-icon" aria-hidden="true"></span>
+        <span class="sr-only">Ouvrir le menu Produits</span>
+      </button>
+    </nav>
+  </div>
+
+  <section id="products-panel" class="products-panel" hidden>
+    <div class="container products-panel-inner">
+      <div class="mega-columns" role="navigation" aria-label="Menu principal étendu">
+
+        <div class="mega-col">
+          <div class="mega-title">Produits</div>
+          <nav class="mega-list" aria-label="Produits">
+            <a class="mega-item" href="./CloudChain-Platform.html">CloudChain Platform</a>
+            <a class="mega-item" href="./vault.html"><span class="mega-arrow">↳</span>Vault</a>
+            <a class="mega-item" href="./workspace.html"><span class="mega-arrow">↳</span>Workspace</a>
+            <a class="mega-item" href="./atlas.html"><span class="mega-arrow">↳</span>Atlas</a>
+            <a class="mega-item" href="./admin-console.html"><span class="mega-arrow">↳</span>Admin Console</a>
+          </nav>
+        </div>
+
+        <div class="mega-sep" aria-hidden="true"></div>
+
+        <div class="mega-col">
+          <div class="mega-title">Cas d'usage</div>
+          <nav class="mega-list" aria-label="Cas d'usage">
+            <a class="mega-item" href="./secteur-juridique.html">Juridique</a>
+            <a class="mega-item" href="./secteur-financier.html">Finance & Audit</a>
+            <a class="mega-item" href="./secteur-privée.html">Secteur Privé</a>
+            <a class="mega-item" href="./secteur-public.html">Secteur Public</a>
+          </nav>
+        </div>
+
+        <div class="mega-sep" aria-hidden="true"></div>
+
+        <div class="mega-col">
+          <div class="mega-title">News</div>
+          <nav class="mega-list" aria-label="News">
+            <a class="mega-item" href="./annonces.html">Annonces</a>
+            <a class="mega-item" href="./roadmap.html">Roadmap</a>
+            <a class="mega-item" href="./nos-réseaux.html">Nos Réseaux-Sociaux</a>
+          </nav>
+        </div>
+
+        <div class="mega-sep" aria-hidden="true"></div>
+
+        <div class="mega-col">
+          <div class="mega-title">Commencer</div>
+          <nav class="mega-list" aria-label="Commencer">
+            <a class="mega-item" href="./formules-tarifications.html">Formules & Tarifications</a>
+            <a class="mega-item" href="./ge-&-eti.html">Grandes Entreprises</a>
+            <a class="mega-item" href="./gouvernements.html">Administrations Publiques</a>
+          </nav>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="wks-hero">
+  <div class="container wks-hero-inner">
+    <span class="wks-hero-kicker">
+      CloudChain Platform
+      <span class="wks-hero-badge">Disponible décembre 2026</span>
+    </span>
+    <h1>Workspace</h1>
+    <p class="wks-hero-tagline">
+      Documents, mail, appels et visio : toute la collaboration<br class="hide-mobile" />
+      de votre organisation, dans un seul espace chiffré.
+    </p>
+    <div class="wks-hero-buttons">
+      <a href="./nous-contacter.html" class="wks-hero-cta wks-hero-cta--primary">
+        Rejoindre la liste d'attente
+      </a>
+      <a href="./CloudChain-Platform.html" class="wks-hero-cta wks-hero-cta--secondary">
+        Découvrir CloudChain Platform →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRÉSENTATION ============ -->
+<section class="wks-overview">
+  <div class="container wks-overview-grid">
+    <div class="wks-overview-text">
+      <h2>L'alternative souveraine à votre suite collaborative</h2>
+      <p>
+        Workspace réunit dans un seul environnement ce que vos équipes utilisent
+        chaque jour : documents partagés, messagerie, appels et visioconférence.
+        Une organisation complète, pensée pour remplacer les suites collaboratives
+        grand public par une alternative maîtrisée et chiffrée de bout en bout.
+      </p>
+      <p>
+        Contrairement aux suites américaines classiques, aucune donnée ne transite
+        en clair par les serveurs de FXTC. Vos équipes collaborent aussi librement
+        qu'avant, sans jamais exposer le contenu de leurs échanges.
+      </p>
+    </div>
+    <div class="wks-overview-visual">
+      <img src="./image/Accueil-Workspace.png" alt="Interface Workspace — écran principal" onerror="this.closest('.wks-overview-visual').style.display='none'" />
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUATRE MODULES ============ -->
+<section class="wks-modules">
+  <div class="container">
+    <h2 class="wks-modules-title">Quatre modules, un seul espace</h2>
+    <div class="wks-modules-grid">
+
+      <article class="wks-module">
+        <div class="wks-module-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6"/><path d="M9 17h6"/></svg></div>
+        <h3>Documents</h3>
+        <p>Édition collaborative en temps réel de textes, tableurs et présentations, avec historique complet des versions.</p>
+      </article>
+
+      <article class="wks-module">
+        <div class="wks-module-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg></div>
+        <h3>Mail</h3>
+        <p>Messagerie intégrée, chiffrée de bout en bout, avec la même identité cryptographique que le reste de la suite.</p>
+      </article>
+
+      <article class="wks-module">
+        <div class="wks-module-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+        <h3>Appels & Visio</h3>
+        <p>Appels audio et vidéo chiffrés, sans passer par une infrastructure tierce, pour vos réunions les plus sensibles.</p>
+      </article>
+
+      <article class="wks-module">
+        <div class="wks-module-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Espaces d'équipe</h3>
+        <p>Organisez vos équipes en espaces cloisonnés, avec permissions et gouvernance gérées depuis l'Admin Console.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ FONCTIONNALITÉS ============ -->
+<section class="wks-features">
+  <div class="container">
+    <div class="wks-features-header">
+      <h2>Ce que Workspace vous permet</h2>
+      <p>
+        Chaque module a été pensé pour offrir le même confort d'usage qu'une
+        suite collaborative grand public, sans les compromis de sécurité.
+      </p>
+    </div>
+
+    <div class="wks-features-list">
+      <article class="wks-feature-card">
+        <div class="wks-feature-num">01</div>
+        <h3>Co-édition en temps réel</h3>
+        <p>
+          Plusieurs collaborateurs travaillent simultanément sur un même document,
+          avec suivi des modifications, commentaires et historique complet des versions.
+        </p>
+      </article>
+
+      <article class="wks-feature-card">
+        <div class="wks-feature-num">02</div>
+        <h3>Messagerie chiffrée intégrée</h3>
+        <p>
+          Chaque e-mail est chiffré avant envoi grâce à votre identité cryptographique
+          CloudChain Platform. Aucun tiers, pas même FXTC, ne peut lire vos échanges.
+        </p>
+      </article>
+
+      <article class="wks-feature-card">
+        <div class="wks-feature-num">03</div>
+        <h3>Réunions audio et vidéo sécurisées</h3>
+        <p>
+          Organisez des appels et visioconférences chiffrés de bout en bout,
+          sans dépendre d'un service de visio grand public tiers.
+        </p>
+      </article>
+
+      <article class="wks-feature-card">
+        <div class="wks-feature-num">04</div>
+        <h3>Espaces d'équipe cloisonnés</h3>
+        <p>
+          Chaque équipe dispose de son propre espace, avec des permissions
+          granulaires définies et supervisées depuis l'Admin Console.
+        </p>
+      </article>
+
+      <article class="wks-feature-card">
+        <div class="wks-feature-num">05</div>
+        <h3>Recherche unifiée</h3>
+        <p>
+          Retrouvez un document, un message ou une conversation en un instant,
+          sur l'ensemble des modules de Workspace.
+        </p>
+      </article>
+
+      <article class="wks-feature-card">
+        <div class="wks-feature-num">06</div>
+        <h3>Passerelle vers Vault</h3>
+        <p>
+          Une fois un document finalisé, transférez-le vers Vault en un clic pour
+          le faire signer, archiver et partager sous contrôle d'accès strict.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SÉCURITÉ ============ -->
+<section class="wks-security">
+  <div class="container wks-security-inner">
+    <div class="wks-security-text">
+      <h2>Une collaboration ouverte, jamais exposée</h2>
+      <p>
+        Workspace s'appuie sur la même architecture cryptographique que le reste
+        de la suite FXTC. Vos clés sont générées et gérées localement par
+        CloudChain Platform : le serveur ne voit jamais vos données en clair,
+        qu'il s'agisse d'un document, d'un e-mail ou d'un appel vidéo.
+      </p>
+      <p>
+        Cette approche zero-knowledge permet à vos équipes de collaborer
+        aussi librement qu'avec une suite grand public, sans jamais renoncer
+        à la souveraineté de leurs données.
+      </p>
+    </div>
+    <div class="wks-security-points">
+      <article class="wks-security-point">
+        <div class="wks-security-point-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="15.5" cy="8.5" r="3.5"/><path d="M15.5 12a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7zM2 21l8.5-8.5"/><path d="M6.5 17l2 2"/><path d="M9 14.5l2 2"/></svg></div>
+        <div>
+          <h4>Chiffrement post-quantique</h4>
+          <p>Les échanges sont protégés par l'algorithme X-Wing, résistant aux futures attaques quantiques.</p>
+        </div>
+      </article>
+      <article class="wks-security-point">
+        <div class="wks-security-point-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <div>
+          <h4>Signature ML-DSA-65</h4>
+          <p>Chaque document partagé peut être signé numériquement pour garantir son authenticité.</p>
+        </div>
+      </article>
+      <article class="wks-security-point">
+        <div class="wks-security-point-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 2h6v4H9z"/><path d="M9 12h6"/><path d="M9 16h4"/></svg></div>
+        <div>
+          <h4>Journal d'activité immuable</h4>
+          <p>Les accès et partages sont inscrits sur la blockchain Hyperledger Fabric, consultables mais jamais modifiables.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INTÉGRATION VAULT ============ -->
+<section class="wks-integration">
+  <div class="container wks-integration-grid">
+    <div class="wks-integration-text">
+      <h2>De la collaboration à l'archive souveraine</h2>
+      <p>
+        Workspace et Vault fonctionnent en tandem. Rédigez et collaborez sur vos
+        documents dans Workspace ; une fois finalisés, transférez-les vers Vault
+        pour la signature, le contrôle des accès et l'archivage immuable.
+      </p>
+      <p>
+        Un seul identifiant, une seule identité cryptographique, deux usages
+        complémentaires gérés depuis CloudChain Platform.
+      </p>
+      <a href="./vault.html">Découvrir Vault →</a>
+    </div>
+    <div class="wks-integration-visual">
+      <img src="./image/Accueil-Vault.png" alt="Passerelle Workspace vers Vault" onerror="this.closest('.wks-integration-visual').style.display='none'" />
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="wks-cta">
+  <div class="container">
+    <h2>Soyez parmi les premiers</h2>
+    <p>
+      Workspace est en cours de finalisation, avec une disponibilité prévue
+      en décembre 2026. Inscrivez-vous pour être informé de son lancement
+      et accéder au programme early access.
+    </p>
+    <div class="wks-cta-buttons">
+      <a href="./nous-contacter.html" class="btn btn-primary">
+        Rejoindre la liste d'attente
+      </a>
+      <a href="./roadmap.html" class="btn btn-secondary">
+        Voir la roadmap
+      </a>
+    </div>
+    <p class="wks-cta-note">Disponible depuis CloudChain Platform · Décembre 2026</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>© FXTC 2026</span>
+    <a href="#top">Retour en haut</a>
+  </div>
+</footer>
+
+<!-- ============ SCRIPTS ============ -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.querySelector('.products-trigger');
+  const panel = document.getElementById('products-panel');
+  if (!btn || !panel) return;
+
+  function closePanel() {
+    btn.setAttribute('aria-expanded', 'false');
+    panel.hidden = true;
+  }
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    panel.hidden = open;
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)) closePanel();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closePanel();
+  });
+});
+</script>
+
+</body>
+</html>
