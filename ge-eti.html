@@ -277,6 +277,25 @@
     flex-direction: column;
   }
 }
+
+.dv-field input[type="date"] {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-family: 'Satoshi', sans-serif;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  transition: border-color .2s;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.dv-field input[type="date"]:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
 </style>
 </head>
 <body>
@@ -490,16 +509,22 @@
             </div>
           </div>
 
-          <div class="dv-field">
-            <label for="period">Période de disponibilité</label>
-            <select id="period" name="period" required>
-              <option value="" disabled selected>Sélectionner une période</option>
-              <option value="matin">Matin (9h – 12h)</option>
-              <option value="debut-aprem">Début d'après-midi (14h – 16h)</option>
-              <option value="fin-aprem">Fin d'après-midi (16h – 18h)</option>
-              <option value="flexible">Flexible — je m'adapte</option>
-            </select>
-          </div>
+<div class="dv-field-row">
+  <div class="dv-field">
+    <label for="date">Date souhaitée</label>
+    <input type="date" id="date" name="date" required />
+  </div>
+  <div class="dv-field">
+    <label for="period">Créneau horaire</label>
+    <select id="period" name="period" required>
+      <option value="" disabled selected>Sélectionner</option>
+      <option value="matin">Matin (9h – 12h)</option>
+      <option value="debut-aprem">Début d'après-midi (14h – 16h)</option>
+      <option value="fin-aprem">Fin d'après-midi (16h – 18h)</option>
+      <option value="flexible">Flexible</option>
+    </select>
+  </div>
+</div>
 
           <div class="dv-field">
             <label for="message">Précisions ou questions</label>
