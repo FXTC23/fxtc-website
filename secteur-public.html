@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Secteur Public | FXTC</title>
+<meta name="description" content="Sécurisez les données citoyennes et les échanges institutionnels : la suite FXTC au service des administrations, collectivités et opérateurs publics." />
+
+<link rel="stylesheet" href="./style.css" />
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,600,700,800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="/logo-clair-fxtc.png">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Secteur Public | FXTC">
+<meta property="og:description" content="La suite FXTC au service des administrations et collectivités.">
+<meta property="og:image" content="https://fxtc.io/image/og-fxtc.png">
+<meta property="og:url" content="https://fxtc.io/secteur-public.html">
+
+<style>
+/* =========================
+   SECTEUR PAGE — styles dédiés
+   ========================= */
+
+/* Hero */
+.sec-hero {
+  background: var(--primary);
+  padding: 140px 0 100px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.sec-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(255,255,255,.04) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 80% 20%, rgba(255,255,255,.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+.sec-hero-inner {
+  max-width: 820px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.sec-hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 24px;
+}
+.sec-hero h1 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(44px, 6vw, 80px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: #fff;
+  margin: 0 0 24px;
+}
+.sec-hero-tagline {
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: 500;
+  color: rgba(255,255,255,.6);
+  margin: 0 0 40px;
+  line-height: 1.5;
+  max-width: 60ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sec-hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 999px;
+  text-decoration: none;
+  background: #fff;
+  color: var(--primary);
+  transition: .2s ease;
+}
+.sec-hero-cta:hover {
+  background: rgba(255,255,255,.9);
+}
+
+/* Intro suite */
+.sec-intro {
+  padding: 100px 0 60px;
+  text-align: center;
+}
+.sec-intro h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 20px;
+}
+.sec-intro p {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 65ch;
+  margin: 0 auto;
+}
+
+/* App section (une par app) */
+.sec-app {
+  padding: 60px 0 80px;
+}
+.sec-app + .sec-app {
+  padding-top: 40px;
+}
+.sec-app-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.sec-app-grid--reverse {
+  direction: rtl;
+}
+.sec-app-grid--reverse > * {
+  direction: ltr;
+}
+.sec-app-text {}
+.sec-app-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--disabled);
+  margin-bottom: 16px;
+}
+.sec-app-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: none;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+.sec-app-badge--available {
+  background: rgba(34,197,94,.12);
+  color: #16a34a;
+}
+.sec-app-badge--soon {
+  background: rgba(0,0,0,.06);
+  color: var(--muted);
+}
+.sec-app-text h3 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 20px;
+}
+.sec-app-text p {
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 0 0 16px;
+  max-width: 55ch;
+}
+.sec-app-usecases {
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.sec-app-usecases li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.55;
+}
+.sec-app-usecases li svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--primary);
+}
+.sec-app-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  margin-top: 24px;
+}
+.sec-app-link:hover {
+  text-decoration: underline;
+}
+.sec-app-visual img {
+  width: 100%;
+  max-width: 580px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  display: block;
+}
+
+/* Séparation "applications à venir" */
+.sec-divider {
+  background: var(--primary);
+  padding: 56px 0;
+  text-align: center;
+}
+.sec-divider-inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+.sec-divider-line {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.sec-divider-line::before,
+.sec-divider-line::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,.15);
+}
+.sec-divider-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+  white-space: nowrap;
+}
+.sec-divider p {
+  font-size: 18px;
+  color: rgba(255,255,255,.7);
+  line-height: 1.6;
+  margin: 0;
+}
+.sec-divider-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.18);
+  color: #fff;
+  margin-top: 24px;
+  transition: .2s ease;
+}
+.sec-divider-cta:hover {
+  background: rgba(255,255,255,.2);
+}
+
+/* Apps à venir (fond léger) */
+.sec-upcoming {
+  background: var(--surface);
+  border-top: 1px solid rgba(0,0,0,.05);
+  border-bottom: 1px solid rgba(0,0,0,.05);
+}
+
+/* CTA bas de page */
+.sec-cta {
+  padding: 100px 0;
+  text-align: center;
+}
+.sec-cta h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 16px;
+}
+.sec-cta p {
+  font-size: 18px;
+  color: var(--muted);
+  margin: 0 0 36px;
+  max-width: 50ch;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+.sec-cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.sec-cta .btn-primary,
+.sec-cta .btn-secondary {
+  padding: 16px 32px;
+  font-size: 16px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .sec-app-grid,
+  .sec-app-grid--reverse {
+    grid-template-columns: 1fr;
+    direction: ltr;
+    gap: 40px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="/index.html" class="logo">
+      <img src="./image/Logo-clair2-aegis-sentinel.png" alt="FXTC" class="logo-img" />
+      <div class="logo-text">
+        <span class="logo-brand">FXTC</span>
+        <span class="logo-product">Website</span>
+      </div>
+    </a>
+
+    <nav class="nav">
+      <a href="./nous-contacter.html" class="nav-cta">Nous contacter</a>
+      <button class="products-trigger" type="button" aria-expanded="false" aria-controls="products-panel">
+        <span class="cube-icon" aria-hidden="true"></span>
+        <span class="sr-only">Ouvrir le menu Produits</span>
+      </button>
+    </nav>
+  </div>
+
+  <section id="products-panel" class="products-panel" hidden>
+    <div class="container products-panel-inner">
+      <div class="mega-columns" role="navigation" aria-label="Menu principal étendu">
+
+        <div class="mega-col">
+          <div class="mega-title">Produits</div>
+          <nav class="mega-list" aria-label="Produits">
+            <a class="mega-item" href="./CloudChain-Platform.html">CloudChain Platform</a>
+            <a class="mega-item" href="./vault.html"><span class="mega-arrow">↳</span>Vault</a>
+            <a class="mega-item" href="./workspace.html"><span class="mega-arrow">↳</span>Workspace</a>
+            <a class="mega-item" href="./atlas.html"><span class="mega-arrow">↳</span>Atlas</a>
+            <a class="mega-item" href="./admin-console.html"><span class="mega-arrow">↳</span>Admin Console</a>
+          </nav>
+        </div>
+
+        <div class="mega-sep" aria-hidden="true"></div>
+
+        <div class="mega-col">
+          <div class="mega-title">Cas d'usage</div>
+          <nav class="mega-list" aria-label="Cas d'usage">
+            <a class="mega-item" href="./secteur-juridique.html">Juridique</a>
+            <a class="mega-item" href="./secteur-financier.html">Finance & Audit</a>
+            <a class="mega-item" href="./secteur-privée.html">Secteur Privé</a>
+            <a class="mega-item" href="./secteur-public.html">Secteur Public</a>
+          </nav>
+        </div>
+
+        <div class="mega-sep" aria-hidden="true"></div>
+
+        <div class="mega-col">
+          <div class="mega-title">News</div>
+          <nav class="mega-list" aria-label="News">
+            <a class="mega-item" href="./annonces.html">Annonces</a>
+            <a class="mega-item" href="./roadmap.html">Roadmap</a>
+            <a class="mega-item" href="./nos-réseaux.html">Nos Réseaux-Sociaux</a>
+          </nav>
+        </div>
+
+        <div class="mega-sep" aria-hidden="true"></div>
+
+        <div class="mega-col">
+          <div class="mega-title">Commencer</div>
+          <nav class="mega-list" aria-label="Commencer">
+            <a class="mega-item" href="./formules-tarifications.html">Formules & Tarifications</a>
+            <a class="mega-item" href="./ge-&-eti.html">Grandes Entreprises</a>
+            <a class="mega-item" href="./gouvernements.html">Administrations Publiques</a>
+          </nav>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="sec-hero">
+  <div class="container sec-hero-inner">
+    <span class="sec-hero-kicker">Cas d'usage</span>
+    <h1>Secteur Public</h1>
+    <p class="sec-hero-tagline">
+      Administrations, collectivités, opérateurs d'État : protégez les
+      données citoyennes, sécurisez les échanges institutionnels et
+      garantissez la traçabilité de chaque décision publique.
+    </p>
+    <a href="./nous-contacter.html" class="sec-hero-cta">
+      Planifier une démonstration
+    </a>
+  </div>
+</section>
+
+<!-- ============ INTRO ============ -->
+<section class="sec-intro">
+  <div class="container">
+    <h2>Les données publiques exigent une infrastructure souveraine</h2>
+    <p>
+      Données personnelles des citoyens, délibérations d'élus, marchés
+      publics, échanges entre administrations et prestataires : le secteur
+      public manipule des informations sensibles qui ne peuvent dépendre
+      de solutions soumises à des juridictions étrangères (Cloud Act, FISA).
+      La suite FXTC CloudChain Platform offre un cadre chiffré, tracé et
+      souverain, conçu pour répondre aux exigences de la doctrine
+      "Cloud au centre", de NIS2 et du RGPD.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     PARTIE 1 — APPLICATION DISPONIBLE
+     ═══════════════════════════════════ -->
+
+<!-- VAULT -->
+<section class="sec-app">
+  <div class="container sec-app-grid">
+    <div class="sec-app-text">
+      <div class="sec-app-kicker">
+        Application
+        <span class="sec-app-badge sec-app-badge--available">Disponible juin 2026</span>
+      </div>
+      <h3>Vault</h3>
+      <p>
+        Vault est le coffre-fort zero-knowledge de la suite FXTC. Pour une
+        administration, c'est l'endroit où chaque document institutionnel
+        est déposé, chiffré et protégé : délibérations, arrêtés, marchés
+        publics, données personnelles des citoyens, correspondances
+        inter-administrations.
+      </p>
+      <p>
+        Une fois un document finalisé, Vault permet de le signer
+        numériquement, de le partager sous contrôle d'accès strict, et de
+        prouver, à tout moment, qu'il n'a pas été altéré depuis son dépôt.
+      </p>
+
+      <ul class="sec-app-usecases">
+        <li>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Coffre-fort pour délibérations, arrêtés, conventions, marchés publics et données citoyennes
+        </li>
+        <li>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Signature numérique post-quantique (ML-DSA-65) des actes administratifs
+        </li>
+        <li>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Partage sécurisé avec prestataires, élus ou autres administrations — accès limité dans le temps
+        </li>
+        <li>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Preuve d'intégrité opposable : horodatage blockchain, aucune modification possible
+        </li>
+        <li>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Souveraineté totale : zero-knowledge, données inaccessibles à FXTC et aux juridictions étrangères
+        </li>
+      </ul>
+
+      <a href="./vault.html" class="sec-app-link">Découvrir Vault →</a>
+    </div>
+    <div class="sec-app-visual">
+      <img src="./image/service public site.png" alt="Usage de Vault dans le secteur public"
+        onerror="this.closest('.sec-app-visual').style.display='none'" />
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SÉPARATION — APPLICATIONS PAS ENCORE DISPO
+     ═══════════════════════════════════════════ -->
+
+<section class="sec-divider">
+  <div class="container sec-divider-inner">
+    <div class="sec-divider-line">
+      <span class="sec-divider-label">Applications à venir</span>
+    </div>
+    <p>
+      Les applications présentées ci-dessous ne sont pas encore disponibles.
+      Elles viendront compléter la suite pour couvrir l'ensemble de vos besoins
+      quotidiens — collaboration, communication et pilotage.
+    </p>
+    <a href="./nous-contacter.html" class="sec-divider-cta">
+      Être averti de leur disponibilité
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     PARTIE 2 — APPLICATIONS À VENIR
+     ═══════════════════════════════════════ -->
+
+<div class="sec-upcoming">
+
+  <!-- WORKSPACE -->
+  <section class="sec-app">
+    <div class="container sec-app-grid sec-app-grid--reverse">
+      <div class="sec-app-text">
+        <div class="sec-app-kicker">
+          Application
+          <span class="sec-app-badge sec-app-badge--soon">Décembre 2026</span>
+        </div>
+        <h3>Workspace</h3>
+        <p>
+          Workspace est la brique de collaboration quotidienne de la suite :
+          documents partagés, messagerie chiffrée, appels et visioconférence.
+          Pour vos agents et vos élus, c'est un environnement de travail
+          souverain qui remplace les outils grand public non validés par la DSI.
+        </p>
+
+        <ul class="sec-app-usecases">
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Co-rédaction de rapports, notes administratives et documents inter-services
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Messagerie chiffrée entre services, prestataires et élus
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Visioconférence sécurisée pour conseils municipaux à distance, comités et commissions
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Passerelle vers Vault : un acte finalisé passe au coffre-fort en un clic
+          </li>
+        </ul>
+
+        <a href="./workspace.html" class="sec-app-link">Découvrir Workspace →</a>
+      </div>
+      <div class="sec-app-visual">
+        <img src="./image/Accueil-Workspace.png" alt="Usage de Workspace dans le secteur public"
+          onerror="this.closest('.sec-app-visual').style.display='none'" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ATLAS -->
+  <section class="sec-app">
+    <div class="container sec-app-grid">
+      <div class="sec-app-text">
+        <div class="sec-app-kicker">
+          Application
+          <span class="sec-app-badge sec-app-badge--soon">Juin 2027</span>
+        </div>
+        <h3>Atlas</h3>
+        <p>
+          Atlas est l'outil de traçabilité de la suite. Pour une
+          administration, il permet de suivre l'avancement des projets
+          publics, de piloter les marchés et les engagements budgétaires,
+          et de donner à la direction générale des services une vue
+          consolidée de l'activité — avec un historique immuable pour
+          chaque action.
+        </p>
+
+        <ul class="sec-app-usecases">
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Suivi de l'avancement des projets publics, des marchés et des engagements budgétaires
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Traçabilité des échanges entre administrations, délégataires et prestataires
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Vue consolidée pour les élus et la direction générale des services
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Historique immuable : chaque action est horodatée et inscrite sur la blockchain
+          </li>
+        </ul>
+
+        <a href="./atlas.html" class="sec-app-link">Découvrir Atlas →</a>
+      </div>
+      <div class="sec-app-visual">
+        <img src="./image/Accueil-Atlas.png" alt="Usage d'Atlas dans le secteur public"
+          onerror="this.closest('.sec-app-visual').style.display='none'" />
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ============ CTA ============ -->
+<section class="sec-cta">
+  <div class="container">
+    <h2>Donnez à votre administration une infrastructure à la hauteur de sa mission</h2>
+    <p>
+      Vault est disponible dès juin 2026. Workspace et Atlas viendront
+      compléter la suite dans les mois suivants. Contactez-nous pour
+      une démonstration adaptée à votre collectivité ou administration.
+    </p>
+    <div class="sec-cta-buttons">
+      <a href="./nous-contacter.html" class="btn btn-primary">
+        Planifier une démonstration
+      </a>
+      <a href="./formules-tarifications.html" class="btn btn-secondary">
+        Voir les formules
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>© FXTC 2026</span>
+    <a href="#top">Retour en haut</a>
+  </div>
+</footer>
+
+<!-- ============ SCRIPTS ============ -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.querySelector('.products-trigger');
+  const panel = document.getElementById('products-panel');
+  if (!btn || !panel) return;
+
+  function closePanel() {
+    btn.setAttribute('aria-expanded', 'false');
+    panel.hidden = true;
+  }
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    panel.hidden = open;
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)) closePanel();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closePanel();
+  });
+});
+</script>
+
+</body>
+</html>
