@@ -1,1 +1,580 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+<title>Grandes Entreprises | FXTC</title>
+<meta name="description" content="Configurez votre offre FXTC CloudChain Platform pour votre entreprise : nombre de sièges, administrateurs, options d'infrastructure et prise de contact." />
+
+<link rel="stylesheet" href="./style.css" />
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,600,700,800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="/logo-clair-fxtc.png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Grandes Entreprises | FXTC">
+<meta property="og:description" content="Configurez votre offre FXTC pour votre entreprise.">
+<meta property="og:image" content="https://fxtc.io/image/og-fxtc.png">
+<meta property="og:url" content="https://fxtc.io/ge-eti.html">
+
+<style>
+/* =========================
+   DEVIS PAGE — styles dédiés
+   ========================= */
+
+.dv-hero {
+  background: var(--primary);
+  padding: 140px 0 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.dv-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(255,255,255,.04) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 80% 20%, rgba(255,255,255,.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+.dv-hero-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.dv-hero-kicker {
+  font-size: 12px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 24px;
+}
+.dv-hero h1 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(40px, 5.5vw, 72px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: #fff;
+  margin: 0 0 20px;
+}
+.dv-hero-tagline {
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: 500;
+  color: rgba(255,255,255,.6);
+  margin: 0;
+  line-height: 1.5;
+  max-width: 55ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Intro */
+.dv-intro {
+  padding: 80px 0 40px;
+  text-align: center;
+}
+.dv-intro h2 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 16px;
+}
+.dv-intro p {
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 60ch;
+  margin: 0 auto;
+}
+
+/* Formulaire */
+.dv-form-section {
+  padding: 40px 0 100px;
+}
+.dv-form-wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--surface);
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 20px;
+  padding: 48px 44px;
+}
+.dv-form-title {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 32px;
+  letter-spacing: -0.02em;
+}
+
+/* Sections dans le form */
+.dv-fieldset {
+  border: none;
+  margin: 0 0 36px;
+  padding: 0;
+}
+.dv-fieldset-legend {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--disabled);
+  margin-bottom: 20px;
+  display: block;
+}
+.dv-field {
+  margin-bottom: 20px;
+}
+.dv-field label {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.dv-field input[type="text"],
+.dv-field input[type="email"],
+.dv-field input[type="number"],
+.dv-field input[type="tel"],
+.dv-field select,
+.dv-field textarea {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-family: 'Satoshi', sans-serif;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  transition: border-color .2s;
+  box-sizing: border-box;
+}
+.dv-field input:focus,
+.dv-field select:focus,
+.dv-field textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+.dv-field-hint {
+  font-size: 13px;
+  color: var(--disabled);
+  margin-top: 6px;
+}
+.dv-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Checkboxes style */
+.dv-checks {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.dv-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--text);
+  cursor: pointer;
+}
+.dv-check input[type="checkbox"] {
+  margin-top: 3px;
+  accent-color: var(--primary);
+}
+
+/* Radio boutons */
+.dv-radios {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.dv-radio-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: .2s ease;
+  background: #fff;
+}
+.dv-radio-label:hover {
+  border-color: rgba(0,0,0,.24);
+}
+.dv-radio-label input[type="radio"] {
+  accent-color: var(--primary);
+}
+
+/* Séparateur */
+.dv-sep {
+  height: 1px;
+  background: rgba(0,0,0,.08);
+  margin: 36px 0;
+}
+
+/* Bouton */
+.dv-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Satoshi', sans-serif;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: .2s ease;
+}
+.dv-submit:hover {
+  opacity: .9;
+}
+
+/* Success */
+.dv-success {
+  display: none;
+  text-align: center;
+  padding: 48px 24px;
+}
+.dv-success.visible {
+  display: block;
+}
+.dv-success h3 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+.dv-success p {
+  font-size: 16px;
+  color: var(--muted);
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .dv-form-wrapper {
+    padding: 32px 24px;
+  }
+  .dv-field-row {
+    grid-template-columns: 1fr;
+  }
+  .dv-radios {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="/index.html" class="logo">
+      <img src="./image/Logo-clair2-aegis-sentinel.png" alt="FXTC" class="logo-img" />
+      <div class="logo-text">
+        <span class="logo-brand">FXTC</span>
+        <span class="logo-product">Website</span>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="./nous-contacter.html" class="nav-cta">Nous contacter</a>
+      <button class="products-trigger" type="button" aria-expanded="false" aria-controls="products-panel">
+        <span class="cube-icon" aria-hidden="true"></span>
+        <span class="sr-only">Ouvrir le menu Produits</span>
+      </button>
+    </nav>
+  </div>
+
+  <section id="products-panel" class="products-panel" hidden>
+    <div class="container products-panel-inner">
+      <div class="mega-columns" role="navigation" aria-label="Menu principal étendu">
+        <div class="mega-col">
+          <div class="mega-title">Produits</div>
+          <nav class="mega-list" aria-label="Produits">
+            <a class="mega-item" href="./CloudChain-Platform.html">CloudChain Platform</a>
+            <a class="mega-item" href="./vault.html"><span class="mega-arrow">↳</span>Vault</a>
+            <a class="mega-item" href="./workspace.html"><span class="mega-arrow">↳</span>Workspace</a>
+            <a class="mega-item" href="./atlas.html"><span class="mega-arrow">↳</span>Atlas</a>
+            <a class="mega-item" href="./admin-console.html"><span class="mega-arrow">↳</span>Admin Console</a>
+          </nav>
+        </div>
+        <div class="mega-sep" aria-hidden="true"></div>
+        <div class="mega-col">
+          <div class="mega-title">Cas d'usage</div>
+          <nav class="mega-list" aria-label="Cas d'usage">
+            <a class="mega-item" href="./secteur-juridique.html">Juridique</a>
+            <a class="mega-item" href="./secteur-financier.html">Finance & Audit</a>
+            <a class="mega-item" href="./secteur-prive.html">Secteur Privé</a>
+            <a class="mega-item" href="./secteur-public.html">Secteur Public</a>
+          </nav>
+        </div>
+        <div class="mega-sep" aria-hidden="true"></div>
+        <div class="mega-col">
+          <div class="mega-title">News</div>
+          <nav class="mega-list" aria-label="News">
+            <a class="mega-item" href="./annonces.html">Annonces</a>
+            <a class="mega-item" href="./roadmap.html">Roadmap</a>
+            <a class="mega-item" href="./nos-réseaux.html">Nos Réseaux-Sociaux</a>
+          </nav>
+        </div>
+        <div class="mega-sep" aria-hidden="true"></div>
+        <div class="mega-col">
+          <div class="mega-title">Commencer</div>
+          <nav class="mega-list" aria-label="Commencer">
+            <a class="mega-item" href="./formules-tarifications.html">Formules & Tarifications</a>
+            <a class="mega-item" href="./ge-eti.html">Grandes Entreprises</a>
+            <a class="mega-item" href="./gouvernements.html">Administrations Publiques</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="dv-hero">
+  <div class="container dv-hero-inner">
+    <div class="dv-hero-kicker">Commencer</div>
+    <h1>Grandes Entreprises</h1>
+    <p class="dv-hero-tagline">
+      Configurez votre offre FXTC CloudChain Platform selon les besoins
+      de votre organisation et planifiez un échange avec notre équipe.
+    </p>
+  </div>
+</section>
+
+<!-- ============ INTRO ============ -->
+<section class="dv-intro">
+  <div class="container">
+    <h2>Construisons votre offre ensemble</h2>
+    <p>
+      Renseignez les informations ci-dessous pour que nous puissions
+      préparer une proposition adaptée à la taille et aux besoins
+      de votre organisation. Un membre de notre équipe vous recontactera
+      selon la modalité et le créneau que vous aurez choisis.
+    </p>
+  </div>
+</section>
+
+<!-- ============ FORMULAIRE ============ -->
+<section class="dv-form-section">
+  <div class="container">
+    <div class="dv-form-wrapper">
+
+      <form id="devis-form" action="https://formspree.io/f/xvzvqboe" method="POST">
+        <input type="hidden" name="_subject" value="Demande de devis — Grandes Entreprises">
+        <input type="hidden" name="type" value="Grandes Entreprises">
+
+        <!-- IDENTITÉ -->
+        <fieldset class="dv-fieldset">
+          <span class="dv-fieldset-legend">Votre organisation</span>
+
+          <div class="dv-field-row">
+            <div class="dv-field">
+              <label for="company">Nom de l'entreprise</label>
+              <input type="text" id="company" name="company" placeholder="Votre entreprise" required />
+            </div>
+            <div class="dv-field">
+              <label for="sector">Secteur d'activité</label>
+              <select id="sector" name="sector" required>
+                <option value="" disabled selected>Sélectionner</option>
+                <option value="industrie">Industrie</option>
+                <option value="finance">Finance & Assurance</option>
+                <option value="juridique">Juridique</option>
+                <option value="sante">Santé</option>
+                <option value="tech">Tech & Numérique</option>
+                <option value="energie">Énergie</option>
+                <option value="commerce">Commerce & Distribution</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="dv-field-row">
+            <div class="dv-field">
+              <label for="name">Nom & Prénom</label>
+              <input type="text" id="name" name="name" placeholder="Votre nom" required />
+            </div>
+            <div class="dv-field">
+              <label for="role">Fonction</label>
+              <input type="text" id="role" name="role" placeholder="ex. DSI, DG, RSSI…" />
+            </div>
+          </div>
+
+          <div class="dv-field-row">
+            <div class="dv-field">
+              <label for="email">E-mail professionnel</label>
+              <input type="email" id="email" name="email" placeholder="vous@entreprise.com" required />
+            </div>
+            <div class="dv-field">
+              <label for="phone">Téléphone</label>
+              <input type="tel" id="phone" name="phone" placeholder="+33 6 00 00 00 00" />
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="dv-sep"></div>
+
+        <!-- CONFIGURATION -->
+        <fieldset class="dv-fieldset">
+          <span class="dv-fieldset-legend">Configuration souhaitée</span>
+
+          <div class="dv-field-row">
+            <div class="dv-field">
+              <label for="seats">Nombre de sièges (utilisateurs)</label>
+              <input type="number" id="seats" name="seats" min="1" placeholder="ex. 50" required />
+              <div class="dv-field-hint">Nombre total de collaborateurs qui utiliseront la suite.</div>
+            </div>
+            <div class="dv-field">
+              <label for="admins">Nombre d'administrateurs</label>
+              <input type="number" id="admins" name="admins" min="1" placeholder="ex. 3" required />
+              <div class="dv-field-hint">Personnes qui gèreront l'Admin Console.</div>
+            </div>
+          </div>
+
+          <div class="dv-field">
+            <label>Applications souhaitées</label>
+            <div class="dv-checks">
+              <label class="dv-check">
+                <input type="checkbox" name="apps" value="vault" checked />
+                Vault — coffre-fort, signature et partage (disponible 06/2026)
+              </label>
+              <label class="dv-check">
+                <input type="checkbox" name="apps" value="workspace" />
+                Workspace — documents, mail, appels et visio (12/2026)
+              </label>
+              <label class="dv-check">
+                <input type="checkbox" name="apps" value="atlas" />
+                Atlas — supply chain et pilotage d'activité (06/2027)
+              </label>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="dv-sep"></div>
+
+        <!-- PRISE DE CONTACT -->
+        <fieldset class="dv-fieldset">
+          <span class="dv-fieldset-legend">Prise de contact</span>
+
+          <div class="dv-field">
+            <label>Format souhaité</label>
+            <div class="dv-radios">
+              <label class="dv-radio-label">
+                <input type="radio" name="contact_format" value="visio" checked />
+                Visioconférence
+              </label>
+              <label class="dv-radio-label">
+                <input type="radio" name="contact_format" value="appel" />
+                Appel téléphonique
+              </label>
+              <label class="dv-radio-label">
+                <input type="radio" name="contact_format" value="email" />
+                Par e-mail uniquement
+              </label>
+            </div>
+          </div>
+
+          <div class="dv-field">
+            <label for="period">Période de disponibilité</label>
+            <select id="period" name="period" required>
+              <option value="" disabled selected>Sélectionner une période</option>
+              <option value="matin">Matin (9h – 12h)</option>
+              <option value="debut-aprem">Début d'après-midi (14h – 16h)</option>
+              <option value="fin-aprem">Fin d'après-midi (16h – 18h)</option>
+              <option value="flexible">Flexible — je m'adapte</option>
+            </select>
+          </div>
+
+          <div class="dv-field">
+            <label for="message">Précisions ou questions</label>
+            <textarea id="message" name="message" rows="3" placeholder="Contexte, contraintes spécifiques, questions…"></textarea>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="dv-submit">Envoyer ma demande</button>
+      </form>
+
+      <div class="dv-success" id="devis-success">
+        <h3>Demande envoyée ✓</h3>
+        <p>Notre équipe reviendra vers vous dans les 48 heures selon le format et le créneau que vous avez choisis.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>© FXTC 2026</span>
+    <a href="#top">Retour en haut</a>
+  </div>
+</footer>
+
+<!-- ============ SCRIPTS ============ -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Menu
+  const btn = document.querySelector('.products-trigger');
+  const panel = document.getElementById('products-panel');
+  if (btn && panel) {
+    function closePanel() {
+      btn.setAttribute('aria-expanded', 'false');
+      panel.hidden = true;
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      panel.hidden = open;
+    });
+    document.addEventListener('click', (e) => {
+      if (!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)) closePanel();
+    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanel(); });
+  }
+
+  // Formulaire
+  const form = document.getElementById('devis-form');
+  const success = document.getElementById('devis-success');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        success.classList.add('visible');
+      } else {
+        alert('Une erreur est survenue. Veuillez réessayer.');
+      }
+    } catch {
+      alert('Une erreur est survenue. Veuillez réessayer.');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
