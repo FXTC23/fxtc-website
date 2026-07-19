@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nous contacter | FXTC</title>
-  <meta name="description" content="Contactez FXTC pour tester CloudChain, planifier une démonstration ou discuter de votre projet de déploiement." />
+  <meta name="description" content="Contactez FXTC pour tester CloudChain, planifier une démonstration ou discuter de votre projet." />
 
   <link rel="stylesheet" href="./style.css" />
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,600,700,800&display=swap" rel="stylesheet">
@@ -17,10 +17,6 @@
   <meta property="og:url" content="https://fxtc.io/nous-contacter.html">
 
 <style>
-/* =========================
-   CONTACT PAGE
-========================= */
-
 .contact-hero {
   background: var(--primary);
   padding: 120px 0 80px;
@@ -28,23 +24,19 @@
   position: relative;
   overflow: hidden;
 }
-
 .contact-hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse 70% 50% at 50% 110%, rgba(255,255,255,.04) 0%, transparent 70%);
+  background: radial-gradient(ellipse 70% 50% at 50% 110%, rgba(255,255,255,.04) 0%, transparent 70%);
   pointer-events: none;
 }
-
 .contact-hero-inner {
   max-width: 700px;
   margin: 0 auto;
   position: relative;
   z-index: 1;
 }
-
 .contact-hero h1 {
   font-family: 'Satoshi', sans-serif;
   font-size: clamp(42px, 5.5vw, 72px);
@@ -54,7 +46,6 @@
   color: #fff;
   margin: 0 0 18px;
 }
-
 .contact-hero-sub {
   font-size: clamp(17px, 2vw, 22px);
   font-weight: 500;
@@ -63,20 +54,20 @@
   line-height: 1.5;
 }
 
-/* --- Layout formulaire --- */
+/* Layout */
 .contact-section {
   padding: 80px 0 100px;
 }
-
 .contact-layout {
   display: grid;
   grid-template-columns: 340px 1fr;
   gap: 72px;
   align-items: start;
-  max-width: 1100px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
+/* Sidebar */
 .contact-sidebar h2 {
   font-family: 'Satoshi', sans-serif;
   font-size: 28px;
@@ -84,14 +75,12 @@
   letter-spacing: -0.03em;
   margin: 0 0 16px;
 }
-
 .contact-sidebar p {
   font-size: 16px;
   color: var(--muted);
   line-height: 1.65;
   margin: 0 0 32px;
 }
-
 .contact-sidebar-info {
   display: flex;
   flex-direction: column;
@@ -99,13 +88,11 @@
   padding-top: 24px;
   border-top: 1px solid rgba(0,0,0,.08);
 }
-
 .contact-sidebar-item {
   display: flex;
   align-items: flex-start;
   gap: 12px;
 }
-
 .contact-sidebar-icon {
   flex-shrink: 0;
   width: 36px;
@@ -114,57 +101,34 @@
   background: var(--surface);
   display: grid;
   place-items: center;
-  font-size: 15px;
 }
-
 .contact-sidebar-item p {
   font-size: 15px;
   color: var(--text);
   line-height: 1.45;
   margin: 6px 0 0;
 }
-
 .contact-sidebar-item a {
   color: var(--text);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
-/* --- Formulaire --- */
+/* Form card */
 .contact-form-card {
   background: var(--surface);
   border: 1px solid rgba(0,0,0,.07);
   border-radius: 20px;
   padding: 36px 32px;
 }
-
-.contact-form-title {
-  font-family: 'Satoshi', sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  margin: 0 0 6px;
-}
-
-.contact-form-desc {
-  font-size: 14px;
-  color: var(--muted);
-  margin: 0 0 28px;
-}
-
 .cf-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
-
 .cf-group {
   margin-bottom: 18px;
 }
-
-.cf-group--full {
-  grid-column: 1 / -1;
-}
-
 .cf-label {
   display: block;
   font-size: 13px;
@@ -172,13 +136,11 @@
   color: var(--text);
   margin-bottom: 7px;
 }
-
 .cf-label .cf-optional {
   font-weight: 400;
   color: var(--disabled);
   margin-left: 4px;
 }
-
 .cf-input,
 .cf-select,
 .cf-textarea {
@@ -192,20 +154,18 @@
   outline: none;
   font-family: inherit;
   transition: .15s ease;
+  box-sizing: border-box;
 }
-
 .cf-input::placeholder,
 .cf-textarea::placeholder {
   color: var(--disabled);
 }
-
 .cf-input:focus,
 .cf-select:focus,
 .cf-textarea:focus {
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(83,84,86,.1);
 }
-
 .cf-select {
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%236d7072' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
@@ -214,69 +174,10 @@
   padding-right: 38px;
   cursor: pointer;
 }
-
 .cf-textarea {
   resize: vertical;
   min-height: 100px;
 }
-
-/* Section séparateur */
-.cf-separator {
-  border: none;
-  border-top: 1px solid rgba(0,0,0,.07);
-  margin: 28px 0;
-}
-
-.cf-section-label {
-  font-family: 'Satoshi', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text);
-  margin: 0 0 18px;
-}
-
-/* Checkbox filiale */
-.cf-checkbox-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 18px;
-}
-
-.cf-checkbox {
-  width: 18px;
-  height: 18px;
-  margin-top: 2px;
-  accent-color: var(--primary);
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-.cf-checkbox-label {
-  font-size: 15px;
-  color: var(--text);
-  line-height: 1.45;
-  cursor: pointer;
-}
-
-.cf-checkbox-hint {
-  font-size: 13px;
-  color: var(--muted);
-  margin-top: 4px;
-  line-height: 1.4;
-}
-
-/* Filiale conditionnel */
-.cf-filiale-field {
-  display: none;
-  margin-bottom: 18px;
-}
-
-.cf-filiale-field.active {
-  display: block;
-}
-
-/* Bouton submit */
 .cf-submit {
   display: inline-flex;
   align-items: center;
@@ -293,39 +194,23 @@
   transition: .15s ease;
   font-family: inherit;
 }
+.cf-submit:hover { filter: brightness(1.08); }
+.cf-submit:disabled { opacity: .5; cursor: not-allowed; }
 
-.cf-submit:hover {
-  filter: brightness(1.08);
-}
-
-.cf-submit:disabled {
-  opacity: .5;
-  cursor: not-allowed;
-}
-
-/* Message succès */
+/* Success */
 .cf-success {
   display: none;
   text-align: center;
   padding: 48px 24px;
 }
-
-.cf-success.active {
-  display: block;
-}
-
-.cf-success-icon {
-  font-size: 48px;
-  margin-bottom: 16px;
-}
-
+.cf-success.active { display: block; }
+.cf-success-icon { font-size: 48px; margin-bottom: 16px; }
 .cf-success h3 {
   font-family: 'Satoshi', sans-serif;
   font-size: 24px;
   font-weight: 800;
   margin: 0 0 10px;
 }
-
 .cf-success p {
   font-size: 16px;
   color: var(--muted);
@@ -333,16 +218,9 @@
   line-height: 1.5;
 }
 
-/* Responsive */
 @media (max-width: 900px) {
-  .contact-layout {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .cf-row {
-    grid-template-columns: 1fr;
-  }
+  .contact-layout { grid-template-columns: 1fr; gap: 40px; }
+  .cf-row { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -355,7 +233,7 @@
       <img src="./image/Logo-clair2-aegis-sentinel.png" alt="FXTC" class="logo-img" />
       <div class="logo-text">
         <span class="logo-brand">FXTC</span>
-        <span class="logo-product">Website</span>
+        <span class="logo-product">CloudChain</span>
       </div>
     </a>
     <nav class="nav">
@@ -413,10 +291,7 @@
   </section>
 </header>
 
-
-<!-- ============================================
-     HERO
-============================================= -->
+<!-- ============ HERO ============ -->
 <section class="contact-hero">
   <div class="container contact-hero-inner">
     <h1>Nous contacter</h1>
@@ -427,20 +302,16 @@
   </div>
 </section>
 
-
-<!-- ============================================
-     FORMULAIRE
-============================================= -->
+<!-- ============ FORMULAIRE ============ -->
 <section class="contact-section">
   <div class="container contact-layout">
 
     <!-- Sidebar -->
     <aside class="contact-sidebar">
-      <h2>Renseignez-nous</h2>
+      <h2>Parlons de votre projet</h2>
       <p>
         Remplissez le formulaire et notre équipe vous recontactera
-        dans les 24 heures ouvrées pour organiser une démonstration
-        ou répondre à vos questions.
+        dans les 24 heures ouvrées.
       </p>
 
       <div class="contact-sidebar-info">
@@ -462,12 +333,8 @@
     <!-- Formulaire -->
     <div class="contact-form-card">
 
-      <!-- Formulaire visible -->
       <form id="contact-form" action="https://formspree.io/f/xvzvqboe" method="POST">
         <input type="hidden" name="_subject" value="Nouvelle demande de contact — FXTC">
-
-        <h3 class="contact-form-title">Vos coordonnées</h3>
-        <p class="contact-form-desc">Les champs marqués sont obligatoires.</p>
 
         <!-- Nom / Prénom -->
         <div class="cf-row">
@@ -493,102 +360,48 @@
           </div>
         </div>
 
-        <hr class="cf-separator" />
-
-        <h3 class="cf-section-label">Votre organisation</h3>
-
-        <!-- Raison sociale -->
-        <div class="cf-group">
-          <label class="cf-label" for="company">Raison sociale</label>
-          <input class="cf-input" id="company" name="raison_sociale" type="text" placeholder="Nom de votre entreprise" required />
-        </div>
-
-        <!-- SIREN / SIRET -->
+        <!-- Organisation / Secteur -->
         <div class="cf-row">
           <div class="cf-group">
-            <label class="cf-label" for="siren">SIREN <span class="cf-optional">(9 chiffres)</span></label>
-            <input class="cf-input" id="siren" name="siren" type="text" placeholder="123 456 789" maxlength="11" />
+            <label class="cf-label" for="company">Organisation</label>
+            <input class="cf-input" id="company" name="organisation" type="text" placeholder="Nom de votre entreprise" required />
           </div>
           <div class="cf-group">
-            <label class="cf-label" for="siret">SIRET <span class="cf-optional">(14 chiffres)</span></label>
-            <input class="cf-input" id="siret" name="siret" type="text" placeholder="123 456 789 00012" maxlength="17" />
+            <label class="cf-label" for="sector">Secteur d'activité</label>
+            <select class="cf-select" id="sector" name="secteur" required>
+              <option value="" disabled selected>Sélectionner</option>
+              <option value="juridique">Juridique</option>
+              <option value="finance">Finance & Audit</option>
+              <option value="industrie">Industrie</option>
+              <option value="sante">Santé</option>
+              <option value="public">Secteur public</option>
+              <option value="defense">Défense</option>
+              <option value="energie">Énergie</option>
+              <option value="tech">Tech & Numérique</option>
+              <option value="autre">Autre</option>
+            </select>
           </div>
         </div>
-
-        <!-- Secteur d'activité -->
-        <div class="cf-group">
-          <label class="cf-label" for="sector">Secteur d'activité</label>
-          <select class="cf-select" id="sector" name="secteur" required>
-            <option value="" disabled selected>Sélectionnez votre secteur</option>
-            <option value="juridique">Juridique — Cabinet d'avocats, notaires</option>
-            <option value="finance">Finance — Banque, assurance, audit</option>
-            <option value="industrie">Industrie — Production, logistique</option>
-            <option value="sante">Santé — Hôpitaux, laboratoires, pharma</option>
-            <option value="public">Secteur public — Administration, collectivités</option>
-            <option value="defense">Défense — Armée, renseignement</option>
-            <option value="energie">Énergie — Nucléaire, pétrole, renouvelable</option>
-            <option value="immobilier">Immobilier — Promotion, gestion</option>
-            <option value="tech">Technologie — ESN, éditeur logiciel</option>
-            <option value="conseil">Conseil — Stratégie, management</option>
-            <option value="education">Éducation — Université, recherche</option>
-            <option value="autre">Autre</option>
-          </select>
-        </div>
-
-        <!-- Adresse d'établissement -->
-        <div class="cf-group">
-          <label class="cf-label" for="address">Adresse de l'établissement</label>
-          <input class="cf-input" id="address" name="adresse" type="text" placeholder="12 rue de la Paix, 75002 Paris" />
-        </div>
-
-        <!-- Filiale -->
-        <div class="cf-checkbox-row">
-          <input class="cf-checkbox" id="filiale-check" type="checkbox" name="est_filiale" value="oui" />
-          <div>
-            <label class="cf-checkbox-label" for="filiale-check">
-              Se rattacher à une organisation déjà cliente FXTC
-            </label>
-            <p class="cf-checkbox-hint">
-              Par exemple : Filiale régionale d'un groupe déjà enregistré.
-            </p>
-          </div>
-        </div>
-
-        <div class="cf-filiale-field" id="filiale-field">
-          <label class="cf-label" for="filiale-name">Nom de l'organisation parente</label>
-          <input class="cf-input" id="filiale-name" name="filiale_parente" type="text" placeholder="..." />
-        </div>
-
-        <hr class="cf-separator" />
-
-        <h3 class="cf-section-label">Votre besoin</h3>
 
         <!-- Message -->
         <div class="cf-group">
           <label class="cf-label" for="message">Message</label>
-          <textarea class="cf-textarea" id="message" name="message" rows="5" placeholder="Décrivez votre projet, vos besoins ou vos questions..." required></textarea>
+          <textarea class="cf-textarea" id="message" name="message" rows="4" placeholder="Décrivez votre projet ou posez vos questions..." required></textarea>
         </div>
 
-        <button type="submit" class="cf-submit" id="submit-btn">
-          Envoyer la demande
-        </button>
-
+        <button type="submit" class="cf-submit" id="submit-btn">Envoyer</button>
       </form>
 
-      <!-- Message de succès -->
+      <!-- Succès -->
       <div class="cf-success" id="success-msg">
         <div class="cf-success-icon">✓</div>
         <h3>Demande envoyée</h3>
-        <p>
-          Merci pour votre intérêt. Notre équipe reviendra vers vous
-          dans les 24 heures ouvrées.
-        </p>
+        <p>Notre équipe reviendra vers vous dans les 24 heures ouvrées.</p>
       </div>
 
     </div>
   </div>
 </section>
-
 
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
@@ -598,12 +411,11 @@
   </div>
 </footer>
 
-
 <!-- ============ SCRIPTS ============ -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 
-  // --- Mega menu ---
+  // Mega menu
   const btn = document.querySelector('.products-trigger');
   const panel = document.getElementById('products-panel');
   if (btn && panel) {
@@ -620,48 +432,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', (e) => {
       if (!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)) closePanel();
     });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closePanel();
-    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanel(); });
   }
 
-  // --- Afficher/masquer champ filiale ---
-  const filialeCheck = document.getElementById('filiale-check');
-  const filialeField = document.getElementById('filiale-field');
-  if (filialeCheck && filialeField) {
-    filialeCheck.addEventListener('change', () => {
-      filialeField.classList.toggle('active', filialeCheck.checked);
-      if (!filialeCheck.checked) {
-        document.getElementById('filiale-name').value = '';
-      }
-    });
-  }
-
-  // --- Formatage SIREN (XXX XXX XXX) ---
-  const sirenInput = document.getElementById('siren');
-  if (sirenInput) {
-    sirenInput.addEventListener('input', (e) => {
-      let v = e.target.value.replace(/\D/g, '').slice(0, 9);
-      e.target.value = v.replace(/(\d{3})(?=\d)/g, '$1 ').trim();
-    });
-  }
-
-  // --- Formatage SIRET (XXX XXX XXX XXXXX) ---
-  const siretInput = document.getElementById('siret');
-  if (siretInput) {
-    siretInput.addEventListener('input', (e) => {
-      let v = e.target.value.replace(/\D/g, '').slice(0, 14);
-      if (v.length <= 9) {
-        e.target.value = v.replace(/(\d{3})(?=\d)/g, '$1 ').trim();
-      } else {
-        const siren = v.slice(0, 9).replace(/(\d{3})(?=\d)/g, '$1 ');
-        const nic = v.slice(9);
-        e.target.value = siren + ' ' + nic;
-      }
-    });
-  }
-
-  // --- Envoi du formulaire ---
+  // Formulaire
   const form = document.getElementById('contact-form');
   const submitBtn = document.getElementById('submit-btn');
   const successMsg = document.getElementById('success-msg');
@@ -673,25 +447,23 @@ document.addEventListener('DOMContentLoaded', () => {
       submitBtn.textContent = 'Envoi en cours…';
 
       try {
-        const data = new FormData(form);
-        const response = await fetch(form.action, {
+        const res = await fetch(form.action, {
           method: form.method,
-          body: data,
+          body: new FormData(form),
           headers: { 'Accept': 'application/json' }
         });
-
-        if (response.ok) {
+        if (res.ok) {
           form.style.display = 'none';
           successMsg.classList.add('active');
         } else {
           alert('Une erreur est survenue. Réessayez ou contactez-nous à contact@fxtc.io.');
           submitBtn.disabled = false;
-          submitBtn.textContent = 'Envoyer la demande';
+          submitBtn.textContent = 'Envoyer';
         }
-      } catch (err) {
+      } catch {
         alert('Erreur réseau. Vérifiez votre connexion.');
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Envoyer la demande';
+        submitBtn.textContent = 'Envoyer';
       }
     });
   }
