@@ -467,20 +467,24 @@
 
         <div class="dv-sep"></div>
 
-        <div style="display:flex; align-items:flex-start; gap:10px; margin-top:8px; max-width:500px;">
-            <input type="checkbox" id="filiale-check" name="est_filiale" value="oui" style="margin-top:4px; accent-color:var(--primary); cursor:pointer; flex-shrink:0;" />
-            <div>
-              <label for="filiale-check" style="display:inline; font-size:15px; font-weight:500; cursor:pointer;">
-                Se rattacher à une organisation déjà cliente FXTC
-              </label>
-              <div class="dv-field-hint">Exemple : filiale régionale d'un groupe déjà enregistré.</div>
-            </div>
+        <fieldset class="dv-fieldset">
+          <span class="dv-fieldset-legend">Rattachement</span>
+
+          <div class="dv-field">
+            <label for="filiale-check" style="display:flex; align-items:flex-start; gap:10px; cursor:pointer; font-size:15px; font-weight:500;">
+              <input type="checkbox" id="filiale-check" name="est_filiale" value="oui" style="margin-top:2px; accent-color:var(--primary); cursor:pointer; flex-shrink:0;" />
+              Se rattacher à une organisation déjà cliente FXTC
+            </label>
+            <div class="dv-field-hint">Exemple : filiale régionale d'un groupe déjà enregistré.</div>
           </div>
 
-          <div class="dv-field" id="filiale-field" style="display:none; margin-top:16px;">
+          <div class="dv-field" id="filiale-field" style="display:none;">
             <label for="filiale-name">Nom de l'organisation parente</label>
             <input type="text" id="filiale-name" name="filiale_parente" placeholder="Nom du groupe parent" />
           </div>
+        </fieldset>
+
+        <div class="dv-sep"></div>
 
         <!-- CONFIGURATION -->
         <fieldset class="dv-fieldset">
