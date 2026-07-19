@@ -1124,3 +1124,23 @@ input:focus, textarea:focus{
     transition: none;
   }
 }
+
+/* =========================
+   TYPEWRITER REVEAL ON SCROLL
+========================= */
+
+.type-reveal .char {
+  opacity: 0;
+  transition: opacity 0.06s ease;
+}
+
+.type-reveal.typing .char {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .type-reveal .char {
+    opacity: 1;
+    transition: none;
+  }
+}
