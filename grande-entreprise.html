@@ -424,6 +424,24 @@
             </div>
           </div>
 
+         <div class="dv-field-row">
+            <div class="dv-field">
+              <label for="siren">SIREN</label>
+              <input type="text" id="siren" name="siren" placeholder="123 456 789" maxlength="11" />
+              <div class="dv-field-hint">9 chiffres — facultatif</div>
+            </div>
+            <div class="dv-field">
+              <label for="siret">SIRET</label>
+              <input type="text" id="siret" name="siret" placeholder="123 456 789 00012" maxlength="17" />
+              <div class="dv-field-hint">14 chiffres — facultatif</div>
+            </div>
+          </div>
+
+           <div class="dv-field">
+            <label for="address">Adresse de l'établissement</label>
+            <input type="text" id="address" name="adresse" placeholder="12 rue de la Paix, 75002 Paris" />
+          </div>
+           
           <div class="dv-field-row">
             <div class="dv-field">
               <label for="name">Nom & Prénom</label>
@@ -448,6 +466,21 @@
         </fieldset>
 
         <div class="dv-sep"></div>
+
+         <div style="display:flex; align-items:flex-start; gap:10px; margin-top:8px;">
+            <input type="checkbox" id="filiale-check" name="est_filiale" value="oui" style="margin-top:3px; accent-color:var(--primary); cursor:pointer;" />
+            <div>
+              <label for="filiale-check" style="font-size:15px; font-weight:500; cursor:pointer; margin:0;">
+                Se rattacher à une organisation déjà cliente FXTC
+              </label>
+              <div class="dv-field-hint">Exemple : filiale régionale d'un groupe déjà enregistré.</div>
+            </div>
+          </div>
+
+          <div class="dv-field" id="filiale-field" style="display:none; margin-top:16px;">
+            <label for="filiale-name">Nom de l'organisation parente</label>
+            <input type="text" id="filiale-name" name="filiale_parente" placeholder="Nom du groupe parent" />
+          </div>
 
         <!-- CONFIGURATION -->
         <fieldset class="dv-fieldset">
@@ -575,10 +608,44 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanel(); });
   }
 
+  // Formatage SIREN
+  const sirenInput = document.getElementById('siren');
+  if (sirenInput) {
+    sirenInput.addEventListener('input', (e) => {
+      let v = e.target.value.replace(/\D/g, '').slice(0, 9);
+      e.target.value = v.replace(/(\d{3})(?=\d)/g, '$1 ').trim();
+    });
+  }
+
+  // Formatage SIRET
+  const siretInput = document.getElementById('siret');
+  if (siretInput) {
+    siretInput.addEventListener('input', (e) => {
+      let v = e.target.value.replace(/\D/g, '').slice(0, 14);
+      if (v.length <= 9) {
+        e.target.value = v.replace(/(\d{3})(?=\d)/g, '$1 ').trim();
+      } else {
+        const siren = v.slice(0, 9).replace(/(\d{3})(?=\d)/g, '$1 ');
+        e.target.value = siren + ' ' + v.slice(9);
+      }
+    });
+  }
+
+  // Filiale toggle
+  const filialeCheck = document.getElementById('filiale-check');
+  const filialeField = document.getElementById('filiale-field');
+  if (filialeCheck && filialeField) {
+    filialeCheck.addEventListener('change', () => {
+      filialeField.style.display = filialeCheck.checked ? 'block' : 'none';
+      if (!filialeCheck.checked) {
+        document.getElementById('filiale-name').value = '';
+      }
+    });
+  }
+
   // Formulaire
   const form = document.getElementById('devis-form');
   const success = document.getElementById('devis-success');
-
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const data = new FormData(form);
