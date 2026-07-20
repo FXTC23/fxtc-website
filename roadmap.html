@@ -1,1 +1,438 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+<title>Roadmap | FXTC</title>
+<meta name="description" content="La feuille de route de la suite FXTC CloudChain Platform : dates de lancement, versions à venir et vision produit." />
+
+<link rel="stylesheet" href="./style.css" />
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,600,700,800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="/logo-clair-fxtc.png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Roadmap | FXTC">
+<meta property="og:description" content="La feuille de route de la suite FXTC CloudChain Platform.">
+<meta property="og:image" content="https://fxtc.io/image/og-fxtc.png">
+<meta property="og:url" content="https://fxtc.io/roadmap.html">
+
+<style>
+.rm-hero {
+  background: var(--primary);
+  padding: 140px 0 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.rm-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 110%, rgba(255,255,255,.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+.rm-hero-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.rm-hero h1 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(42px, 5.5vw, 72px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: #fff;
+  margin: 0 0 18px;
+}
+.rm-hero-sub {
+  font-size: clamp(17px, 2vw, 22px);
+  font-weight: 500;
+  color: rgba(255,255,255,.55);
+  margin: 0;
+  line-height: 1.5;
+}
+.rm-hero-updated {
+  display: inline-block;
+  margin-top: 24px;
+  font-size: 12px;
+  letter-spacing: .1em;
+  color: rgba(255,255,255,.35);
+}
+
+/* Timeline */
+.rm-section {
+  padding: 80px 0 100px;
+}
+.rm-timeline {
+  max-width: 680px;
+  margin: 0 auto;
+  position: relative;
+}
+.rm-timeline::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(0,0,0,.08);
+}
+
+/* Milestone */
+.rm-milestone {
+  position: relative;
+  padding-left: 56px;
+  padding-bottom: 48px;
+}
+.rm-milestone:last-child {
+  padding-bottom: 0;
+}
+
+/* Dot on timeline */
+.rm-dot {
+  position: absolute;
+  left: 12px;
+  top: 6px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid;
+  display: grid;
+  place-items: center;
+}
+.rm-dot::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.rm-dot--shipped {
+  border-color: #1D9E75;
+  background: #fff;
+}
+.rm-dot--shipped::after {
+  background: #1D9E75;
+}
+.rm-dot--active {
+  border-color: #EF9F27;
+  background: #fff;
+}
+.rm-dot--active::after {
+  background: #EF9F27;
+}
+.rm-dot--planned {
+  border-color: var(--border);
+  background: #fff;
+}
+.rm-dot--planned::after {
+  background: var(--border);
+}
+.rm-dot--tbd {
+  border-color: var(--border);
+  background: #fff;
+  border-style: dashed;
+}
+.rm-dot--tbd::after {
+  background: var(--disabled);
+  opacity: .4;
+}
+
+/* Date label */
+.rm-date {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.rm-date--shipped { color: #1D9E75; }
+.rm-date--active { color: #BA7517; }
+.rm-date--planned { color: var(--muted); }
+.rm-date--tbd { color: var(--disabled); }
+
+/* Content */
+.rm-title {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px;
+  line-height: 1.25;
+}
+.rm-desc {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 0 0 16px;
+}
+
+/* Products tags */
+.rm-products {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.rm-product-tag {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.rm-product-tag--platform { background: rgba(0,0,0,.05); color: var(--text); }
+.rm-product-tag--vault { background: rgba(239,159,39,.1); color: #BA7517; }
+.rm-product-tag--admin { background: rgba(133,183,235,.1); color: #378ADD; }
+.rm-product-tag--workspace { background: rgba(175,169,236,.1); color: #7F77DD; }
+.rm-product-tag--atlas { background: rgba(93,202,165,.1); color: #1D9E75; }
+
+/* Status badge */
+.rm-status {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  padding: 3px 10px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+.rm-status--shipped { background: rgba(29,158,117,.1); color: #1D9E75; }
+.rm-status--active { background: rgba(239,159,39,.1); color: #BA7517; }
+.rm-status--planned { background: rgba(0,0,0,.05); color: var(--muted); }
+.rm-status--tbd { background: rgba(0,0,0,.04); color: var(--disabled); }
+
+/* CTA bottom */
+.rm-cta {
+  max-width: 680px;
+  margin: 60px auto 0;
+  text-align: center;
+  padding-top: 40px;
+  border-top: 1px solid rgba(0,0,0,.08);
+}
+.rm-cta p {
+  font-size: 16px;
+  color: var(--muted);
+  margin: 0 0 24px;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .rm-timeline::before { left: 16px; }
+  .rm-milestone { padding-left: 48px; }
+  .rm-dot { left: 8px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="/index.html" class="logo">
+      <img src="./image/Logo-clair2-aegis-sentinel.png" alt="FXTC" class="logo-img" />
+      <div class="logo-text">
+        <span class="logo-brand">FXTC</span>
+        <span class="logo-product">CloudChain</span>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="./nous-contacter.html" class="nav-cta">Nous contacter</a>
+      <button class="products-trigger" type="button" aria-expanded="false" aria-controls="products-panel">
+        <span class="cube-icon" aria-hidden="true"></span>
+        <span class="sr-only">Ouvrir le menu Produits</span>
+      </button>
+    </nav>
+  </div>
+
+  <section id="products-panel" class="products-panel" hidden>
+    <div class="container products-panel-inner">
+      <div class="mega-columns" role="navigation" aria-label="Menu principal étendu">
+        <div class="mega-col">
+          <div class="mega-title">Produits</div>
+          <nav class="mega-list" aria-label="Produits">
+            <a class="mega-item" href="./CloudChain-Platform.html">CloudChain Platform</a>
+            <a class="mega-item" href="./vault.html"><span class="mega-arrow">↳</span>Vault</a>
+            <a class="mega-item" href="./workspace.html"><span class="mega-arrow">↳</span>Workspace</a>
+            <a class="mega-item" href="./atlas.html"><span class="mega-arrow">↳</span>Atlas</a>
+            <a class="mega-item" href="./admin-console.html"><span class="mega-arrow">↳</span>Admin Console</a>
+          </nav>
+        </div>
+        <div class="mega-sep" aria-hidden="true"></div>
+        <div class="mega-col">
+          <div class="mega-title">Cas d'usage</div>
+          <nav class="mega-list" aria-label="Cas d'usage">
+            <a class="mega-item" href="./secteur-juridique.html">Juridique</a>
+            <a class="mega-item" href="./secteur-financier.html">Finance & Audit</a>
+            <a class="mega-item" href="./secteur-prive.html">Secteur Privé</a>
+            <a class="mega-item" href="./secteur-public.html">Secteur Public</a>
+          </nav>
+        </div>
+        <div class="mega-sep" aria-hidden="true"></div>
+        <div class="mega-col">
+          <div class="mega-title">News</div>
+          <nav class="mega-list" aria-label="News">
+            <a class="mega-item" href="./annonces.html">Annonces</a>
+            <a class="mega-item" href="./roadmap.html">Roadmap</a>
+            <a class="mega-item" href="./nos-reseaux.html">Nos Réseaux-Sociaux</a>
+          </nav>
+        </div>
+        <div class="mega-sep" aria-hidden="true"></div>
+        <div class="mega-col">
+          <div class="mega-title">Commencer</div>
+          <nav class="mega-list" aria-label="Commencer">
+            <a class="mega-item" href="./formules-tarifications.html">Formules & Tarifications</a>
+            <a class="mega-item" href="./grande-entreprise.html">Grandes Entreprises</a>
+            <a class="mega-item" href="./gouvernements.html">Administrations Publiques</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="rm-hero">
+  <div class="container rm-hero-inner">
+    <h1>Roadmap</h1>
+    <p class="rm-hero-sub">
+      La feuille de route de la suite FXTC CloudChain Platform,
+      de la bêta jusqu'aux prochains lancements.
+    </p>
+    <span class="rm-hero-updated">Mise à jour — Juillet 2026</span>
+  </div>
+</section>
+
+<!-- ============ TIMELINE ============ -->
+<section class="rm-section">
+  <div class="container rm-timeline">
+
+    <!-- ═══ JUILLET 2026 — Bêta ═══ -->
+    <div class="rm-milestone">
+      <div class="rm-dot rm-dot--active"></div>
+      <div class="rm-date rm-date--active">Juillet 2026</div>
+      <span class="rm-status rm-status--active">En cours</span>
+      <h3 class="rm-title">Bêta ouverte</h3>
+      <p class="rm-desc">
+        Ouverture de la bêta publique de la suite CloudChain Platform.
+        Les organisations peuvent demander un accès anticipé pour tester
+        le chiffrement post-quantique, la signature numérique et la
+        traçabilité blockchain en conditions réelles.
+      </p>
+      <div class="rm-products">
+        <span class="rm-product-tag rm-product-tag--platform">CloudChain Platform v1.3.1</span>
+        <span class="rm-product-tag rm-product-tag--vault">Vault v1.2.1</span>
+        <span class="rm-product-tag rm-product-tag--admin">Admin Console v1.2.1</span>
+      </div>
+    </div>
+
+    <!-- ═══ SEPTEMBRE 2026 — V1 ═══ -->
+    <div class="rm-milestone">
+      <div class="rm-dot rm-dot--planned"></div>
+      <div class="rm-date rm-date--planned">Septembre 2026</div>
+      <span class="rm-status rm-status--planned">Planifié</span>
+      <h3 class="rm-title">Fin de la bêta — première version définitive</h3>
+      <p class="rm-desc">
+        Clôture de la période de bêta et lancement de la première version
+        stable de la suite. CloudChain Platform, Vault et Admin Console
+        passent en version définitive, prêts pour un déploiement en
+        production dans les organisations.
+      </p>
+      <div class="rm-products">
+        <span class="rm-product-tag rm-product-tag--platform">CloudChain Platform</span>
+        <span class="rm-product-tag rm-product-tag--vault">Vault</span>
+        <span class="rm-product-tag rm-product-tag--admin">Admin Console</span>
+      </div>
+    </div>
+
+    <!-- ═══ DÉBUT 2027 — Workspace ═══ -->
+    <div class="rm-milestone">
+      <div class="rm-dot rm-dot--planned"></div>
+      <div class="rm-date rm-date--planned">Début 2027</div>
+      <span class="rm-status rm-status--planned">Planifié</span>
+      <h3 class="rm-title">Lancement de Workspace</h3>
+      <p class="rm-desc">
+        Sortie de la première version de Workspace : documents collaboratifs,
+        messagerie chiffrée, appels et visioconférence. La brique de
+        collaboration quotidienne de la suite, pensée pour remplacer les
+        outils grand public par une alternative souveraine et chiffrée
+        de bout en bout.
+      </p>
+      <div class="rm-products">
+        <span class="rm-product-tag rm-product-tag--workspace">Workspace v1.0</span>
+      </div>
+    </div>
+
+    <!-- ═══ ATLAS — Date à définir ═══ -->
+    <div class="rm-milestone">
+      <div class="rm-dot rm-dot--tbd"></div>
+      <div class="rm-date rm-date--tbd">Date à définir</div>
+      <span class="rm-status rm-status--tbd">Après Workspace</span>
+      <h3 class="rm-title">Lancement d'Atlas</h3>
+      <p class="rm-desc">
+        La date de sortie d'Atlas sera définie après le lancement de
+        Workspace. Atlas étendra la suite avec la traçabilité supply chain
+        et le suivi d'activité des équipes — une carte unique pour suivre
+        vos produits, vos matières premières et l'avancement de vos projets
+        internes.
+      </p>
+      <div class="rm-products">
+        <span class="rm-product-tag rm-product-tag--atlas">Atlas</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CTA -->
+  <div class="container">
+    <div class="rm-cta">
+      <p>
+        Cette roadmap est mise à jour régulièrement. Contactez-nous
+        pour être informé des prochains lancements ou rejoindre le
+        programme d'accès anticipé.
+      </p>
+      <a href="./nous-contacter.html" class="btn btn-primary" style="padding:14px 28px; font-size:15px;">
+        Être tenu informé
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>© FXTC 2026</span>
+    <a href="#top">Retour en haut</a>
+  </div>
+</footer>
+
+<!-- ============ SCRIPTS ============ -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.querySelector('.products-trigger');
+  const panel = document.getElementById('products-panel');
+  if (!btn || !panel) return;
+  function closePanel() {
+    btn.setAttribute('aria-expanded', 'false');
+    panel.hidden = true;
+  }
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    panel.hidden = open;
+  });
+  document.addEventListener('click', (e) => {
+    if (!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)) closePanel();
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanel(); });
+});
+</script>
+
+</body>
+</html>
