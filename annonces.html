@@ -1,1 +1,442 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+<title>Annonces | FXTC</title>
+<meta name="description" content="Les dernières annonces de FXTC : lancements, mises à jour et actualités de la suite CloudChain Platform." />
+
+<link rel="stylesheet" href="./style.css" />
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,600,700,800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="/logo-clair-fxtc.png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Annonces | FXTC">
+<meta property="og:description" content="Les dernières annonces de FXTC CloudChain Platform.">
+<meta property="og:image" content="https://fxtc.io/image/og-fxtc.png">
+<meta property="og:url" content="https://fxtc.io/annonces.html">
+
+<style>
+.ann-hero {
+  background: var(--primary);
+  padding: 140px 0 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.ann-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 110%, rgba(255,255,255,.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+.ann-hero-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.ann-hero h1 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(42px, 5.5vw, 72px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: #fff;
+  margin: 0 0 18px;
+}
+.ann-hero-sub {
+  font-size: clamp(17px, 2vw, 22px);
+  font-weight: 500;
+  color: rgba(255,255,255,.55);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Timeline */
+.ann-section {
+  padding: 80px 0 100px;
+}
+.ann-timeline {
+  max-width: 780px;
+  margin: 0 auto;
+}
+.ann-year {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--disabled);
+  margin: 0 0 32px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+}
+
+/* Card annonce */
+.ann-card {
+  position: relative;
+  margin-bottom: 32px;
+  padding: 32px;
+  background: var(--surface);
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 16px;
+  transition: .2s ease;
+}
+.ann-card:hover {
+  border-color: rgba(0,0,0,.14);
+  box-shadow: 0 8px 24px rgba(0,0,0,.05);
+}
+.ann-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.ann-card-date {
+  font-size: 13px;
+  color: var(--disabled);
+  white-space: nowrap;
+}
+.ann-card-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.ann-tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+.ann-tag--launch {
+  background: rgba(93,202,165,.12);
+  color: #1D9E75;
+}
+.ann-tag--update {
+  background: rgba(133,183,235,.12);
+  color: #378ADD;
+}
+.ann-tag--beta {
+  background: rgba(239,159,39,.12);
+  color: #BA7517;
+}
+.ann-tag--product {
+  background: rgba(0,0,0,.05);
+  color: var(--muted);
+}
+.ann-card h3 {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px;
+  line-height: 1.25;
+}
+.ann-card p {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 0 0 12px;
+}
+.ann-card p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Versions list inside card */
+.ann-versions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0,0,0,.06);
+}
+.ann-version-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 10px;
+}
+.ann-version-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.ann-version-icon--platform { background: rgba(0,0,0,.06); }
+.ann-version-icon--vault { background: rgba(239,159,39,.1); }
+.ann-version-icon--admin { background: rgba(133,183,235,.1); }
+.ann-version-info {
+  flex: 1;
+  min-width: 0;
+}
+.ann-version-name {
+  font-size: 14px;
+  font-weight: 700;
+}
+.ann-version-desc {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.ann-version-number {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--disabled);
+  background: var(--surface);
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+/* Links in cards */
+.ann-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  margin-top: 16px;
+}
+.ann-card-link:hover {
+  text-decoration: underline;
+}
+
+/* Empty state */
+.ann-empty {
+  text-align: center;
+  padding: 60px 0;
+  color: var(--disabled);
+  font-size: 15px;
+}
+
+@media (max-width: 600px) {
+  .ann-card { padding: 24px; }
+  .ann-card-header { flex-direction: column; gap: 10px; }
+  .ann-version-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="/index.html" class="logo">
+      <img src="./image/Logo-clair2-aegis-sentinel.png" alt="FXTC" class="logo-img" />
+      <div class="logo-text">
+        <span class="logo-brand">FXTC</span>
+        <span class="logo-product">CloudChain</span>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="./nous-contacter.html" class="nav-cta">Nous contacter</a>
+      <button class="products-trigger" type="button" aria-expanded="false" aria-controls="products-panel">
+        <span class="cube-icon" aria-hidden="true"></span>
+        <span class="sr-only">Ouvrir le menu Produits</span>
+      </button>
+    </nav>
+  </div>
+
+  <section id="products-panel" class="products-panel" hidden>
+    <div class="container products-panel-inner">
+      <div class="mega-columns" role="navigation" aria-label="Menu principal étendu">
+        <div class="mega-col">
+          <div class="mega-title">Produits</div>
+          <nav class="mega-list" aria-label="Produits">
+            <a class="mega-item" href="./CloudChain-Platform.html">CloudChain Platform</a>
+            <a class="mega-item" href="./vault.html"><span class="mega-arrow">↳</span>Vault</a>
+            <a class="mega-item" href="./workspace.html"><span class="mega-arrow">↳</span>Workspace</a>
+            <a class="mega-item" href="./atlas.html"><span class="mega-arrow">↳</span>Atlas</a>
+            <a class="mega-item" href="./admin-console.html"><span class="mega-arrow">↳</span>Admin Console</a>
+          </nav>
+        </div>
+        <div class="mega-sep" aria-hidden="true"></div>
+        <div class="mega-col">
+          <div class="mega-title">Cas d'usage</div>
+          <nav class="mega-list" aria-label="Cas d'usage">
+            <a class="mega-item" href="./secteur-juridique.html">Juridique</a>
+            <a class="mega-item" href="./secteur-financier.html">Finance & Audit</a>
+            <a class="mega-item" href="./secteur-prive.html">Secteur Privé</a>
+            <a class="mega-item" href="./secteur-public.html">Secteur Public</a>
+          </nav>
+        </div>
+        <div class="mega-sep" aria-hidden="true"></div>
+        <div class="mega-col">
+          <div class="mega-title">News</div>
+          <nav class="mega-list" aria-label="News">
+            <a class="mega-item" href="./annonces.html">Annonces</a>
+            <a class="mega-item" href="./roadmap.html">Roadmap</a>
+            <a class="mega-item" href="./nos-reseaux.html">Nos Réseaux-Sociaux</a>
+          </nav>
+        </div>
+        <div class="mega-sep" aria-hidden="true"></div>
+        <div class="mega-col">
+          <div class="mega-title">Commencer</div>
+          <nav class="mega-list" aria-label="Commencer">
+            <a class="mega-item" href="./formules-tarifications.html">Formules & Tarifications</a>
+            <a class="mega-item" href="./grande-entreprise.html">Grandes Entreprises</a>
+            <a class="mega-item" href="./gouvernements.html">Administrations Publiques</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="ann-hero">
+  <div class="container ann-hero-inner">
+    <h1>Annonces</h1>
+    <p class="ann-hero-sub">
+      Lancements, mises à jour et actualités de la suite
+      FXTC CloudChain Platform.
+    </p>
+  </div>
+</section>
+
+<!-- ============ TIMELINE ============ -->
+<section class="ann-section">
+  <div class="container ann-timeline">
+
+    <div class="ann-year">2026</div>
+
+    <!-- ANNONCE 1 — Bêta ouverte -->
+    <article class="ann-card">
+      <div class="ann-card-header">
+        <div class="ann-card-tags">
+          <span class="ann-tag ann-tag--launch">Lancement</span>
+          <span class="ann-tag ann-tag--beta">Bêta ouverte</span>
+        </div>
+        <div class="ann-card-date">Juillet 2026</div>
+      </div>
+
+      <h3>CloudChain Platform entre en bêta ouverte</h3>
+      <p>
+        La suite FXTC CloudChain Platform est désormais disponible en
+        bêta ouverte. Les organisations intéressées peuvent demander un
+        accès anticipé pour tester l'infrastructure complète : chiffrement
+        post-quantique X-Wing, signature ML-DSA-65 et traçabilité
+        blockchain Hyperledger Fabric.
+      </p>
+      <p>
+        Cette bêta inclut Vault (coffre-fort zero-knowledge, signature et
+        partage de documents) et Admin Console (gestion centralisée des
+        utilisateurs, des permissions et de l'organisation).
+      </p>
+
+      <div class="ann-versions">
+        <div class="ann-version-row">
+          <div class="ann-version-icon ann-version-icon--platform">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div class="ann-version-info">
+            <div class="ann-version-name">CloudChain Platform</div>
+            <div class="ann-version-desc">Socle cryptographique, identité et orchestration</div>
+          </div>
+          <div class="ann-version-number">v1.3.1</div>
+        </div>
+
+        <div class="ann-version-row">
+          <div class="ann-version-icon ann-version-icon--vault">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#BA7517" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div class="ann-version-info">
+            <div class="ann-version-name">Vault</div>
+            <div class="ann-version-desc">Coffre-fort, signature et partage de documents</div>
+          </div>
+          <div class="ann-version-number">v1.2.1</div>
+        </div>
+
+        <div class="ann-version-row">
+          <div class="ann-version-icon ann-version-icon--admin">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#378ADD" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="ann-version-info">
+            <div class="ann-version-name">Admin Console</div>
+            <div class="ann-version-desc">Gestion des utilisateurs, permissions et organisation</div>
+          </div>
+          <div class="ann-version-number">v1.2.1</div>
+        </div>
+      </div>
+
+      <a href="./nous-contacter.html" class="ann-card-link">Demander un accès bêta →</a>
+    </article>
+
+    <!-- ANNONCE 2 — Démo disponible -->
+    <article class="ann-card">
+      <div class="ann-card-header">
+        <div class="ann-card-tags">
+          <span class="ann-tag ann-tag--launch">Démo</span>
+          <span class="ann-tag ann-tag--product">CloudChain Platform</span>
+        </div>
+        <div class="ann-card-date">Juin 2026</div>
+      </div>
+
+      <h3>Démonstration en ligne disponible</h3>
+      <p>
+        Une démonstration guidée de la suite est désormais accessible sur
+        demande. Elle permet de tester en conditions réelles le dépôt et le
+        chiffrement de documents dans Vault, la signature numérique
+        post-quantique, le partage sous contrôle d'accès, ainsi que la
+        gestion des utilisateurs et des permissions depuis l'Admin Console.
+      </p>
+      <p>
+        La démo s'adresse aux DSI, RSSI, directions juridiques et
+        financières, ainsi qu'aux responsables conformité souhaitant
+        évaluer la suite avant déploiement.
+      </p>
+
+      <a href="./nous-contacter.html" class="ann-card-link">Planifier une démonstration →</a>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>© FXTC 2026</span>
+    <a href="#top">Retour en haut</a>
+  </div>
+</footer>
+
+<!-- ============ SCRIPTS ============ -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.querySelector('.products-trigger');
+  const panel = document.getElementById('products-panel');
+  if (!btn || !panel) return;
+  function closePanel() {
+    btn.setAttribute('aria-expanded', 'false');
+    panel.hidden = true;
+  }
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    panel.hidden = open;
+  });
+  document.addEventListener('click', (e) => {
+    if (!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)) closePanel();
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanel(); });
+});
+</script>
+
+</body>
+</html>
