@@ -636,10 +636,163 @@
         </div>
       </div>
     </div>
-    <div class="atl-map-visual">
-      <img src="./image/Accueil-Atlas.png" alt="Carte de suivi supply chain Atlas"
-        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'atl-map-visual-fallback',textContent:'Aperçu de la carte Atlas — à venir'}))" />
-    </div>
+<!-- ============ ATLAS INTERACTIVE MAP ============ -->
+<!-- Coller ce bloc dans atlas.html, dans la section .atl-map, 
+     en remplacement du div .atl-map-visual -->
+
+<style>
+.atlas-wrap { background:#535456; border-radius:16px; position:relative; overflow:hidden; font-family:'Satoshi',ui-sans-serif,system-ui,sans-serif; }
+.atlas-svg { display:block; width:100%; }
+@keyframes atlas-dash { to { stroke-dashoffset:-20; } }
+.atlas-moving { stroke-dasharray:6 8; animation:atlas-dash 1.8s linear infinite; }
+@keyframes atlas-pulse { 0%,100%{r:3;opacity:.8} 50%{r:8;opacity:0} }
+.atlas-pulse-ring { animation:atlas-pulse 2.5s ease-in-out infinite; }
+.atlas-node { cursor:pointer; transition:opacity .15s; }
+.atlas-node:hover { opacity:.8; }
+
+.atlas-modal-overlay { display:none; position:absolute; inset:0; background:rgba(0,0,0,.55); z-index:10; align-items:center; justify-content:center; padding:24px; }
+.atlas-modal-overlay.open { display:flex; }
+.atlas-modal { background:#3a3b3d; border:1px solid rgba(255,255,255,.12); border-radius:16px; width:100%; max-width:420px; color:#fff; overflow:hidden; }
+.atlas-modal-header { padding:20px 24px 16px; border-bottom:1px solid rgba(255,255,255,.08); display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+.atlas-modal-title { font-size:18px; font-weight:700; letter-spacing:-.02em; }
+.atlas-modal-type { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.45); margin-top:4px; }
+.atlas-modal-close { background:rgba(255,255,255,.1); border:none; color:#fff; width:28px; height:28px; border-radius:8px; font-size:16px; cursor:pointer; flex-shrink:0; display:grid; place-items:center; }
+.atlas-modal-close:hover { background:rgba(255,255,255,.2); }
+.atlas-modal-body { padding:20px 24px 24px; }
+.atlas-modal-section { margin-bottom:18px; }
+.atlas-modal-section:last-child { margin-bottom:0; }
+.atlas-modal-label { font-size:10px; letter-spacing:.15em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:8px; }
+.atlas-modal-resource { display:flex; align-items:center; gap:10px; padding:10px 14px; background:rgba(255,255,255,.06); border-radius:10px; border:1px solid rgba(255,255,255,.06); margin-bottom:6px; }
+.atlas-modal-resource:last-child { margin-bottom:0; }
+.atlas-modal-resource-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.atlas-modal-resource-name { font-size:14px; font-weight:600; }
+.atlas-modal-resource-qty { font-size:12px; color:rgba(255,255,255,.5); margin-left:auto; }
+.atlas-modal-team-row { display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid rgba(255,255,255,.05); }
+.atlas-modal-team-row:last-child { border:none; }
+.atlas-modal-avatar { width:28px; height:28px; border-radius:8px; display:grid; place-items:center; font-size:11px; font-weight:700; flex-shrink:0; }
+.atlas-modal-avatar.human { background:rgba(133,183,235,.25); color:#85B7EB; }
+.atlas-modal-avatar.ai { background:rgba(175,169,236,.25); color:#AFA9EC; }
+.atlas-modal-avatar.ext { background:rgba(93,202,165,.2); color:#5DCAA5; }
+.atlas-modal-team-info { flex:1; min-width:0; }
+.atlas-modal-team-name { font-size:13px; font-weight:600; }
+.atlas-modal-team-role { font-size:11px; color:rgba(255,255,255,.45); }
+.atlas-modal-badge { font-size:9px; letter-spacing:.08em; padding:3px 8px; border-radius:6px; font-weight:600; flex-shrink:0; }
+.atlas-modal-badge.fxtc { background:rgba(239,159,39,.15); color:#EF9F27; }
+.atlas-modal-badge.ext-badge { background:rgba(255,255,255,.08); color:rgba(255,255,255,.4); }
+.atlas-modal-missions { display:flex; flex-direction:column; gap:6px; }
+.atlas-modal-mission { padding:8px 12px; background:rgba(255,255,255,.04); border-radius:8px; border-left:2px solid rgba(255,255,255,.15); }
+.atlas-modal-mission-title { font-size:13px; font-weight:600; }
+.atlas-modal-mission-status { font-size:11px; color:rgba(255,255,255,.4); margin-top:2px; }
+.atlas-modal-mission-status .active { color:#5DCAA5; }
+.atlas-modal-mission-status .pending { color:#EF9F27; }
+@media (prefers-reduced-motion:reduce) { .atlas-moving,.atlas-pulse-ring { animation:none; } }
+</style>
+
+<div class="atlas-wrap">
+<svg class="atlas-svg" viewBox="0 0 680 480">
+
+<g opacity=".15">
+  <line x1="0" y1="80" x2="680" y2="80" stroke="#fff" stroke-width=".3"/>
+  <line x1="0" y1="160" x2="680" y2="160" stroke="#fff" stroke-width=".3"/>
+  <line x1="0" y1="240" x2="680" y2="240" stroke="#fff" stroke-width=".3"/>
+  <line x1="0" y1="320" x2="680" y2="320" stroke="#fff" stroke-width=".3"/>
+  <line x1="0" y1="400" x2="680" y2="400" stroke="#fff" stroke-width=".3"/>
+  <line x1="113" y1="0" x2="113" y2="480" stroke="#fff" stroke-width=".3"/>
+  <line x1="227" y1="0" x2="227" y2="480" stroke="#fff" stroke-width=".3"/>
+  <line x1="340" y1="0" x2="340" y2="480" stroke="#fff" stroke-width=".3"/>
+  <line x1="453" y1="0" x2="453" y2="480" stroke="#fff" stroke-width=".3"/>
+  <line x1="567" y1="0" x2="567" y2="480" stroke="#fff" stroke-width=".3"/>
+</g>
+
+<g fill="none" stroke-linecap="round">
+  <path stroke="rgba(255,255,255,.12)" stroke-width="1" d="M80,95 C140,95 160,175 210,185"/>
+  <path stroke="rgba(255,255,255,.12)" stroke-width="1" d="M125,290 C170,280 190,210 210,195"/>
+  <path stroke="rgba(255,255,255,.12)" stroke-width="1" d="M90,380 C150,370 170,260 215,200"/>
+  <path stroke="#EF9F27" stroke-width="1.5" class="atlas-moving" d="M230,190 C290,180 310,130 350,125" opacity=".7"/>
+  <path stroke="#EF9F27" stroke-width="1.5" class="atlas-moving" d="M230,195 C300,210 320,310 370,320" opacity=".7" style="animation-delay:-.6s"/>
+  <path stroke="rgba(255,255,255,.12)" stroke-width="1" d="M370,120 C420,115 440,85 490,82"/>
+  <path stroke="rgba(255,255,255,.12)" stroke-width="1" d="M375,125 C420,140 440,200 490,210"/>
+  <path stroke="rgba(255,255,255,.12)" stroke-width="1" d="M385,325 C430,330 450,280 495,215"/>
+  <path stroke="rgba(255,255,255,.12)" stroke-width="1" d="M385,330 C430,350 450,380 495,385"/>
+  <path stroke="rgba(255,255,255,.12)" stroke-width="1" d="M510,80 C550,75 570,60 600,58"/>
+  <path stroke="rgba(255,255,255,.12)" stroke-width="1" d="M510,85 C545,95 560,135 600,145"/>
+  <path stroke="rgba(255,255,255,.12)" stroke-width="1" d="M510,210 C545,215 560,250 600,255"/>
+  <path stroke="rgba(255,255,255,.12)" stroke-width="1" d="M510,385 C545,390 565,410 600,415"/>
+  <path stroke="rgba(255,255,255,.12)" stroke-width="1" d="M510,380 C540,365 555,340 600,335"/>
+</g>
+
+<g class="atlas-node" onclick="atlasOpen('src1')"><circle cx="75" cy="92" r="14" fill="none" stroke="#5DCAA5" stroke-width=".5" opacity=".35"/><circle cx="75" cy="92" r="6" fill="#5DCAA5"/></g>
+<g class="atlas-node" onclick="atlasOpen('src2')"><circle cx="120" cy="288" r="14" fill="none" stroke="#5DCAA5" stroke-width=".5" opacity=".35"/><circle cx="120" cy="288" r="6" fill="#5DCAA5"/></g>
+<g class="atlas-node" onclick="atlasOpen('src3')"><circle cx="85" cy="378" r="14" fill="none" stroke="#5DCAA5" stroke-width=".5" opacity=".35"/><circle cx="85" cy="378" r="6" fill="#5DCAA5"/></g>
+
+<g class="atlas-node" onclick="atlasOpen('factory')"><circle cx="220" cy="190" r="18" fill="none" stroke="#EF9F27" stroke-width=".5" opacity=".4"/><circle cx="220" cy="190" r="10" fill="none" stroke="#EF9F27" stroke-width=".5" opacity=".25"/><circle cx="220" cy="190" r="8" fill="#EF9F27"/><circle cx="220" cy="190" fill="#EF9F27" class="atlas-pulse-ring" opacity="0"/></g>
+
+<g class="atlas-node" onclick="atlasOpen('hub1')"><circle cx="365" cy="122" r="16" fill="none" stroke="#85B7EB" stroke-width=".5" opacity=".35"/><circle cx="365" cy="122" r="7" fill="#85B7EB"/></g>
+<g class="atlas-node" onclick="atlasOpen('hub2')"><circle cx="378" cy="325" r="16" fill="none" stroke="#85B7EB" stroke-width=".5" opacity=".35"/><circle cx="378" cy="325" r="7" fill="#85B7EB"/></g>
+
+<g class="atlas-node" onclick="atlasOpen('dist1')"><circle cx="500" cy="82" r="14" fill="none" stroke="#ED93B1" stroke-width=".5" opacity=".35"/><circle cx="500" cy="82" r="6" fill="#ED93B1"/></g>
+<g class="atlas-node" onclick="atlasOpen('dist2')"><circle cx="500" cy="212" r="14" fill="none" stroke="#ED93B1" stroke-width=".5" opacity=".35"/><circle cx="500" cy="212" r="6" fill="#ED93B1"/></g>
+<g class="atlas-node" onclick="atlasOpen('dist3')"><circle cx="500" cy="384" r="14" fill="none" stroke="#ED93B1" stroke-width=".5" opacity=".35"/><circle cx="500" cy="384" r="6" fill="#ED93B1"/></g>
+
+<g class="atlas-node" onclick="atlasOpen('end1')"><circle cx="605" cy="58" r="4" fill="#AFA9EC"/></g>
+<g class="atlas-node" onclick="atlasOpen('end2')"><circle cx="605" cy="145" r="4" fill="#AFA9EC"/></g>
+<g class="atlas-node" onclick="atlasOpen('end3')"><circle cx="605" cy="255" r="4" fill="#AFA9EC"/></g>
+<g class="atlas-node" onclick="atlasOpen('end4')"><circle cx="605" cy="335" r="4" fill="#AFA9EC"/></g>
+<g class="atlas-node" onclick="atlasOpen('end5')"><circle cx="605" cy="415" r="4" fill="#AFA9EC"/></g>
+
+<g font-family="ui-sans-serif,system-ui,sans-serif">
+  <text x="75" y="118" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="10">Extraction</text>
+  <text x="120" y="312" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="10">Fournisseur</text>
+  <text x="85" y="402" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="10">Import</text>
+  <text x="220" y="222" text-anchor="middle" fill="rgba(255,255,255,.7)" font-size="12" font-weight="600">Production</text>
+  <text x="365" y="150" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="10">Hub nord</text>
+  <text x="378" y="353" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="10">Hub sud</text>
+  <text x="500" y="106" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="10">Stock A</text>
+  <text x="500" y="236" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="10">Stock B</text>
+  <text x="500" y="408" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="10">Stock C</text>
+  <text x="640" y="62" text-anchor="middle" fill="rgba(255,255,255,.35)" font-size="9">Client</text>
+  <text x="640" y="149" text-anchor="middle" fill="rgba(255,255,255,.35)" font-size="9">Client</text>
+  <text x="640" y="259" text-anchor="middle" fill="rgba(255,255,255,.35)" font-size="9">Client</text>
+  <text x="640" y="339" text-anchor="middle" fill="rgba(255,255,255,.35)" font-size="9">Client</text>
+  <text x="640" y="419" text-anchor="middle" fill="rgba(255,255,255,.35)" font-size="9">Client</text>
+</g>
+
+<g font-family="ui-sans-serif,system-ui,sans-serif" transform="translate(40,455)">
+  <circle cx="8" cy="4" r="4" fill="#5DCAA5"/><text x="18" y="8" fill="rgba(255,255,255,.5)" font-size="10">Matières premières</text>
+  <circle cx="148" cy="4" r="4" fill="#EF9F27"/><text x="158" y="8" fill="rgba(255,255,255,.5)" font-size="10">Production</text>
+  <circle cx="248" cy="4" r="4" fill="#85B7EB"/><text x="258" y="8" fill="rgba(255,255,255,.5)" font-size="10">Hubs</text>
+  <circle cx="298" cy="4" r="4" fill="#ED93B1"/><text x="308" y="8" fill="rgba(255,255,255,.5)" font-size="10">Distribution</text>
+  <circle cx="398" cy="4" r="4" fill="#AFA9EC"/><text x="408" y="8" fill="rgba(255,255,255,.5)" font-size="10">Clients</text>
+</g>
+
+</svg>
+
+<div class="atlas-modal-overlay" id="atlas-overlay" onclick="if(event.target===this)atlasClose()">
+  <div class="atlas-modal" id="atlas-modal-content"></div>
+</div>
+</div>
+
+<script>
+const atlasNodes={src1:{title:"PetroGulf Extraction",type:"Fournisseur externe",fxtc:false,resources:[{name:"Pétrole brut",color:"#EF9F27",qty:"12 000 barils/j"},{name:"Gaz naturel",color:"#85B7EB",qty:"3 200 m³/j"}],team:[{name:"Karim Al-Rashid",role:"Resp. extraction",type:"ext"},{name:"Sara Belmont",role:"Liaison commerciale",type:"ext"}],missions:[]},src2:{title:"Nordic Wood Supply",type:"Fournisseur externe",fxtc:false,resources:[{name:"Bois de charpente",color:"#EF9F27",qty:"450 m³/mois"},{name:"Cellulose",color:"#5DCAA5",qty:"80 tonnes/mois"}],team:[{name:"Erik Johansson",role:"Directeur opérations",type:"ext"},{name:"Lina Virtanen",role:"Logistique export",type:"ext"}],missions:[]},src3:{title:"SilkRoad Minerals Ltd.",type:"Fournisseur partenaire",fxtc:true,resources:[{name:"Lithium",color:"#AFA9EC",qty:"2.4 tonnes/mois"},{name:"Cobalt",color:"#85B7EB",qty:"900 kg/mois"},{name:"Cuivre",color:"#EF9F27",qty:"6 tonnes/mois"}],team:[{name:"Mei Chen",role:"Directrice supply",type:"human"},{name:"Atlas-Mining AI",role:"Prédiction stocks",type:"ai"},{name:"Omar Fadel",role:"Contrôle qualité",type:"human"}],missions:[{title:"Audit traçabilité cobalt",status:"active",label:"En cours"},{title:"Certification ISO 14001",status:"pending",label:"En attente"}]},factory:{title:"Usine CloudTech Industries",type:"Site de production interne",fxtc:true,resources:[{name:"Composants assemblés",color:"#EF9F27",qty:"1 200 u./jour"},{name:"Cartes électroniques",color:"#85B7EB",qty:"800 u./jour"}],team:[{name:"Julien Moreau",role:"Directeur usine",type:"human"},{name:"Sophie Laurent",role:"Resp. qualité",type:"human"},{name:"Atlas-Prod AI",role:"Optimisation cadences",type:"ai"},{name:"Atlas-QC AI",role:"Détection anomalies",type:"ai"},{name:"Marc Dubois",role:"Chef d'équipe A",type:"human"}],missions:[{title:"Montée en cadence Q3",status:"active",label:"En cours"},{title:"Migration ligne 4",status:"active",label:"En cours"},{title:"Recertification CE",status:"pending",label:"Planifié sept."}]},hub1:{title:"Hub logistique Nord — Lille",type:"Plateforme interne",fxtc:true,resources:[{name:"Produits finis",color:"#EF9F27",qty:"3 400 u. en stock"},{name:"Pièces de rechange",color:"#5DCAA5",qty:"12 000 réf."}],team:[{name:"Claire Petit",role:"Resp. logistique",type:"human"},{name:"Atlas-Route AI",role:"Optimisation transport",type:"ai"},{name:"Thomas Renaud",role:"Manutention",type:"human"}],missions:[{title:"Réorg. zones de picking",status:"active",label:"En cours"},{title:"Déploiement RFID",status:"pending",label:"Nov. 2026"}]},hub2:{title:"Hub logistique Sud — Lyon",type:"Plateforme interne",fxtc:true,resources:[{name:"Produits finis",color:"#EF9F27",qty:"2 100 u. en stock"},{name:"Emballages",color:"#ED93B1",qty:"8 500 u."}],team:[{name:"Antoine Garnier",role:"Resp. site",type:"human"},{name:"Atlas-Flux AI",role:"Gestion des flux",type:"ai"}],missions:[{title:"Intégration transporteur B",status:"active",label:"En cours"}]},dist1:{title:"Stock A — Paris IDF",type:"Entrepôt distribution interne",fxtc:true,resources:[{name:"Gamme Pro",color:"#EF9F27",qty:"1 800 u."},{name:"Gamme Standard",color:"#85B7EB",qty:"3 200 u."}],team:[{name:"Nadia Bensalem",role:"Resp. distribution",type:"human"},{name:"Atlas-Stock AI",role:"Prévision de demande",type:"ai"},{name:"Lucas Martin",role:"Préparateur",type:"human"}],missions:[{title:"Livraison J+1 Île-de-France",status:"active",label:"En cours"},{title:"Réduction casse 15%",status:"active",label:"En cours"}]},dist2:{title:"Stock B — Bordeaux",type:"Entrepôt distribution interne",fxtc:true,resources:[{name:"Gamme Pro",color:"#EF9F27",qty:"900 u."},{name:"Gamme Éco",color:"#5DCAA5",qty:"2 400 u."}],team:[{name:"Pierre Roux",role:"Resp. régional",type:"human"},{name:"Atlas-Demand AI",role:"Allocation régionale",type:"ai"}],missions:[{title:"Ouverture zone Sud-Ouest",status:"pending",label:"Janv. 2027"}]},dist3:{title:"Stock C — Marseille",type:"Entrepôt distribution interne",fxtc:true,resources:[{name:"Gamme Standard",color:"#85B7EB",qty:"1 600 u."},{name:"Export Méditerranée",color:"#AFA9EC",qty:"700 u."}],team:[{name:"Samira Khelifi",role:"Resp. export",type:"human"},{name:"Hugo Fabre",role:"Douanes & conformité",type:"human"},{name:"Atlas-Export AI",role:"Documents douaniers",type:"ai"}],missions:[{title:"Certification export Maghreb",status:"active",label:"En cours"},{title:"Accord transitaire Tunisie",status:"pending",label:"En attente"}]},end1:{title:"Airbus Group",type:"Client final",fxtc:false,resources:[{name:"Composants aéro",color:"#AFA9EC",qty:"Cmd #4412"}],team:[{name:"Service achats",role:"Procurement dept.",type:"ext"}],missions:[]},end2:{title:"Renault SAS",type:"Client final",fxtc:true,resources:[{name:"Cartes électroniques",color:"#85B7EB",qty:"Cmd #7801"}],team:[{name:"Marie Leroy",role:"Achats industriels",type:"human"}],missions:[{title:"Livraison lot Q3",status:"active",label:"En transit"}]},end3:{title:"CHU Montpellier",type:"Client final",fxtc:false,resources:[{name:"Équipements médicaux",color:"#5DCAA5",qty:"Cmd #2209"}],team:[{name:"Service biomédical",role:"Direction technique",type:"ext"}],missions:[]},end4:{title:"Dassault Systèmes",type:"Client final",fxtc:true,resources:[{name:"Modules IoT",color:"#EF9F27",qty:"Cmd #5543"}],team:[{name:"Luc Germain",role:"Resp. intégration",type:"human"},{name:"Atlas-Integ AI",role:"Suivi livraison",type:"ai"}],missions:[{title:"Intégration plateforme 3DX",status:"active",label:"En cours"}]},end5:{title:"Mairie de Lyon",type:"Client final — secteur public",fxtc:false,resources:[{name:"Capteurs urbains",color:"#ED93B1",qty:"Cmd #1187"}],team:[{name:"DSI collectivité",role:"Direction numérique",type:"ext"}],missions:[]}};
+
+function atlasOpen(id){
+  const n=atlasNodes[id];if(!n)return;
+  const badge=n.fxtc?'<span class="atlas-modal-badge fxtc">Client FXTC</span>':'<span class="atlas-modal-badge ext-badge">Externe</span>';
+  let h=`<div class="atlas-modal-header"><div><div class="atlas-modal-title">${n.title}</div><div class="atlas-modal-type">${n.type} ${badge}</div></div><button class="atlas-modal-close" onclick="atlasClose()">✕</button></div><div class="atlas-modal-body">`;
+  h+=`<div class="atlas-modal-section"><div class="atlas-modal-label">Ressources</div>`;
+  n.resources.forEach(r=>{h+=`<div class="atlas-modal-resource"><div class="atlas-modal-resource-dot" style="background:${r.color}"></div><span class="atlas-modal-resource-name">${r.name}</span><span class="atlas-modal-resource-qty">${r.qty}</span></div>`;});
+  h+=`</div>`;
+  h+=`<div class="atlas-modal-section"><div class="atlas-modal-label">${n.fxtc?'Équipe & agents IA':'Contacts connus'}</div>`;
+  n.team.forEach(t=>{const ac=t.type==='ai'?'ai':t.type==='human'?'human':'ext';const al=t.type==='ai'?'IA':t.type==='human'?t.name.split(' ').map(w=>w[0]).join(''):'—';h+=`<div class="atlas-modal-team-row"><div class="atlas-modal-avatar ${ac}">${al}</div><div class="atlas-modal-team-info"><div class="atlas-modal-team-name">${t.name}</div><div class="atlas-modal-team-role">${t.role}</div></div></div>`;});
+  h+=`</div>`;
+  if(n.missions.length>0){h+=`<div class="atlas-modal-section"><div class="atlas-modal-label">Missions actives</div><div class="atlas-modal-missions">`;n.missions.forEach(m=>{h+=`<div class="atlas-modal-mission"><div class="atlas-modal-mission-title">${m.title}</div><div class="atlas-modal-mission-status"><span class="${m.status}">${m.label}</span></div></div>`;});h+=`</div></div>`;}
+  else if(!n.fxtc){h+=`<div class="atlas-modal-section" style="padding:12px;background:rgba(255,255,255,.04);border-radius:10px;text-align:center;color:rgba(255,255,255,.35);font-size:12px;">Organisation non cliente FXTC — données limitées</div>`;}
+  h+=`</div>`;
+  document.getElementById('atlas-modal-content').innerHTML=h;
+  document.getElementById('atlas-overlay').classList.add('open');
+}
+function atlasClose(){document.getElementById('atlas-overlay').classList.remove('open');}
+</script>
   </div>
 </section>
 
