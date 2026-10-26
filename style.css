@@ -860,7 +860,7 @@ input:focus, textarea:focus{
   background: var(--primary);
   color: rgba(255,255,255,.8);
   padding: 18px 0;
-  margin-top: 28px;
+  margin-top: 0px;
 }
 
 .footer-inner{
@@ -1143,4 +1143,9 @@ input:focus, textarea:focus{
     opacity: 1;
     transition: none;
   }
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: auto;
 }
