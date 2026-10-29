@@ -366,6 +366,40 @@
 </script>
 
 <!-- Carousel -->
+
+<script>
+(() => {
+  const carousel = document.querySelector('.usecases-carousel');
+  if (!carousel) return;
+  const prev = carousel.querySelector('.uc-prev');
+  const next = carousel.querySelector('.uc-next');
+  const viewport = carousel.querySelector('.uc-viewport');
+
+  let acc = 0, locked = false, resetTimer;
+  const THRESHOLD = 40;   // sensibilité : plus petit = plus réactif
+  const LOCK = 550;       // pause entre deux cartes (ms), proche de ta transition .45s
+
+  viewport.addEventListener('wheel', e => {
+    // on ne réagit qu'aux gestes horizontaux
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+    e.preventDefault();   // évite aussi le « retour arrière » du navigateur
+    if (locked) return;
+
+    acc += e.deltaX;
+    clearTimeout(resetTimer);
+    resetTimer = setTimeout(() => acc = 0, 150);
+
+    if (Math.abs(acc) > THRESHOLD) {
+      const btn = acc > 0 ? next : prev;
+      if (btn && !btn.disabled) btn.click();
+      acc = 0;
+      locked = true;
+      setTimeout(() => locked = false, LOCK);
+    }
+  }, { passive: false });
+})();
+</script>
+  
 <script>
   const track = document.querySelector('.uc-track');
   const prev = document.querySelector('.uc-prev');
