@@ -500,7 +500,7 @@ a.app-row {
   gap: 16px;
   margin-top: 28px;
   padding: 0 24px;
-  padding-bottom: 40px;
+  padding-bottom: 8px;
 }
 
 .uc-viewport{
@@ -646,7 +646,7 @@ a.app-row {
 .uc-nav:disabled svg{ transform: none; }
 
 @media (max-width: 820px){
-  .usecases-carousel{ gap: 8px; padding: 0 12px 40px; }
+  .usecases-carousel{ gap: 8px; padding: 0 4px 40px; }
   .uc-nav{ width: 28px; height: 160px; border-radius: 10px; }
 }
 
