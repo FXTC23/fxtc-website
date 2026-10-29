@@ -8,9 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
-/* ============ FXTC — Intro diaporama (style Palantir) ============
-   Section autonome : copie le <style>, le <section> et le <script>
-   dans ta page d'accueil. Les couleurs se règlent ici : */
+/* ============ FXTC — Intro diaporama ============
+Les couleurs se règlent ici : */
 .fx-hero{
   --fx-bg:#050607;
   --fx-fg:#f3f3f0;
@@ -210,8 +209,6 @@ html,body{margin:0;background:#050607}
     pauseBtn.setAttribute('aria-label', p ? 'Lecture' : 'Mettre en pause');
   }
   pauseBtn.addEventListener('click', () => setPaused(!userPaused));
-  hero.querySelector('.fx-slides').addEventListener('mouseenter', () => hoverPaused = true);
-  hero.querySelector('.fx-slides').addEventListener('mouseleave', () => hoverPaused = false);
   hero.addEventListener('keydown', e => {
     if (e.key === 'ArrowRight') go(index + 1, true);
     if (e.key === 'ArrowLeft') go(index - 1, true);
