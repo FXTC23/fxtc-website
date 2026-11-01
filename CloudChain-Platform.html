@@ -931,51 +931,135 @@
 
       <!-- Schéma visuel réseau -->
       <div class="ccp-intranet-visual">
-        <svg viewBox="0 0 400 360" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Lignes de connexion -->
-          <line x1="200" y1="60" x2="80" y2="160" stroke="#535456" stroke-width="1.5" stroke-dasharray="6 4" opacity=".3"/>
-          <line x1="200" y1="60" x2="320" y2="160" stroke="#535456" stroke-width="1.5" stroke-dasharray="6 4" opacity=".3"/>
-          <line x1="80" y1="160" x2="140" y2="280" stroke="#535456" stroke-width="1.5" stroke-dasharray="6 4" opacity=".3"/>
-          <line x1="320" y1="160" x2="260" y2="280" stroke="#535456" stroke-width="1.5" stroke-dasharray="6 4" opacity=".3"/>
-          <line x1="80" y1="160" x2="320" y2="160" stroke="#535456" stroke-width="1.5" stroke-dasharray="6 4" opacity=".3"/>
-          <line x1="140" y1="280" x2="260" y2="280" stroke="#535456" stroke-width="1.5" stroke-dasharray="6 4" opacity=".3"/>
-          <line x1="200" y1="60" x2="140" y2="280" stroke="#535456" stroke-width="1" stroke-dasharray="4 6" opacity=".15"/>
-          <line x1="200" y1="60" x2="260" y2="280" stroke="#535456" stroke-width="1" stroke-dasharray="4 6" opacity=".15"/>
+        <svg viewBox="0 0 440 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- Halo lumineux autour du noeud central -->
+            <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#535456" stop-opacity=".08"/>
+              <stop offset="100%" stop-color="#535456" stop-opacity="0"/>
+            </radialGradient>
+            <!-- Gradient pour les lignes actives -->
+            <linearGradient id="linkGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#535456" stop-opacity=".5"/>
+              <stop offset="50%" stop-color="#535456" stop-opacity=".2"/>
+              <stop offset="100%" stop-color="#535456" stop-opacity=".5"/>
+            </linearGradient>
+          </defs>
 
-          <!-- Nœud central — votre organisation -->
-          <circle cx="200" cy="60" r="28" fill="#535456"/>
-          <text x="200" y="64" text-anchor="middle" fill="#fff" font-family="Satoshi, sans-serif" font-size="11" font-weight="700">VOUS</text>
-          <text x="200" y="105" text-anchor="middle" fill="#535456" font-family="Satoshi, sans-serif" font-size="11" font-weight="600">Votre organisation</text>
+          <!-- Halo central -->
+          <circle cx="220" cy="190" r="140" fill="url(#halo)"/>
 
-          <!-- Nœud partenaire gauche -->
-          <circle cx="80" cy="160" r="22" fill="none" stroke="#535456" stroke-width="2"/>
-          <text x="80" y="164" text-anchor="middle" fill="#535456" font-family="Satoshi, sans-serif" font-size="10" font-weight="600">P1</text>
-          <text x="80" y="198" text-anchor="middle" fill="#888" font-family="Satoshi, sans-serif" font-size="10">Partenaire</text>
+          <!-- Cercle orbitale (décoratif) -->
+          <circle cx="220" cy="190" r="130" fill="none" stroke="#535456" stroke-width=".5" stroke-dasharray="3 8" opacity=".15"/>
+          <circle cx="220" cy="190" r="185" fill="none" stroke="#535456" stroke-width=".5" stroke-dasharray="2 10" opacity=".1"/>
 
-          <!-- Nœud partenaire droit -->
-          <circle cx="320" cy="160" r="22" fill="none" stroke="#535456" stroke-width="2"/>
-          <text x="320" y="164" text-anchor="middle" fill="#535456" font-family="Satoshi, sans-serif" font-size="10" font-weight="600">P2</text>
-          <text x="320" y="198" text-anchor="middle" fill="#888" font-family="Satoshi, sans-serif" font-size="10">Fournisseur</text>
+          <!-- ── Lignes de connexion ── -->
+          <!-- Centre → Partenaire -->
+          <line x1="220" y1="190" x2="72" y2="142" stroke="url(#linkGrad)" stroke-width="1.5"/>
+          <!-- Centre → Fournisseur -->
+          <line x1="220" y1="190" x2="368" y2="142" stroke="url(#linkGrad)" stroke-width="1.5"/>
+          <!-- Centre → Client -->
+          <line x1="220" y1="190" x2="105" y2="340" stroke="url(#linkGrad)" stroke-width="1.5"/>
+          <!-- Centre → Auditeur -->
+          <line x1="220" y1="190" x2="335" y2="340" stroke="url(#linkGrad)" stroke-width="1.5"/>
+          <!-- Centre → Filiale -->
+          <line x1="220" y1="190" x2="220" y2="30" stroke="url(#linkGrad)" stroke-width="1.5"/>
 
-          <!-- Nœud bas gauche -->
-          <circle cx="140" cy="280" r="22" fill="none" stroke="#535456" stroke-width="2"/>
-          <text x="140" y="284" text-anchor="middle" fill="#535456" font-family="Satoshi, sans-serif" font-size="10" font-weight="600">C1</text>
-          <text x="140" y="318" text-anchor="middle" fill="#888" font-family="Satoshi, sans-serif" font-size="10">Client</text>
+          <!-- Liens secondaires (entre tiers) -->
+          <line x1="72" y1="142" x2="105" y2="340" stroke="#535456" stroke-width=".7" stroke-dasharray="4 6" opacity=".12"/>
+          <line x1="368" y1="142" x2="335" y2="340" stroke="#535456" stroke-width=".7" stroke-dasharray="4 6" opacity=".12"/>
+          <line x1="72" y1="142" x2="220" y2="30" stroke="#535456" stroke-width=".7" stroke-dasharray="4 6" opacity=".12"/>
+          <line x1="368" y1="142" x2="220" y2="30" stroke="#535456" stroke-width=".7" stroke-dasharray="4 6" opacity=".12"/>
 
-          <!-- Nœud bas droit -->
-          <circle cx="260" cy="280" r="22" fill="none" stroke="#535456" stroke-width="2"/>
-          <text x="260" y="284" text-anchor="middle" fill="#535456" font-family="Satoshi, sans-serif" font-size="10" font-weight="600">A1</text>
-          <text x="260" y="318" text-anchor="middle" fill="#888" font-family="Satoshi, sans-serif" font-size="10">Auditeur</text>
-
-          <!-- Cadenas sur les liens -->
-          <g transform="translate(132, 102)">
-            <rect x="-10" y="-8" width="20" height="16" rx="4" fill="#fff" stroke="#535456" stroke-width="1"/>
-            <text x="0" y="4" text-anchor="middle" fill="#535456" font-size="9">🔒</text>
+          <!-- ── Cadenas sur les liens principaux ── -->
+          <!-- Centre → Partenaire -->
+          <g transform="translate(146, 166)">
+            <rect x="-14" y="-11" width="28" height="22" rx="6" fill="#fff" stroke="#535456" stroke-width="1"/>
+            <rect x="-5" y="-3" width="10" height="8" rx="2" fill="#535456"/>
+            <path d="M-3,-3 L-3,-6 A3,3 0 0,1 3,-6 L3,-3" fill="none" stroke="#535456" stroke-width="1.2" stroke-linecap="round"/>
           </g>
-          <g transform="translate(268, 102)">
-            <rect x="-10" y="-8" width="20" height="16" rx="4" fill="#fff" stroke="#535456" stroke-width="1"/>
-            <text x="0" y="4" text-anchor="middle" fill="#535456" font-size="9">🔒</text>
+          <!-- Centre → Fournisseur -->
+          <g transform="translate(294, 166)">
+            <rect x="-14" y="-11" width="28" height="22" rx="6" fill="#fff" stroke="#535456" stroke-width="1"/>
+            <rect x="-5" y="-3" width="10" height="8" rx="2" fill="#535456"/>
+            <path d="M-3,-3 L-3,-6 A3,3 0 0,1 3,-6 L3,-3" fill="none" stroke="#535456" stroke-width="1.2" stroke-linecap="round"/>
           </g>
+          <!-- Centre → Client -->
+          <g transform="translate(162, 265)">
+            <rect x="-14" y="-11" width="28" height="22" rx="6" fill="#fff" stroke="#535456" stroke-width="1"/>
+            <rect x="-5" y="-3" width="10" height="8" rx="2" fill="#535456"/>
+            <path d="M-3,-3 L-3,-6 A3,3 0 0,1 3,-6 L3,-3" fill="none" stroke="#535456" stroke-width="1.2" stroke-linecap="round"/>
+          </g>
+          <!-- Centre → Auditeur -->
+          <g transform="translate(278, 265)">
+            <rect x="-14" y="-11" width="28" height="22" rx="6" fill="#fff" stroke="#535456" stroke-width="1"/>
+            <rect x="-5" y="-3" width="10" height="8" rx="2" fill="#535456"/>
+            <path d="M-3,-3 L-3,-6 A3,3 0 0,1 3,-6 L3,-3" fill="none" stroke="#535456" stroke-width="1.2" stroke-linecap="round"/>
+          </g>
+          <!-- Centre → Filiale -->
+          <g transform="translate(220, 110)">
+            <rect x="-14" y="-11" width="28" height="22" rx="6" fill="#fff" stroke="#535456" stroke-width="1"/>
+            <rect x="-5" y="-3" width="10" height="8" rx="2" fill="#535456"/>
+            <path d="M-3,-3 L-3,-6 A3,3 0 0,1 3,-6 L3,-3" fill="none" stroke="#535456" stroke-width="1.2" stroke-linecap="round"/>
+          </g>
+
+          <!-- ══ NŒUD CENTRAL — Votre organisation ══ -->
+          <circle cx="220" cy="190" r="36" fill="#535456"/>
+          <circle cx="220" cy="190" r="36" fill="none" stroke="#fff" stroke-width=".5" opacity=".2"/>
+          <!-- Icône building -->
+          <g transform="translate(220, 183)">
+            <rect x="-10" y="-8" width="20" height="18" rx="2" fill="none" stroke="#fff" stroke-width="1.4"/>
+            <line x1="-5" y1="-2" x2="-5" y2="2" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="0" y1="-2" x2="0" y2="2" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="5" y1="-2" x2="5" y2="2" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>
+            <rect x="-3" y="5" width="6" height="5" rx="1" fill="none" stroke="#fff" stroke-width="1"/>
+          </g>
+          <text x="220" y="240" text-anchor="middle" fill="#535456" font-family="Satoshi, sans-serif" font-size="12" font-weight="700">Votre organisation</text>
+
+          <!-- ── Nœud : Filiale (haut) ── -->
+          <circle cx="220" cy="30" r="24" fill="#f2f2f2" stroke="#535456" stroke-width="1.5"/>
+          <g transform="translate(220, 28)">
+            <circle cx="0" cy="-4" r="4" fill="none" stroke="#535456" stroke-width="1.2"/>
+            <path d="M-7,6 A7,5 0 0,1 7,6" fill="none" stroke="#535456" stroke-width="1.2"/>
+          </g>
+          <text x="220" y="68" text-anchor="middle" fill="#535456" font-family="Satoshi, sans-serif" font-size="11" font-weight="600">Filiale</text>
+
+          <!-- ── Nœud : Partenaire (gauche haut) ── -->
+          <circle cx="72" cy="142" r="24" fill="#f2f2f2" stroke="#535456" stroke-width="1.5"/>
+          <g transform="translate(72, 140)">
+            <path d="M-6,-6 L6,-6 L6,6 L-6,6 Z" fill="none" stroke="#535456" stroke-width="1.2" rx="1"/>
+            <line x1="-3" y1="-2" x2="3" y2="-2" stroke="#535456" stroke-width="1" stroke-linecap="round"/>
+            <line x1="-3" y1="1" x2="1" y2="1" stroke="#535456" stroke-width="1" stroke-linecap="round"/>
+          </g>
+          <text x="72" y="180" text-anchor="middle" fill="#535456" font-family="Satoshi, sans-serif" font-size="11" font-weight="600">Partenaire</text>
+
+          <!-- ── Nœud : Fournisseur (droite haut) ── -->
+          <circle cx="368" cy="142" r="24" fill="#f2f2f2" stroke="#535456" stroke-width="1.5"/>
+          <g transform="translate(368, 140)">
+            <rect x="-7" y="-5" width="14" height="10" rx="2" fill="none" stroke="#535456" stroke-width="1.2"/>
+            <path d="M-4,-5 L0,-9 L4,-5" fill="none" stroke="#535456" stroke-width="1.2" stroke-linejoin="round"/>
+          </g>
+          <text x="368" y="180" text-anchor="middle" fill="#535456" font-family="Satoshi, sans-serif" font-size="11" font-weight="600">Fournisseur</text>
+
+          <!-- ── Nœud : Client (gauche bas) ── -->
+          <circle cx="105" cy="340" r="24" fill="#f2f2f2" stroke="#535456" stroke-width="1.5"/>
+          <g transform="translate(105, 338)">
+            <circle cx="-3" cy="-4" r="3.5" fill="none" stroke="#535456" stroke-width="1.1"/>
+            <circle cx="5" cy="-3" r="3" fill="none" stroke="#535456" stroke-width="1.1"/>
+            <path d="M-9,5 A6,4 0 0,1 3,5" fill="none" stroke="#535456" stroke-width="1.1"/>
+          </g>
+          <text x="105" y="378" text-anchor="middle" fill="#535456" font-family="Satoshi, sans-serif" font-size="11" font-weight="600">Client</text>
+
+          <!-- ── Nœud : Auditeur (droite bas) ── -->
+          <circle cx="335" cy="340" r="24" fill="#f2f2f2" stroke="#535456" stroke-width="1.5"/>
+          <g transform="translate(335, 338)">
+            <circle cx="0" cy="0" r="6" fill="none" stroke="#535456" stroke-width="1.2"/>
+            <path d="M4,4 L8,8" stroke="#535456" stroke-width="1.3" stroke-linecap="round"/>
+          </g>
+          <text x="335" y="378" text-anchor="middle" fill="#535456" font-family="Satoshi, sans-serif" font-size="11" font-weight="600">Auditeur</text>
+
+          <!-- Label global -->
+          <text x="220" y="425" text-anchor="middle" fill="#999" font-family="Satoshi, sans-serif" font-size="10" letter-spacing=".15em" text-transform="uppercase">RÉSEAU DE CONFIANCE CHIFFRÉ</text>
         </svg>
       </div>
 
